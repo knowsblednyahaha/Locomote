@@ -62,11 +62,16 @@ export default function Blogs() {
               <div className="w-full sm:w-2/12 text-center md:text-right md:pr-5 xl:pr-10">
                 <GoArrowUpRight className="text-2xl lg:text-3xl xl:text-4xl hidden sm:inline-block" />
                 <button className="sm:hidden w-40 h-12 text-sm bg-[#FE2F2F] rounded-3xl text-white">
-                  <Link href="/blog">View</Link>
+                  <Link href="/blog">View blog</Link>
                 </button>
               </div>
             </div>
           ))}
+        </div>
+        <div className="flex justify-center py-20">
+          <button className="w-48 h-14 text-sm lg:text-base bg-[#FE2F2F] rounded-3xl text-white">
+            Show more
+          </button>
         </div>
       </div>
     </section>
