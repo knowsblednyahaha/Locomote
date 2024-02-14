@@ -34,11 +34,11 @@ export default function Destination() {
               <div className="relative w-full h-32 sm:h-44 md:h-32 lg:h-44 xl:h-64 bg-no-repeat overflow-hidden">
                 <Image
                   src={item.image}
-                  className="rounded-3xl"
+                  className="rounded-3xl object-cover"
                   fill={true}
-                  layout="fill"
-                  objectFit="cover"
+                  sizes="(max-width: 640px) 100vw, 50vw"
                   alt="About Section Image"
+                  priority
                 />
               </div>
               <div className="px-5 py-1">

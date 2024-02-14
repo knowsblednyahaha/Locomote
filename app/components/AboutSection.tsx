@@ -3,12 +3,36 @@ import Image from "next/image";
 
 export default function AboutSection() {
   const features = [
-    { img: "/img/icons/star.jpg", text: "Effortless Booking" },
-    { img: "/img/icons/map.jpg", text: "Extensive Route Network" },
-    { img: "/img/icons/phone.jpg", text: "User-Friendly Interface" },
-    { img: "/img/icons/card.jpg", text: "Secure Payment Options" },
-    { img: "/img/icons/party.jpg", text: "Exclusive Deals and Discounts" },
-    { img: "/img/icons/call.jpg", text: "24/7 Customer Support" },
+    {
+      img: "/img/icons/star.jpg",
+      text: "Effortless Booking",
+      alt: "Star Image",
+    },
+    {
+      img: "/img/icons/map.jpg",
+      text: "Extensive Route Network",
+      alt: "Map Image",
+    },
+    {
+      img: "/img/icons/phone.jpg",
+      text: "User-Friendly Interface",
+      alt: "Phone Image",
+    },
+    {
+      img: "/img/icons/card.jpg",
+      text: "Secure Payment Options",
+      alt: "Credit Card Image",
+    },
+    {
+      img: "/img/icons/party.jpg",
+      text: "Exclusive Deals and Discounts",
+      alt: "Party Image",
+    },
+    {
+      img: "/img/icons/call.jpg",
+      text: "24/7 Customer Support",
+      alt: "Caller Image",
+    },
   ];
 
   return (
@@ -23,10 +47,8 @@ export default function AboutSection() {
           <div className="relative w-full md:w-1/2 lg:w-3/5 h-64 lg:h-[35vh] xl:h-[45vh] bg-no-repeat">
             <Image
               src="/img/aboutsection.jpg"
-              className="rounded-3xl"
+              className="rounded-3xl object-cover"
               fill={true}
-              layout="fill"
-              objectFit="cover"
               alt="About Section Image"
             />
           </div>
@@ -58,12 +80,11 @@ export default function AboutSection() {
               <div className="flex flex-col items-center gap-y-3 pb-5" key={i}>
                 <div className="relative w-full h-32 lg:h-44 bg-no-repeat overflow-hidden">
                   <Image
-                    className="w-full h-full"
+                    className="w-full h-full object-contain"
                     src={item.img}
                     fill={true}
-                    layout="fill"
-                    objectFit="contain"
-                    alt="Star Icon"
+                    alt={item.alt}
+                    sizes="(max-width: 640px) 100vw, 50vw"
                   />
                 </div>
                 <div className="text-center">

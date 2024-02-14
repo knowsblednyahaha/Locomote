@@ -8,11 +8,10 @@ export default function Homehero() {
       <div className="relative w-full h-[70vh] md:h-[70vh]">
         <Image
           src="/img/homehero.jpg"
-          className="bg-no-repeat rounded-b-3xl object-[left_35%_bottom_45%] md:bg-center "
+          className="bg-no-repeat object-cover rounded-b-3xl object-[left_35%_bottom_45%] md:bg-center "
           fill={true}
-          layout="fill"
-          objectFit="cover"
           alt="Homehero Image"
+          priority
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#000000] from-[5%] via-transparent via-30% to-transparent"></div>
       </div>
