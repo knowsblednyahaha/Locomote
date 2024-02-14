@@ -3,6 +3,8 @@ import Homehero from "./components/Homehero";
 import AboutSection from "./components/AboutSection";
 import Destination from "./components/Destination";
 import Blogs from "./components/Blogs";
+import Newsletter from "./components/Newsletter";
+import Footer from "./components/Footer";
 
 export default function Home() {
   return (
@@ -12,6 +14,8 @@ export default function Home() {
       <AboutSection />
       <Destination />
       <Blogs />
+      <Newsletter />
+      <Footer />
     </main>
   );
 }

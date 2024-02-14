@@ -37,7 +37,7 @@ export default function Blogs() {
         <div className="w-full h-full">
           {blogs.map((item, i) => (
             <div
-              className="flex flex-col sm:flex-row items-center gap-y-10 py-10 border-t border-black"
+              className="flex flex-col sm:flex-row items-center gap-y-10 py-10 border-t border-black last:border-b"
               key={i}
             >
               <div className="w-full sm:w-7/12 pr-10">
@@ -53,7 +53,7 @@ export default function Blogs() {
                   src={item.image}
                   className="object-cover"
                   fill={true}
-                  // sizes="(max-width: 640px) 100vw, 50vw"
+                  sizes="(max-width: 640px) 100vw, 50vw"
                   alt="Image"
                   priority
                 />
