@@ -49,6 +49,7 @@ export default function AboutSection() {
               src="/img/aboutsection.jpg"
               className="rounded-3xl object-cover"
               fill={true}
+              sizes="(max-width: 640px) 100vw, 50vw"
               alt="About Section Image"
             />
           </div>
