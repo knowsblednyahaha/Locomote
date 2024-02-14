@@ -4,7 +4,7 @@ import { HiMiniArrowLongRight } from "react-icons/hi2";
 
 export default function Homehero() {
   return (
-    <section className="relative max-w-[1440px] w-full h-screen flex flex-col w-full overflow-hidden m-auto">
+    <section className="relative max-w-[1440px] w-full h-screen w-full max-h-[940px] flex flex-col w-full overflow-hidden m-auto">
       <div className="relative w-full h-[70vh] md:h-[70vh]">
         <Image
           src="/img/homehero.jpg"
