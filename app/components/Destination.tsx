@@ -3,16 +3,45 @@ import Image from "next/image";
 
 export default function Destination() {
   const destination = [
-    { image: "/img/destinations/baguio.jpg", location: "Baguio" },
-    { image: "/img/destinations/coron.jpg", location: "Coron" },
-    { image: "/img/destinations/siargao.jpg", location: "Siargao" },
-    { image: "/img/destinations/bohol.jpg", location: "Bohol" },
-    { image: "/img/destinations/cebu.jpg", location: "Cebu" },
-    { image: "/img/destinations/elnido.jpg", location: "El Nido" },
-    { image: "/img/destinations/manila.jpg", location: "Manila" },
+    {
+      image: "/img/destinations/baguio.jpg",
+      location: "Baguio",
+      alt: "Baguio Image",
+    },
+    {
+      image: "/img/destinations/coron.jpg",
+      location: "Coron",
+      alt: "Coron Image",
+    },
+    {
+      image: "/img/destinations/siargao.jpg",
+      location: "Siargao",
+      alt: "Siargao Image",
+    },
+    {
+      image: "/img/destinations/bohol.jpg",
+      location: "Bohol",
+      alt: "Bohol Image",
+    },
+    {
+      image: "/img/destinations/cebu.jpg",
+      location: "Cebu",
+      alt: "Cebu Image",
+    },
+    {
+      image: "/img/destinations/elnido.jpg",
+      location: "El Nido",
+      alt: "El Nido Image",
+    },
+    {
+      image: "/img/destinations/manila.jpg",
+      location: "Manila",
+      alt: "Manila Image",
+    },
     {
       image: "/img/destinations/puertoprincesa.jpg",
       location: "Puerto Princesa",
+      alt: "Puerto Princesa Image",
     },
   ];
 
@@ -37,7 +66,7 @@ export default function Destination() {
                   className="rounded-3xl object-cover"
                   fill={true}
                   sizes="(max-width: 640px) 100vw, 50vw"
-                  alt="About Section Image"
+                  alt={item.alt}
                   priority
                 />
               </div>
