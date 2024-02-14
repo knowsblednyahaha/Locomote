@@ -15,7 +15,7 @@ export default function Header() {
   return (
     <header className="max-w-[1440px] w-full m-auto ">
       <div className="max-w-[1440px] w-full absolute w-full flex justify-between items-center text-white py-5 px-5 md:px-10 lg:px-20 z-20">
-        <div>
+        <div className="cursor-pointer">
           <h3>Locomote</h3>
         </div>
         <div className="hidden gap-x-12 items-center sm:flex flex-row sm:text-sm md:text-md">
