@@ -23,7 +23,7 @@ export default function Footer() {
             </div>
             <div className="md:w-1/3 lg:[20%] flex flex-col items-center lg:items-start">
               <span className="font-thin uppercase">Social</span>
-              <div className="flex justify-center md:justify-start gap-x-1 pt-3 text-xl">
+              <div className="flex justify-center md:justify-start gap-x-2 lg:gap-x-3 pt-3 text-xl lg:text-2xl">
                 <div>
                   <FaFacebook />
                 </div>
