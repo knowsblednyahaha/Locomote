@@ -52,7 +52,9 @@ export default function Destination() {
           <h4 className="text-xl sm:text-2xl lg:text-4xl font-semibold">
             Popular Destination
           </h4>
-          <p className="font-light text-sm">travel to a well-known location</p>
+          <p className="font-light text-sm md:text-base lg:text-xl">
+            travel to a well-known location
+          </p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-y-5 md:gap-y-10 gap-x-5">
           {destination.map((item, i) => (
