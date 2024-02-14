@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { IoIosMenu } from "react-icons/io";
 
@@ -8,7 +9,7 @@ export default function Header() {
 
   const navItems = [
     { label: "About", href: "/about" },
-    { label: "Blog", href: "/work" },
+    { label: "Blog", href: "/blog" },
     { label: "Contact", href: "/contact" },
   ];
   return (
@@ -20,12 +21,21 @@ export default function Header() {
         <div className="hidden gap-x-12 items-center sm:flex flex-row sm:text-sm md:text-md">
           <ul className="flex gap-x-12">
             {navItems.map((item, i) => (
-              <li key={i}>{item.label}</li>
+              <li
+                className={
+                  item.href === pathname
+                    ? "underline underline-offset-8"
+                    : "hover:underline underline-offset-8"
+                }
+                key={i}
+              >
+                <Link href={item.href}>{item.label}</Link>
+              </li>
             ))}
           </ul>
           <div>
             <button className="sm:h-10 sm:w-24 bg-[#FE2F2F] text-white rounded-3xl">
-              Book
+              <Link href="/book">Book</Link>
             </button>
           </div>
         </div>

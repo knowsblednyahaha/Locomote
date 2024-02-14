@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Destination() {
   const destination = [
@@ -80,7 +81,7 @@ export default function Destination() {
         </div>
         <div className="py-14 flex justify-center">
           <button className="w-64 h-14 md:w-80 h-12 md:h-14 text-sm lg:text-base bg-[#FE2F2F] rounded-3xl text-white">
-            See all our popular destination
+            <Link href="/destinations">See all our popular destination</Link>
           </button>
         </div>
       </div>

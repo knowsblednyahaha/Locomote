@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { HiMiniArrowLongRight } from "react-icons/hi2";
+import Link from "next/link";
 
 export default function Homehero() {
   return (
@@ -31,10 +32,12 @@ export default function Homehero() {
           </div>
           <div className="flex justify-center items-center">
             <button className="w-60 md:w-72 h-12 md:h-14 text-sm md:text-base bg-[#FE2F2F] rounded-3xl text-white flex justify-center items-center">
-              Book your destination
-              <span className="text-3xl pl-4 hidden">
-                <HiMiniArrowLongRight />
-              </span>
+              <Link href="/book">
+                Book your destination
+                <span className="text-3xl pl-4 hidden">
+                  <HiMiniArrowLongRight />
+                </span>
+              </Link>
             </button>
           </div>
         </div>

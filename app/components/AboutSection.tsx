@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function AboutSection() {
   const features = [
@@ -66,7 +67,7 @@ export default function AboutSection() {
           </div>
           <div className="flex justify-center w-full md:w-2/12">
             <button className="w-44 md:w-72 h-12 md:h-14 text-sm lg:text-base bg-[#FE2F2F] rounded-3xl text-white">
-              View more
+              <Link href="/about">View more</Link>
             </button>
           </div>
         </div>
