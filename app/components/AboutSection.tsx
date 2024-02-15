@@ -66,9 +66,11 @@ export default function AboutSection() {
             </p>
           </div>
           <div className="flex justify-center w-full md:w-2/12">
-            <button className="w-44 md:w-72 h-12 md:h-14 text-sm lg:text-base bg-[#FE2F2F] rounded-3xl text-white">
-              <Link href="/about">View more</Link>
-            </button>
+            <Link href="/about">
+              <button className="w-44 h-12 md:h-14 text-sm lg:text-base bg-[#FE2F2F] rounded-3xl text-white">
+                View more
+              </button>
+            </Link>
           </div>
         </div>
         <div>

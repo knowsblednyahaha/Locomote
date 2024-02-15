@@ -31,14 +31,14 @@ export default function Homehero() {
             </p>
           </div>
           <div className="flex justify-center items-center">
-            <button className="w-60 md:w-72 h-12 md:h-14 text-sm md:text-base bg-[#FE2F2F] rounded-3xl text-white flex justify-center items-center">
-              <Link href="/book">
+            <Link href="/book">
+              <button className="w-60 md:w-72 h-12 md:h-14 text-sm md:text-base bg-[#FE2F2F] rounded-3xl text-white flex justify-center items-center">
                 Book your destination
                 <span className="text-3xl pl-4 hidden">
                   <HiMiniArrowLongRight />
                 </span>
-              </Link>
-            </button>
+              </button>
+            </Link>
           </div>
         </div>
       </div>
