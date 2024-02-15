@@ -74,7 +74,9 @@ export default function Destination() {
                 />
               </div>
               <div className="px-5 py-1">
-                <span className="font-semibold">{item.location}</span>
+                <span className="font-semibold md:text-lg lg:text-xl xl:text-2xl">
+                  {item.location}
+                </span>
               </div>
             </div>
           ))}

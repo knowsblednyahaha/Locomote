@@ -35,7 +35,7 @@ export default function Header() {
           </ul>
           <div>
             <button className="sm:h-10 sm:w-24 bg-[#FE2F2F] text-white rounded-3xl">
-              <Link href="/book">Book</Link>
+              <Link href={"/book"}>Book</Link>
             </button>
           </div>
         </div>

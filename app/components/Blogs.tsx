@@ -38,7 +38,7 @@ export default function Blogs() {
         <div className="w-full h-full">
           {blogs.map((item, i) => (
             <div
-              className="flex flex-col sm:flex-row items-center gap-y-10 py-10 border-t border-black last:border-b"
+              className="flex flex-col sm:flex-row items-center gap-y-10 py-10 border-t border-black last:border-b cursor-pointer"
               key={i}
             >
               <div className="w-full sm:w-7/12 pr-10">
@@ -60,7 +60,9 @@ export default function Blogs() {
                 />
               </div>
               <div className="w-full sm:w-2/12 text-center md:text-right md:pr-5 xl:pr-10">
-                <GoArrowUpRight className="text-2xl lg:text-3xl xl:text-4xl hidden sm:inline-block" />
+                <Link href={"/blog"}>
+                  <GoArrowUpRight className="text-2xl lg:text-3xl xl:text-4xl hidden sm:inline-block" />
+                </Link>
                 <button className="sm:hidden w-40 h-12 text-sm bg-[#FE2F2F] rounded-3xl text-white">
                   <Link href="/blog">View blog</Link>
                 </button>
@@ -69,9 +71,11 @@ export default function Blogs() {
           ))}
         </div>
         <div className="flex justify-center py-20">
-          <button className="w-48 h-14 text-sm lg:text-base bg-[#FE2F2F] rounded-3xl text-white">
-            Show more
-          </button>
+          <Link href="/blogs">
+            <button className="w-48 h-14 text-sm lg:text-base bg-[#FE2F2F] rounded-3xl text-white">
+              Show more
+            </button>
+          </Link>
         </div>
       </div>
     </section>

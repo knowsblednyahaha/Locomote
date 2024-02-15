@@ -18,8 +18,10 @@ export default function Footer() {
           <div className="w-full lg:w-[60%] flex flex-col md:flex-row gap-y-8 pt-4 lg:gap-x-6">
             <div className="md:w-1/3 lg:[20%] flex flex-col items-center lg:items-start gap-y-2">
               <span className="font-thin uppercase">About Locomote</span>
-              <span>FAQs</span>
-              <span>Get in touch</span>
+              <span className="hover:underline underline-offset-8">FAQs</span>
+              <span className="hover:underline underline-offset-8">
+                Get in touch
+              </span>
             </div>
             <div className="md:w-1/3 lg:[20%] flex flex-col items-center lg:items-start">
               <span className="font-thin uppercase">Social</span>
@@ -40,7 +42,9 @@ export default function Footer() {
             </div>
             <div className="md:w-1/3 lg:[20%] flex flex-col items-center lg:items-start gap-y-2">
               <span className="font-thin uppercase">Call us</span>
-              <span>+63 906 214 3558</span>
+              <span className="hover:underline underline-offset-8">
+                +63 906 214 3558
+              </span>
             </div>
           </div>
         </div>
