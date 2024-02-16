@@ -32,43 +32,33 @@ export default function SearchBooking() {
               <div>
                 <input
                   type="checkbox"
-                  id="vehicle1"
-                  name="vehicle1"
+                  id="victoryliner"
+                  name="victoryliner"
                   value="Bike"
                 />
-                <label htmlFor="vehicle1"> Victory Liner</label>
+                <label htmlFor="victoryliner"> Victory Liner</label>
                 <br />
                 <input
                   type="checkbox"
-                  id="vehicle1"
-                  name="vehicle1"
+                  id="solidnorth"
+                  name="solidnorth"
                   value="Bike"
                 />
-                <label htmlFor="vehicle1"> Solid North</label>
+                <label htmlFor="solidnorth"> Solid North</label>
                 <br />
                 <input
                   type="checkbox"
-                  id="vehicle1"
-                  name="vehicle1"
+                  id="genesis"
+                  name="genesis"
                   value="Bike"
                 />
-                <label htmlFor="vehicle1"> Genesis</label>
+                <label htmlFor="genesis"> Genesis</label>
                 <br />
-                <input
-                  type="checkbox"
-                  id="vehicle1"
-                  name="vehicle1"
-                  value="Bike"
-                />
-                <label htmlFor="vehicle1"> Partas</label>
+                <input type="checkbox" id="partas" name="partas" value="Bike" />
+                <label htmlFor="partas"> Partas</label>
                 <br />
-                <input
-                  type="checkbox"
-                  id="vehicle1"
-                  name="vehicle1"
-                  value="Bike"
-                />
-                <label htmlFor="vehicle1"> JoyBus</label>
+                <input type="checkbox" id="joybus" name="joybus" value="Bike" />
+                <label htmlFor="joybus"> JoyBus</label>
                 <br />
               </div>
             </div>
@@ -77,41 +67,61 @@ export default function SearchBooking() {
               <div>
                 <input
                   type="checkbox"
-                  id="vehicle1"
-                  name="vehicle1"
+                  id="firstclassexpress"
+                  name="firstclassexpress"
                   value="Bike"
                 />
-                <label htmlFor="vehicle1"> First Class Express</label>
+                <label htmlFor="firstclassexpress"> First Class Express</label>
+                <br />
+                <input type="checkbox" id="deluxe" name="deluxe" value="Bike" />
+                <label htmlFor="deluxe"> Deluxe</label>
                 <br />
                 <input
                   type="checkbox"
-                  id="vehicle1"
-                  name="vehicle1"
+                  id="superdeluxe"
+                  name="superdeluxe"
                   value="Bike"
                 />
-                <label htmlFor="vehicle1"> Deluxe</label>
+                <label htmlFor="superdeluxe"> Super Deluxe</label>
                 <br />
                 <input
                   type="checkbox"
-                  id="vehicle1"
-                  name="vehicle1"
+                  id="luxurybus"
+                  name="luxurybus"
                   value="Bike"
                 />
-                <label htmlFor="vehicle1"> Super Deluxe</label>
-                <br />
-                <input
-                  type="checkbox"
-                  id="vehicle1"
-                  name="vehicle1"
-                  value="Bike"
-                />
-                <label htmlFor="vehicle1"> Luxury Bus</label>
+                <label htmlFor="luxurybus"> Luxury Bus</label>
                 <br />
               </div>
             </div>
           </div>
           <div className="w-full md:w-4/6 lg:w-9/12 border border-black rounded-2xl h-fit p-5">
-            available tickets
+            <div className="pb-3">
+              <span className="text-sm">
+                Bus Company: Victory Liner - 🌐🖥️💨🎵
+              </span>
+            </div>
+            <div className="flex flex-col md:flex-row md:items-center gap-x-3 w-full">
+              <div className="lg:w-3/12">
+                <span className="text-xl font-bold">00-15</span>
+                <p className="uppercase">Baguio City Bus Station</p>
+              </div>
+              <div className="hidden lg:w-2/12">
+                <span className="">4hrs 30mins</span>
+              </div>
+              <div className="lg:w-3/12">
+                <span className="text-xl font-bold">00-15</span>
+                <p className="uppercase">Baguio City Bus Station</p>
+              </div>
+              <div className="lg:w-2/12 md:text-center">
+                <span className="font-bold">739₱</span>
+              </div>
+              <div className="lg:w-2/12 text-center">
+                <button className="w-32 md:w-full h-12 md:h-content text-sm md:text-base bg-[#FE2F2F] rounded-xl text-white">
+                  Book
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
