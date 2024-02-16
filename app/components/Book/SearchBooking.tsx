@@ -26,7 +26,9 @@ export default function SearchBooking() {
         </div>
         <div className="w-full mt-10 flex flex-col md:flex-row gap-x-5">
           <div className="w-full md:w-2/6 lg:w-3/12 border border-black rounded-2xl h-96 p-5">
-            <div>filter</div>
+            <div>
+              <span className="text-lg font-semibold">Filters</span>
+            </div>
             <div>
               <h5>Bus Company</h5>
               <div>
@@ -106,15 +108,15 @@ export default function SearchBooking() {
                 <span className="text-xl font-bold">00-15</span>
                 <p className="uppercase">Baguio City Bus Station</p>
               </div>
-              <div className="hidden lg:w-2/12">
+              <div className="hidden md:block lg:w-2/12 md:text-center">
                 <span className="">4hrs 30mins</span>
               </div>
               <div className="lg:w-3/12">
-                <span className="text-xl font-bold">00-15</span>
-                <p className="uppercase">Baguio City Bus Station</p>
+                <span className="text-xl font-bold">04-45</span>
+                <p className="uppercase">Cubao Bus Station</p>
               </div>
               <div className="lg:w-2/12 md:text-center">
-                <span className="font-bold">739₱</span>
+                <span className="text-lg font-bold">739₱</span>
               </div>
               <div className="lg:w-2/12 text-center">
                 <button className="w-32 md:w-full h-12 md:h-content text-sm md:text-base bg-[#FE2F2F] rounded-xl text-white">
