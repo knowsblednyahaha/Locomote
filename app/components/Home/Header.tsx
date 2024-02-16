@@ -38,9 +38,9 @@ export default function Header() {
             ))}
           </ul>
           <div>
-            <Link href={"/book"}>
+            <Link href={"/login"}>
               <button className="sm:h-10 sm:w-24 bg-[#FE2F2F] text-white rounded-3xl">
-                Book
+                Login
               </button>
             </Link>
           </div>
