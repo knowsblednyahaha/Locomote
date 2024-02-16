@@ -1,10 +1,10 @@
-import Header from "./components/Header";
-import Homehero from "./components/Homehero";
-import AboutSection from "./components/AboutSection";
-import Destination from "./components/Destination";
-import Blogs from "./components/Blogs";
-import Newsletter from "./components/Newsletter";
-import Footer from "./components/Footer";
+import Header from "./components/Home/Header";
+import Homehero from "./components/Home/Homehero";
+import AboutSection from "./components/Home/AboutSection";
+import Destination from "./components/Home/Destination";
+import Blogs from "./components/Home/Blogs";
+import Newsletter from "./components/Home/Newsletter";
+import Footer from "./components/Home/Footer";
 
 export default function Home() {
   return (

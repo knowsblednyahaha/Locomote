@@ -70,7 +70,7 @@ export default function Blogs() {
             </div>
           ))}
         </div>
-        <div className="flex justify-center py-20">
+        <div className="flex justify-center py-20 hidden">
           <Link href="/blogs">
             <button className="w-48 h-14 text-sm lg:text-base bg-[#FE2F2F] rounded-3xl text-white">
               Show more
