@@ -24,8 +24,8 @@ export default function SearchBooking() {
             </button>
           </div>
         </div>
-        <div className="w-full mt-10  flex flex-col md:flex-row gap-x-5">
-          <div className="lg:w-3/12 border border-black rounded-2xl h-96 p-5">
+        <div className="w-full mt-10 flex flex-col md:flex-row gap-x-5">
+          <div className="w-full md:w-2/6 lg:w-3/12 border border-black rounded-2xl h-96 p-5">
             <div>filter</div>
             <div>
               <h5>Bus Company</h5>
@@ -110,7 +110,7 @@ export default function SearchBooking() {
               </div>
             </div>
           </div>
-          <div className="lg:w-9/12 border border-black rounded-2xl h-fit p-5">
+          <div className="w-full md:w-4/6 lg:w-9/12 border border-black rounded-2xl h-fit p-5">
             available tickets
           </div>
         </div>
