@@ -1,4 +1,9 @@
 import React from "react";
+import { FaWifi } from "react-icons/fa";
+import { PiTelevisionSimpleDuotone } from "react-icons/pi";
+import { TbAirConditioning } from "react-icons/tb";
+import { IoMdMusicalNotes } from "react-icons/io";
+import "./arrow.scss";
 
 export default function SearchBooking() {
   return (
@@ -20,12 +25,12 @@ export default function SearchBooking() {
           </div>
           <div className="md:rounded-e-3xl md:border border-black px-5 md:w-3/12 lg:w-2/12 flex justify-center items-center">
             <button className="w-60 md:w-full h-12 md:h-content text-sm md:text-base bg-[#FE2F2F] rounded-xl text-white">
-              send
+              Search
             </button>
           </div>
         </div>
-        <div className="w-full mt-10 flex flex-col md:flex-row gap-x-5">
-          <div className="w-full md:w-2/6 lg:w-3/12 border border-black rounded-2xl h-96 p-5">
+        <div className="w-full mt-10 flex flex-col md:flex-row gap-x-5 gap-y-5">
+          <div className="w-full hidden lg:block lg:w-3/12 border border-black rounded-2xl h-96 p-5">
             <div>
               <span className="text-lg font-semibold">Filters</span>
             </div>
@@ -97,28 +102,37 @@ export default function SearchBooking() {
               </div>
             </div>
           </div>
-          <div className="w-full md:w-4/6 lg:w-9/12 border border-black rounded-2xl h-fit p-5">
+          <div className="w-full lg:w-9/12 border border-black rounded-2xl h-fit p-5">
             <div className="pb-3">
-              <span className="text-sm">
-                Bus Company: Victory Liner - 🌐🖥️💨🎵
+              <span className="text-sm flex flex-row gap-x-1">
+                Bus Company: Victory Liner -{" "}
+                <span className="flex flex-row gap-x-1">
+                  <FaWifi size={16} />
+                  <PiTelevisionSimpleDuotone size={16} />
+                  <TbAirConditioning size={16} />
+                  <IoMdMusicalNotes size={16} />
+                </span>
               </span>
             </div>
             <div className="flex flex-col md:flex-row md:items-center gap-x-3 w-full">
-              <div className="lg:w-3/12">
+              <div className="md:w-3/12">
                 <span className="text-xl font-bold">00-15</span>
                 <p className="uppercase">Baguio City Bus Station</p>
               </div>
-              <div className="hidden md:block lg:w-2/12 md:text-center">
-                <span className="">4hrs 30mins</span>
+              <div className="w-full hidden md:flex flex-col justify-center items-center md:w-3/12 md:text-center">
+                <span className="text-[#747474]">4hrs 30mins</span>
+                <div className="w-full text-[#747474]">
+                  <i className="gg-arrow-right"></i>
+                </div>
               </div>
-              <div className="lg:w-3/12">
+              <div className="md:w-3/12">
                 <span className="text-xl font-bold">04-45</span>
                 <p className="uppercase">Cubao Bus Station</p>
               </div>
-              <div className="lg:w-2/12 md:text-center">
+              <div className="md:w-1/12 md:text-center">
                 <span className="text-lg font-bold">739₱</span>
               </div>
-              <div className="lg:w-2/12 text-center">
+              <div className="md:w-2/12 text-center">
                 <button className="w-32 md:w-full h-12 md:h-content text-sm md:text-base bg-[#FE2F2F] rounded-xl text-white">
                   Book
                 </button>
