@@ -18,7 +18,7 @@ export default function Header() {
   console.log(menu);
   return (
     <header className="max-w-[1440px] w-full m-auto ">
-      <div className="max-w-[1440px] w-full flex justify-between items-center text-white py-5 px-5 md:px-10 lg:px-20 z-20">
+      <div className="max-w-[1440px] w-full flex justify-between items-center text-white py-5 px-5 md:px-10 lg:px-20 z-20 shadow-md shadow-black/20">
         <div className="cursor-pointer text-black">
           <Link href={"/"}>
             <h3>Locomote</h3>
