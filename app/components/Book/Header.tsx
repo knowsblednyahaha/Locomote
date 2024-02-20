@@ -39,6 +39,13 @@ export default function Header() {
               </li>
             ))}
           </ul>
+          <div>
+            <Link href={"/login"}>
+              <button className="sm:h-10 sm:w-24 bg-[#FE2F2F] text-white rounded-3xl">
+                Login
+              </button>
+            </Link>
+          </div>
         </div>
         <div className="sm:hidden md:invisible">
           <div className="text-2xl md:hidden text-black">
@@ -59,10 +66,17 @@ export default function Header() {
                 </div>
               </div>
             </div>
-            <div className="h-full flex flex-col justify-center items-center text-black text-5xl gap-y-10">
+            <div className="w-full h-full flex flex-col justify-center items-center text-black text-5xl gap-y-10">
               <div>About</div>
               <div>Blog</div>
               <div>Contact</div>
+              <div>
+                <Link href={"/login"}>
+                  <button className="h-20 w-52 bg-[#FE2F2F] text-white rounded-3xl">
+                    Login
+                  </button>
+                </Link>
+              </div>
             </div>
           </div>
         )}

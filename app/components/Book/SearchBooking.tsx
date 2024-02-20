@@ -3,7 +3,7 @@ import { FaWifi } from "react-icons/fa";
 import { PiTelevisionSimpleDuotone } from "react-icons/pi";
 import { TbAirConditioning } from "react-icons/tb";
 import { IoMdMusicalNotes } from "react-icons/io";
-import "./arrow.scss";
+import "./sass/arrow.scss";
 
 export default function SearchBooking() {
   return (
@@ -14,14 +14,23 @@ export default function SearchBooking() {
             <input
               type="text"
               placeholder="From"
-              className="p-5 w-full md:rounded-s-3xl"
+              className="p-5 w-full md:rounded-s-3xl focus:outline-none font-bold"
             />
           </div>
           <div className="border border-black md:w-3/12 lg:w-4/12">
-            <input type="text" placeholder="To" className="p-5 w-full" />
+            <input
+              type="text"
+              placeholder="To"
+              className="p-5 w-full focus:outline-none font-bold"
+            />
           </div>
           <div className="border border-black md:w-3/12 lg:w-3/12">
-            <input type="date" name="" id="" className="p-5 w-full" />
+            <input
+              type="date"
+              name=""
+              id=""
+              className="p-5 w-full focus:outline-none font-bold"
+            />
           </div>
           <div className="md:rounded-e-3xl md:border border-black px-5 md:w-3/12 lg:w-2/12 flex justify-center items-center">
             <button className="w-60 md:w-full h-12 md:h-content text-sm md:text-base bg-[#FE2F2F] rounded-xl text-white">

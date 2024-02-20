@@ -66,6 +66,13 @@ export default function Header() {
               <div>About</div>
               <div>Blog</div>
               <div>Contact</div>
+              <div>
+                <Link href={"/login"}>
+                  <button className="h-20 w-52 bg-[#FE2F2F] text-white rounded-3xl">
+                    Login
+                  </button>
+                </Link>
+              </div>
             </div>
           </div>
         )}
