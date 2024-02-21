@@ -67,8 +67,45 @@ export default function BookUser() {
             </div>
           </div>
         </div>
-        <div className="w-full md:w-1/2">
-          <div className="w-full gap-y-5 border border-black rounded-2xl p-5"></div>
+        <div className="w-full md:w-1/2 flex flex-col gap-5">
+          <div className="w-full flex gap-y-5 border border-black rounded-2xl p-5">
+            <div className="w-1/2 flex flex-col justify center items-center border-r-2 border-black">
+              <div>Adult</div>
+              <div>0</div>
+            </div>
+            <div className="w-1/2 flex flex-col justify center items-center">
+              <div>Child</div>
+              <div>0</div>
+            </div>
+          </div>
+          <div className="w-full flex flex-col gap-y-5 border border-black rounded-2xl p-5">
+            <input
+              type="text"
+              placeholder="Fullname"
+              className="w-full border-b border-black"
+            />
+            <input
+              type="date"
+              placeholder="Date of Birth"
+              className="w-full border-b border-black"
+            />
+            <div className="flex">
+              <div>
+                <input type="checkbox" id={`seat`} className="hidden" />
+                <label
+                  htmlFor={`seat`}
+                  className={`flex justify-center items-center border border-black w-14 h-14 lg:w-16 lg:h-16 rounded-2xl text-center leading-16 cursor-pointer`}
+                ></label>
+              </div>
+              <div>
+                <input type="checkbox" id={`seat`} className="hidden" />
+                <label
+                  htmlFor={`seat`}
+                  className={`flex justify-center items-center border border-black w-14 h-14 lg:w-16 lg:h-16 rounded-2xl text-center leading-16 cursor-pointer`}
+                ></label>
+              </div>
+            </div>
+          </div>
         </div>
       </form>
     </section>
