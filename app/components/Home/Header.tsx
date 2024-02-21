@@ -37,7 +37,12 @@ export default function Header() {
               </li>
             ))}
           </ul>
-          <div>
+          <div className="flex gap-x-5">
+            <Link href={"/book"}>
+              <button className="sm:h-10 sm:w-24 bg-white text-black rounded-3xl">
+                Book
+              </button>
+            </Link>
             <Link href={"/login"}>
               <button className="sm:h-10 sm:w-24 bg-[#FE2F2F] text-white rounded-3xl">
                 Login

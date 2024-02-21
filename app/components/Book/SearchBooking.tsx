@@ -4,6 +4,7 @@ import { PiTelevisionSimpleDuotone } from "react-icons/pi";
 import { TbAirConditioning } from "react-icons/tb";
 import { IoMdMusicalNotes } from "react-icons/io";
 import "./sass/arrow.scss";
+import Link from "next/link";
 
 export default function SearchBooking() {
   return (
@@ -143,7 +144,7 @@ export default function SearchBooking() {
               </div>
               <div className="md:w-2/12 text-center">
                 <button className="w-32 md:w-28 h-12 md:h-content text-sm md:text-base bg-[#FE2F2F] rounded-xl text-white">
-                  Book
+                  <Link href="/bookuser">Book</Link>
                 </button>
               </div>
             </div>
