@@ -16,7 +16,7 @@ const BusSeat: React.FC<BusSeatProps> = ({ seatNumber, disabled = false }) => {
   };
 
   return (
-    <div className="relative flex justify-center items-center">
+    <div className="flex justify-center items-center">
       <input
         type="checkbox"
         id={`seat-${seatNumber}`}

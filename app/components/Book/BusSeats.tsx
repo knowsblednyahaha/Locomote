@@ -13,54 +13,63 @@ const BusSeats = () => {
       <div className="flex flex-row">
         <BusSeat seatNumber={5} disabled />
         <BusSeat seatNumber={6} />
+        <div className="w-16 h-16"></div>
         <BusSeat seatNumber={7} disabled />
         <BusSeat seatNumber={8} disabled />
       </div>
       <div className="flex flex-row">
         <BusSeat seatNumber={9} />
         <BusSeat seatNumber={10} />
+        <div className="w-16 h-16"></div>
         <BusSeat seatNumber={11} />
         <BusSeat seatNumber={12} disabled />
       </div>
       <div className="flex flex-row">
         <BusSeat seatNumber={13} disabled />
         <BusSeat seatNumber={14} disabled />
+        <div className="w-16 h-16"></div>
         <BusSeat seatNumber={15} />
         <BusSeat seatNumber={16} />
       </div>
       <div className="flex flex-row">
         <BusSeat seatNumber={17} />
         <BusSeat seatNumber={18} />
+        <div className="w-16 h-16"></div>
         <BusSeat seatNumber={19} />
         <BusSeat seatNumber={20} />
       </div>
       <div className="flex flex-row">
         <BusSeat seatNumber={21} />
         <BusSeat seatNumber={22} />
+        <div className="w-16 h-16"></div>
         <BusSeat seatNumber={23} />
         <BusSeat seatNumber={24} disabled />
       </div>
       <div className="flex flex-row">
         <BusSeat seatNumber={25} disabled />
         <BusSeat seatNumber={26} disabled />
+        <div className="w-16 h-16"></div>
         <BusSeat seatNumber={27} />
         <BusSeat seatNumber={28} />
       </div>
       <div className="flex flex-row">
         <BusSeat seatNumber={29} />
         <BusSeat seatNumber={30} />
+        <div className="w-16 h-16"></div>
         <BusSeat seatNumber={31} />
         <BusSeat seatNumber={32} />
       </div>
       <div className="flex flex-row">
         <BusSeat seatNumber={33} />
         <BusSeat seatNumber={34} />
+        <div className="w-16 h-16"></div>
         <BusSeat seatNumber={35} />
         <BusSeat seatNumber={36} />
       </div>
       <div className="flex flex-row">
         <BusSeat seatNumber={37} />
         <BusSeat seatNumber={38} />
+        <div className="w-16 h-16"></div>
         <BusSeat seatNumber={39} />
         <BusSeat seatNumber={40} />
       </div>
