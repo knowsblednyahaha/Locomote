@@ -6,6 +6,7 @@ const BusSeats = () => {
       <div className="flex flex-row">
         <BusSeat seatNumber={1} disabled />
         <BusSeat seatNumber={2} />
+        <div className="w-16 h-16"></div>
         <BusSeat seatNumber={3} disabled />
         <BusSeat seatNumber={4} disabled />
       </div>
