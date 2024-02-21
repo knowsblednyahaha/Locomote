@@ -4,6 +4,7 @@ import { PiTelevisionSimpleDuotone } from "react-icons/pi";
 import { TbAirConditioning } from "react-icons/tb";
 import { IoMdMusicalNotes } from "react-icons/io";
 import "./sass/arrow.scss";
+import BusSeats from "./BusSeats";
 
 export default function BookUser() {
   return (
@@ -62,13 +63,7 @@ export default function BookUser() {
               Select 2 Seats
             </div>
             <div>
-              <input
-                type="checkbox"
-                id="victoryliner"
-                name="victoryliner"
-                value="Bike"
-              />
-              <label htmlFor="victoryliner">1</label>
+              <BusSeats />
             </div>
           </div>
         </div>
