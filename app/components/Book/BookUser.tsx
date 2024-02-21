@@ -41,7 +41,7 @@ export default function BookUser() {
       </div>
       <form
         action=""
-        className="flex flex-col md:flex-row gap-y-10 gap-x-10 w-full lg:px-10 xl:px-20 py-10"
+        className="flex flex-col-reverse md:flex-row gap-y-10 gap-x-10 w-full lg:px-10 xl:px-20 py-10"
       >
         <div className="w-full md:w-1/2">
           <div className="w-full flex flex-col gap-y-5 border border-black rounded-2xl p-5">
