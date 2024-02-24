@@ -4,13 +4,50 @@ import Link from "next/link";
 import "../Book/sass/arrow.scss";
 
 export default function Payment() {
+  const paymentMethod = [
+    {
+      paymentName: "Credit Card",
+      radioItem: "creditcard",
+      logoImg: [
+        { img: "/img/paymentlogo/Visa_logo.svg", alt: "Visa" },
+        { img: "/img/paymentlogo/Mastercard_logo.svg", alt: "MasterCard" },
+        {
+          img: "/img/paymentlogo/American Express_logo.svg",
+          alt: "AmericanExpress",
+        },
+      ],
+    },
+    {
+      paymentName: "Paypal",
+      radioItem: "paypal",
+      logoImg: [{ img: "/img/paymentlogo/PayPal_logo.svg", alt: "Paypal" }],
+    },
+    {
+      paymentName: "Gcash",
+      radioItem: "gcash",
+      logoImg: [{ img: "/img/paymentlogo/GCash_logo.svg", alt: "Gcash" }],
+    },
+    {
+      paymentName: "Paymaya",
+      radioItem: "paymaya",
+      logoImg: [{ img: "/img/paymentlogo/Maya_logo.svg", alt: "Paymaya" }],
+    },
+    {
+      paymentName: "Bayad Center",
+      radioItem: "bayadcenter",
+      logoImg: [
+        { img: "/img/paymentlogo/Bayad_logo.svg", alt: "Bayad Center" },
+      ],
+    },
+  ];
+
   return (
     <section className="max-w-[1440px] w-full px-5 md:px-10 lg:px-20 text-black m-auto pb-20">
       <div className="w-full mt-10 m-auto font-bold text-3xl text-center">
         Payment
       </div>
-      <div className="w-full h-fit flex flex-col justify-center md:flex-row gap-x-5 gap-y-5 px-10 py-5 mt-10 m-auto">
-        <div className="w-full md:w-1/2 xl:w-4/6 h-fit border border-black rounded-2xl ">
+      <div className="w-full h-fit flex flex-col justify-center md:flex-row gap-x-5 gap-y-5 lg:px-10 py-5 mt-10 m-auto">
+        <div className="w-full md:w-1/2 h-fit border border-black rounded-2xl ">
           <div className="flex justify-between border-b border-black px-10 py-5">
             <div className="text-xl">Victory Liner</div>
             <div>02/07/24</div>
@@ -53,100 +90,34 @@ export default function Payment() {
             </div>
           </div>
         </div>
-        <div className="w-full md:w-1/2 xl:w-4/6 h-fit flex flex-col gap-y-5">
-          <div className="w-full border border-black rounded-2xl p-5 flex justify-between">
-            <div className="w-full">
-              <input type="radio" id="creditcard" name="modesofpayment" />
-              <label className="ml-3 font-bold" htmlFor="creditcard">
-                Credit Card
-              </label>
-            </div>
-            <div className="w-full flex">
-              <div className="relative w-full">
-                <Image
-                  priority
-                  src="/img/paymentlogo/Visa_logo.svg"
-                  alt="Visa"
-                  fill={true}
-                />
+        <div className="w-full md:w-1/2 h-fit flex flex-col gap-y-5">
+          {paymentMethod.map((item, i) => (
+            <label
+              className="w-full border border-black rounded-2xl p-5 flex justify-between"
+              key={i}
+              htmlFor={item.radioItem}
+            >
+              <div className="w-full">
+                <input type="radio" id={item.radioItem} name="modesofpayment" />
+                <label className="ml-3 font-bold" htmlFor={item.radioItem}>
+                  {item.paymentName}
+                </label>
               </div>
-              <div className="relative w-full">
-                <Image
-                  priority
-                  src="/img/paymentlogo/Mastercard_logo.svg"
-                  alt="Visa"
-                  fill={true}
-                />
+              <div className="w-full flex justify-end">
+                {item.logoImg.map((imgItem, i) => (
+                  <div className="relative w-1/2" key={i}>
+                    <Image
+                      priority
+                      src={imgItem.img}
+                      alt={imgItem.alt}
+                      fill={true}
+                      className="object-contain"
+                    />
+                  </div>
+                ))}
               </div>
-              <div className="relative w-full">
-                <Image
-                  priority
-                  src="/img/paymentlogo/American Express_logo.svg"
-                  alt="Visa"
-                  fill={true}
-                />
-              </div>
-            </div>
-          </div>
-          <div className="border border-black rounded-2xl p-5 flex justify-between">
-            <div className="w-full">
-              <input type="radio" id="paypal" name="modesofpayment" />
-              <label htmlFor="paypal">Paypal</label>
-            </div>
-            <div className="relative w-full">
-              <Image
-                priority
-                src="/img/paymentlogo/PayPal_logo.svg"
-                alt="Visa"
-                fill={true}
-              />
-            </div>
-          </div>
-          <div className="border border-black rounded-2xl p-5 flex justify-between">
-            <div className="w-full ">
-              <input type="radio" id="gcash" name="modesofpayment" />
-              <label htmlFor="gcash">Gcash</label>
-            </div>
-            <div className="relative w-full">
-              <Image
-                priority
-                src="/img/paymentlogo/GCash_logo.svg"
-                alt="Gcash"
-                className="object-cover"
-                fill={true}
-              />
-            </div>
-          </div>
-          <div className="border border-black rounded-2xl p-5 flex justify-between">
-            <div className="w-full">
-              <input type="radio" id="paymaya" name="modesofpayment" />
-              <label htmlFor="paymaya">Paymaya</label>
-            </div>
-            <div className="relative w-full">
-              <Image
-                priority
-                src="/img/paymentlogo/Maya_logo.svg"
-                alt="Gcash"
-                className="object-cover"
-                fill={true}
-              />
-            </div>
-          </div>
-          <div className="border border-black rounded-2xl p-5 flex justify-between">
-            <div className="w-full">
-              <input type="radio" id="bayadcenter" name="modesofpayment" />
-              <label htmlFor="bayadcenter">Bayad Center</label>
-            </div>
-            <div className="relative w-full">
-              <Image
-                priority
-                src="/img/paymentlogo/Bayad_logo.svg"
-                alt="Gcash"
-                className="object-cover"
-                fill={true}
-              />
-            </div>
-          </div>
+            </label>
+          ))}
         </div>
       </div>
       <div className="w-full mt-10 text-center">
