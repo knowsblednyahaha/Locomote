@@ -9,13 +9,17 @@ import { FiMinusCircle } from "react-icons/fi";
 import "./sass/arrow.scss";
 import BusSeats from "./BusSeats";
 import Link from "next/link";
+import BackButton from "../BackButton";
 
 export default function BookUser() {
   const [adultPassenger, setAdultPassenger] = useState(0);
 
   return (
     <section className="max-w-[1440px] w-full px-5 md:px-10 lg:px-20 text-black m-auto">
-      <div className="w-full lg:w-3/4 xl:w-2/3 border border-black rounded-2xl h-fit px-10 py-5 mt-10 m-auto">
+      <div>
+        <BackButton />
+      </div>
+      <div className="w-full lg:w-3/4 xl:w-2/3 border border-black rounded-2xl h-fit px-10 py-5 mt-5 m-auto">
         <div className="w-full pb-3 flex justify-between">
           <span className="text-sm flex flex-row gap-x-3 uppercase justify-center md:justify-start">
             Bus Company: Victory Liner - Deluxe

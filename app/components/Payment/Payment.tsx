@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import "../Book/sass/arrow.scss";
+import BackButton from "../BackButton";
 
 export default function Payment() {
   const paymentMethod = [
@@ -43,10 +44,13 @@ export default function Payment() {
 
   return (
     <section className="max-w-[1440px] w-full px-5 md:px-10 lg:px-20 text-black m-auto pb-20">
+      <div>
+        <BackButton />
+      </div>
       <div className="w-full mt-10 m-auto font-bold text-3xl text-center">
         Payment
       </div>
-      <div className="w-full h-fit flex flex-col justify-center md:flex-row gap-x-5 gap-y-5 lg:px-10 py-5 mt-10 m-auto">
+      <div className="w-full h-fit flex flex-col justify-center md:flex-row gap-x-5 lg:gap-x-10 gap-y-5 lg:px-10 py-5 mt-10 m-auto">
         <div className="w-full md:w-1/2 h-fit border border-black rounded-2xl ">
           <div className="flex justify-between border-b border-black px-10 py-5">
             <div className="text-xl">Victory Liner</div>
@@ -105,7 +109,7 @@ export default function Payment() {
               </div>
               <div className="w-full flex justify-end">
                 {item.logoImg.map((imgItem, i) => (
-                  <div className="relative w-1/2" key={i}>
+                  <div className="relative w-1/2 xl:w-1/3" key={i}>
                     <Image
                       priority
                       src={imgItem.img}

@@ -5,12 +5,16 @@ import { TbAirConditioning } from "react-icons/tb";
 import { IoMdMusicalNotes } from "react-icons/io";
 import "./sass/arrow.scss";
 import Link from "next/link";
+import BackButton from "../BackButton";
 
 export default function SearchBooking() {
   return (
     <section className="max-w-[1440px] w-full m-auto px-5 md:px-10 lg:px-20 text-black">
       <div>
-        <form className="w-full mt-10 flex flex-col md:flex-row justify-center gap-x-1 gap-y-3">
+        <div>
+          <BackButton />
+        </div>
+        <form className="w-full mt-5 flex flex-col md:flex-row justify-center gap-x-1 gap-y-3">
           <div className="border border-black md:w-3/12 lg:w-4/12 md:rounded-s-3xl">
             <input
               type="text"
