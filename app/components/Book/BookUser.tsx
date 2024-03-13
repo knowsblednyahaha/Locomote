@@ -77,9 +77,11 @@ export default function BookUser() {
             </div>
           </div>
           <div className="flex justify-center md:hidden pt-5">
-            <button className="w-full lg:w-2/3 h-12 text-white rounded-3xl bg-[#FE2F2F]">
-              <Link href={"/payment"}>Proceed to payment</Link>
-            </button>
+            <Link href={"/payment"}>
+              <button className="w-full lg:w-2/3 h-12 text-white rounded-3xl bg-[#FE2F2F]">
+                Proceed to payment
+              </button>
+            </Link>
           </div>
         </div>
         <div className="w-full md:w-1/2 flex flex-col gap-5">
@@ -135,9 +137,11 @@ export default function BookUser() {
             </div>
           </div>
           <div className="hidden md:flex justify-center">
-            <button className="w-full lg:w-2/3 h-12 text-white rounded-3xl bg-[#FE2F2F]">
-              <Link href={"/payment"}>Proceed to payment</Link>
-            </button>
+            <Link href={"/payment"} className="w-full text-center">
+              <button className="w-full lg:w-2/3 h-12 text-white rounded-3xl bg-[#FE2F2F]">
+                Proceed to payment
+              </button>
+            </Link>
           </div>
         </div>
       </form>

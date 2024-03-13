@@ -90,7 +90,7 @@ export default function Payment() {
           <div className="flex justify-between px-10 py-5">
             <div>Number of total seats: 2</div>
             <div>
-              Total: <span className="font-bold">₱1478</span>
+              Total: <span className="font-bold">₱1,478</span>
             </div>
           </div>
         </div>
