@@ -55,7 +55,7 @@ export default function BookUser() {
       >
         <div className="w-full md:w-1/2">
           <div className="w-full flex flex-col gap-y-5 border border-black rounded-2xl p-5">
-            <div className="flex justify-center gap-x-10 text-sm">
+            <div className="flex justify-center gap-x-5 sm:gap-x-10 text-sm">
               <div className="flex items-center gap-x-1">
                 <span className="w-3 h-3 bg-white border border-black rounded-2xl"></span>
                 Available
@@ -77,7 +77,7 @@ export default function BookUser() {
             </div>
           </div>
           <div className="flex justify-center md:hidden pt-5">
-            <Link href={"/payment"}>
+            <Link href={"/payment"} className="w-full">
               <button className="w-full lg:w-2/3 h-12 text-white rounded-3xl bg-[#FE2F2F]">
                 Proceed to payment
               </button>
@@ -86,7 +86,7 @@ export default function BookUser() {
         </div>
         <div className="w-full md:w-1/2 flex flex-col gap-5">
           <div className="w-full flex gap-y-5 border border-black rounded-2xl">
-            <div className="w-1/2 flex justify-between items-center border-r-2 border-black px-10 py-5">
+            <div className="w-1/2 flex justify-between items-center border-r-2 border-black px-5 lg:px-10 py-5">
               <FiPlusCircle />
               <div className="flex flex-col justify center items-center">
                 <div>Adult</div>
@@ -94,7 +94,7 @@ export default function BookUser() {
               </div>
               <FiMinusCircle />
             </div>
-            <div className="w-1/2 flex justify-between items-center px-10 py-5">
+            <div className="w-1/2 flex justify-between items-center px-5 lg:px-10 py-5">
               <FiPlusCircle />
               <div className="flex flex-col justify center items-center">
                 <div>Child</div>

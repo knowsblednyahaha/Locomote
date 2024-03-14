@@ -26,7 +26,7 @@ const BusSeat: React.FC<BusSeatProps> = ({ seatNumber, disabled = false }) => {
       />
       <label
         htmlFor={`seat-${seatNumber}`}
-        className={`flex justify-center items-center border border-black w-14 h-14 lg:w-16 lg:h-16 rounded-2xl text-center leading-16 cursor-pointer ${
+        className={`flex justify-center items-center border border-black  w-10 h-10 min-[375px]:w-14 min-[375px]:h-14 lg:w-16 lg:h-16 rounded-2xl text-center leading-16 cursor-pointer ${
           isSelected ? " bg-[#FE2F2F] text-white" : ""
         } ${disabled ? "bg-[#747474] cursor-not-allowed" : ""}`}
       >
