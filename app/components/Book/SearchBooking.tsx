@@ -1,19 +1,49 @@
-import React, { Suspense } from "react";
+"use client";
+import React, { Suspense, useState } from "react";
 import "./sass/arrow.scss";
 
 import BackButton from "../BackButton";
 import { SearchBookResult } from "./SearchBookResult";
+import { eventNames } from "process";
 
 export default function SearchBooking() {
+  const [searchLocation, setSearchLocation] = useState("");
+  const [searchDestination, setSearchDestination] = useState("");
+  const [travelDate, settravelDate] = useState("");
+
+  const onSearch = (event: React.FormEvent) => {
+    event.preventDefault();
+
+    const encodeSearchLocationQuery = encodeURI(searchLocation);
+    const encodeSearchDestinationQuery = encodeURI(searchDestination);
+    // const encodeSearchTravelDateQuery = encodeURI(travelDate);
+
+    console.log(
+      "Current Query:",
+      encodeSearchLocationQuery,
+      encodeSearchDestinationQuery,
+      travelDate
+    );
+  };
+  const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    settravelDate(value);
+  };
+
   return (
     <section className="max-w-[1440px] w-full m-auto px-5 md:px-10 lg:px-20 text-black">
       <div>
         <div>
           <BackButton />
         </div>
-        <form className="w-full mt-5 flex flex-col md:flex-row justify-center gap-x-1 gap-y-3">
+        <form
+          className="w-full mt-5 flex flex-col md:flex-row justify-center gap-x-1 gap-y-3"
+          onSubmit={onSearch}
+        >
           <div className="border border-black md:w-3/12 lg:w-4/12 md:rounded-s-3xl">
             <input
+              value={searchLocation}
+              onChange={(event) => setSearchLocation(event.target.value)}
               type="text"
               placeholder="From"
               className="p-5 w-full md:rounded-s-3xl focus:outline-none font-bold"
@@ -21,6 +51,8 @@ export default function SearchBooking() {
           </div>
           <div className="border border-black md:w-3/12 lg:w-4/12">
             <input
+              value={searchDestination}
+              onChange={(event) => setSearchDestination(event.target.value)}
               type="text"
               placeholder="To"
               className="p-5 w-full focus:outline-none font-bold"
@@ -29,13 +61,18 @@ export default function SearchBooking() {
           <div className="border border-black md:w-3/12 lg:w-3/12">
             <input
               type="date"
-              name=""
-              id=""
+              name="travelDate"
+              id="travelDate"
               className="p-5 w-full focus:outline-none font-bold"
+              value={travelDate}
+              onChange={handleDateChange}
             />
           </div>
           <div className="md:rounded-e-3xl md:border border-black px-5 md:w-3/12 lg:w-2/12 flex justify-center items-center">
-            <button className="w-60 md:w-full h-12 md:h-content text-sm md:text-base bg-[#FE2F2F] rounded-xl text-white">
+            <button
+              className="w-60 md:w-full h-12 md:h-content text-sm md:text-base bg-[#FE2F2F] rounded-xl text-white"
+              type="submit"
+            >
               Search
             </button>
           </div>
