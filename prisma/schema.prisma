@@ -12,3 +12,44 @@ datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  username    String    @unique // User's username
+  email       String    @unique // User's email address
+  password    String    // User's password (should be hashed)
+  name        String 
+}
+
+model Bus {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId// Unique identifier for the bus
+  busNumber   String    @unique // Bus number
+  type        String    // Type of the bus (e.g., Sleeper, AC, etc.)
+  capacity    Int       // Capacity of the bus (number of seats)
+}
+
+model Route {
+  id           String    @id @default(auto()) @map("_id") @db.ObjectId// Unique identifier for the route
+  source       String    // Source location of the route
+  destination  String    // Destination location of the route
+  distance     Float     // Distance of the route
+  // Add more fields as needed (e.g., route code, duration, etc.)
+}
+
+model Schedule {
+  id              String    @id @default(auto()) // Unique identifier for the schedule
+  bus             Bus       @relation(fields: [busId], references: [id]) // Reference to the bus
+  route           Route     @relation(fields: [routeId], references: [id]) // Reference to the route
+  departureTime   DateTime  // Departure time of the schedule
+  arrivalTime     DateTime  // Arrival time of the schedule
+}
+
+// Define the Booking model to store information about bookings made by users
+model Booking {
+  id            String    @id @default(auto()) // Unique identifier for the booking
+  user          User      @relation(fields: [userId], references: [id]) // Reference to the user who made the booking
+  schedule      Schedule  @relation(fields: [scheduleId], references: [id]) // Reference to the schedule booked
+  bookingDate   DateTime  @default(now()) // Date and time when the booking was made
+  isPaid        Boolean   @default(false) // Indicates if the booking is paid
+  // Add more fields as needed (e.g., seat number, total amount, etc.)
+}
