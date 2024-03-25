@@ -1,4 +1,5 @@
 import React from "react";
+import { useSearchParams } from "next/navigation";
 import { FaWifi } from "react-icons/fa";
 import { PiTelevisionSimpleDuotone } from "react-icons/pi";
 import { TbAirConditioning } from "react-icons/tb";
@@ -6,6 +7,22 @@ import { IoMdMusicalNotes } from "react-icons/io";
 import Link from "next/link";
 
 export const SearchBookResult = () => {
+  const search = useSearchParams();
+  const searchLocationQuery = search ? search.get("location") : null;
+  const searchDestinationQuery = search ? search.get("destination") : null;
+  const searchTravelDateQuery = search ? search.get("traveldate") : null;
+
+  const encodedSearchLocationQuery = encodeURI(searchLocationQuery || "");
+  const encodedSearchDestinationQuery = encodeURI(searchDestinationQuery || "");
+  const encodedSearchTravelDateQuery = encodeURI(searchTravelDateQuery || "");
+
+  console.log(
+    "Search Query",
+    encodedSearchLocationQuery,
+    encodedSearchDestinationQuery,
+    encodedSearchTravelDateQuery
+  );
+
   return (
     <div className="w-full lg:w-9/12 border border-black rounded-2xl h-fit px-10 py-5">
       <div className="w-full pb-3">

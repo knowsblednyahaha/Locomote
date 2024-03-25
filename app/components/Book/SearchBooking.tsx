@@ -1,5 +1,6 @@
 "use client";
 import React, { Suspense, useState } from "react";
+import { useRouter } from "next/navigation";
 import "./sass/arrow.scss";
 
 import BackButton from "../BackButton";
@@ -11,18 +12,24 @@ export default function SearchBooking() {
   const [searchDestination, setSearchDestination] = useState("");
   const [travelDate, settravelDate] = useState("");
 
+  const router = useRouter();
+
   const onSearch = (event: React.FormEvent) => {
     event.preventDefault();
 
     const encodeSearchLocationQuery = encodeURI(searchLocation);
     const encodeSearchDestinationQuery = encodeURI(searchDestination);
-    // const encodeSearchTravelDateQuery = encodeURI(travelDate);
+    const encodeSearchTravelDateQuery = encodeURI(travelDate);
+
+    router.push(
+      `/book?location=${encodeSearchLocationQuery}&destination=${encodeSearchDestinationQuery}&traveldate=${encodeSearchTravelDateQuery}`
+    );
 
     console.log(
       "Current Query:",
       encodeSearchLocationQuery,
       encodeSearchDestinationQuery,
-      travelDate
+      encodeSearchTravelDateQuery
     );
   };
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,6 +54,7 @@ export default function SearchBooking() {
               type="text"
               placeholder="From"
               className="p-5 w-full md:rounded-s-3xl focus:outline-none font-bold"
+              required
             />
           </div>
           <div className="border border-black md:w-3/12 lg:w-4/12">
@@ -56,6 +64,7 @@ export default function SearchBooking() {
               type="text"
               placeholder="To"
               className="p-5 w-full focus:outline-none font-bold"
+              required
             />
           </div>
           <div className="border border-black md:w-3/12 lg:w-3/12">
@@ -66,6 +75,7 @@ export default function SearchBooking() {
               className="p-5 w-full focus:outline-none font-bold"
               value={travelDate}
               onChange={handleDateChange}
+              required
             />
           </div>
           <div className="md:rounded-e-3xl md:border border-black px-5 md:w-3/12 lg:w-2/12 flex justify-center items-center">
