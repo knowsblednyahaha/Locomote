@@ -9,7 +9,7 @@ import { FiMinusCircle } from "react-icons/fi";
 import "./sass/arrow.scss";
 import BusSeats from "./BusSeats";
 import Link from "next/link";
-import BackButton from "../BackButton";
+import BackButton from "../../BackButton";
 
 export default function BookUser() {
   const [adultPassenger, setAdultPassenger] = useState(0);
@@ -104,6 +104,7 @@ export default function BookUser() {
             </div>
           </div>
           <div className="w-full flex flex-col gap-y-5 border border-black rounded-2xl p-5">
+            <div></div>
             <input
               type="text"
               placeholder="Fullname"

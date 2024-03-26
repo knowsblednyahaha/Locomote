@@ -3,7 +3,7 @@ import React, { Suspense, useState } from "react";
 import { useRouter } from "next/navigation";
 import "./sass/arrow.scss";
 
-import BackButton from "../BackButton";
+import BackButton from "../../BackButton";
 import { SearchBookResult } from "./SearchBookResult";
 import { eventNames } from "process";
 

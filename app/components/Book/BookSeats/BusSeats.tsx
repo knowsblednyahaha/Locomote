@@ -1,4 +1,4 @@
-import BusSeat from "../Book/BusSeat";
+import BusSeat from "./BusSeat";
 
 const BusSeats = () => {
   return (
