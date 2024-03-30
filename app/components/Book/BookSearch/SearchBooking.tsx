@@ -1,7 +1,7 @@
 "use client";
 import React, { Suspense, useState } from "react";
 import { useRouter } from "next/navigation";
-import "./sass/arrow.scss";
+import "../sass/arrow.scss";
 
 import BackButton from "../../BackButton";
 import { SearchBookResult } from "./SearchBookResult";
@@ -49,6 +49,7 @@ export default function SearchBooking() {
         >
           <div className="border border-black md:w-3/12 lg:w-4/12 md:rounded-s-3xl">
             <input
+              list="location"
               value={searchLocation}
               onChange={(event) => setSearchLocation(event.target.value)}
               type="text"
@@ -56,9 +57,15 @@ export default function SearchBooking() {
               className="p-5 w-full md:rounded-s-3xl focus:outline-none font-bold"
               required
             />
+            <datalist id="location">
+              <option value="Baguio City" />
+              <option value="Cubao, Quezon City" />
+              <option value="Manila" />
+            </datalist>
           </div>
           <div className="border border-black md:w-3/12 lg:w-4/12">
             <input
+              list="destination"
               value={searchDestination}
               onChange={(event) => setSearchDestination(event.target.value)}
               type="text"
@@ -66,6 +73,11 @@ export default function SearchBooking() {
               className="p-5 w-full focus:outline-none font-bold"
               required
             />
+            <datalist id="destination">
+              <option value="Baguio City" />
+              <option value="Cubao, Quezon City" />
+              <option value="Manila" />
+            </datalist>
           </div>
           <div className="border border-black md:w-3/12 lg:w-3/12">
             <input

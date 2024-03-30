@@ -5,8 +5,18 @@ import { PiTelevisionSimpleDuotone } from "react-icons/pi";
 import { TbAirConditioning } from "react-icons/tb";
 import { IoMdMusicalNotes } from "react-icons/io";
 import Link from "next/link";
+import prisma from "@/app/lib/prisma";
 
-export const SearchBookResult = () => {
+// async function getBooking() {
+//   const response = await prisma.booking.findMany({
+//     select: {
+//       id: true,
+//     },
+//   });
+//   return response;
+// }
+
+export const SearchBookResult = async () => {
   const search = useSearchParams();
   const searchLocationQuery = search ? search.get("location") : null;
   const searchDestinationQuery = search ? search.get("destination") : null;

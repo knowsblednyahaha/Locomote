@@ -6,7 +6,7 @@ import { TbAirConditioning } from "react-icons/tb";
 import { IoMdMusicalNotes } from "react-icons/io";
 import { FiPlusCircle } from "react-icons/fi";
 import { FiMinusCircle } from "react-icons/fi";
-import "./sass/arrow.scss";
+import "../sass/arrow.scss";
 import BusSeats from "./BusSeats";
 import Link from "next/link";
 import BackButton from "../../BackButton";
