@@ -24,10 +24,6 @@ export default async function page() {
     console.log(
       `Departure: ${sched.departureTime}, Arrival: ${sched.arrivalTime}`
     );
-    console.log("Bus:");
-    sched.bus.forEach((bus) => {
-      console.log(`Bus Company: ${bus.busCompany}, Type: ${bus.type}`);
-    });
     if (Array.isArray(sched.bus)) {
       console.log("Bus:");
       sched.bus.forEach((bus) => {
