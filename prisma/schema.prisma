@@ -19,16 +19,19 @@ model User {
   email       String    @unique // User's email address
   password    String    // User's password (should be hashed)
   name        String
-  Booking Booking[]
+
+  book        Booking      @relation(fields: [bookId], references: [id]) // Reference to the user who made the booking
+  bookId      String    @db.ObjectId
 }
 
 model Bus {
   id          String    @id @default(auto()) @map("_id") @db.ObjectId// Unique identifier for the bus
-  busNumber   String?    @unique // Bus number
+  busNumber   String?   @unique // Bus number
   busCompany  String
   type        String    // Type of the bus (e.g., Sleeper, AC, etc.)
   capacity    Int       // Capacity of the bus (number of seats)
-  Schedule Schedule[]
+  schedule    Schedule  @relation(fields: [scheduleId], references: [id])
+  scheduleId  String    @db.ObjectId
 }
 
 model Route {
@@ -38,14 +41,19 @@ model Route {
   traveltime   String
   travelprice  String
   // Add more fields as needed (e.g., route code, duration, etc.)
-  Schedule Schedule[]
+  schedule    Schedule  @relation(fields: [scheduleId], references: [id])
+  scheduleId  String    @db.ObjectId
 }
 
 model Schedule {
   id              String    @id @default(auto()) @map("_id") @db.ObjectId // Unique identifier for the schedule
   departureTime   DateTime  // Departure time of the schedule
   arrivalTime     DateTime  // Arrival time of the schedule
-  Booking Booking[]
+  bus             Bus[]
+  route           Route[]
+  // Booking Booking[]
+  booking         Booking  @relation(fields: [bookId], references: [id])
+  bookId          String    @db.ObjectId
 }
 
 // Define the Booking model to store information about bookings made by users
@@ -54,8 +62,11 @@ model Booking {
   bookingDate   DateTime   // Date and time when the booking was made
   isPaid        Boolean   @default(false) // Indicates if the booking is paid
   seatNumber    Int[]     @default([])
+  passengerName  String[] @default([])
+  createdAt     DateTime  @default(now())
+
+  
   // Add more fields as needed (e.g., seat number, total amount, etc.)
-}
-model Ticket {
-  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  schedule      Schedule[]
+  user          User[]
 }

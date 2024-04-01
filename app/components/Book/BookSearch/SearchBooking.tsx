@@ -5,7 +5,6 @@ import "../sass/arrow.scss";
 
 import BackButton from "../../BackButton";
 import { SearchBookResult } from "./SearchBookResult";
-import { eventNames } from "process";
 
 export default function SearchBooking() {
   const [searchLocation, setSearchLocation] = useState("");
