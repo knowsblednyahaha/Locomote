@@ -87,6 +87,7 @@ export default function SearchBooking() {
               className="p-5 w-full focus:outline-none font-bold"
               value={travelDate}
               onChange={handleDateChange}
+              min={new Date().toISOString().split("T")[0]}
               required
             />
           </div>
