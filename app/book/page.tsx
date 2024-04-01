@@ -28,12 +28,24 @@ export default async function page() {
     sched.bus.forEach((bus) => {
       console.log(`Bus Company: ${bus.busCompany}, Type: ${bus.type}`);
     });
+    if (Array.isArray(sched.bus)) {
+      console.log("Bus:");
+      sched.bus.forEach((bus) => {
+        console.log(`Bus Company: ${bus.busCompany}, Type: ${bus.type}`);
+      });
+    } else {
+      console.error("sched.bus is not an array.");
+    }
     console.log("Route:");
-    sched.route.forEach((route) => {
-      console.log(
-        `Location: ${route.location}, Destination: ${route.destination}, Travel Time: ${route.traveltime}, Price: ${route.travelprice}`
-      );
-    });
+    if (Array.isArray(sched.route)) {
+      sched.route.forEach((route) => {
+        console.log(
+          `Location: ${route.location}, Destination: ${route.destination}, Travel Time: ${route.traveltime}, Price: ${route.travelprice}`
+        );
+      });
+    } else {
+      console.error("sched.bus is not an array.");
+    }
   });
   return (
     <>
