@@ -43,10 +43,6 @@ model Route {
 
 model Schedule {
   id              String    @id @default(auto()) @map("_id") @db.ObjectId // Unique identifier for the schedule
-  bus             Bus       @relation(fields: [busId], references: [id]) // Reference to the bus
-  busId           String    @db.ObjectId
-  route           Route     @relation(fields: [routeId], references: [id]) // Reference to the route
-  routeId         String    @db.ObjectId
   departureTime   DateTime  // Departure time of the schedule
   arrivalTime     DateTime  // Arrival time of the schedule
   Booking Booking[]
@@ -55,10 +51,6 @@ model Schedule {
 // Define the Booking model to store information about bookings made by users
 model Booking {
   id            String    @id @default(auto()) @map("_id") @db.ObjectId// Unique identifier for the booking
-  user          User      @relation(fields: [userId], references: [id]) // Reference to the user who made the booking
-  userId        String    @db.ObjectId
-  schedule      Schedule  @relation(fields: [scheduleId], references: [id]) // Reference to the schedule booked
-  scheduleId    String    @db.ObjectId
   bookingDate   DateTime   // Date and time when the booking was made
   isPaid        Boolean   @default(false) // Indicates if the booking is paid
   seatNumber    Int[]     @default([])
