@@ -23,7 +23,6 @@ export const SearchBookResult = () => {
     encodedSearchDestinationQuery,
     encodedSearchTravelDateQuery
   );
-  // const posts = await getSchedule();
   return (
     <div className="w-full lg:w-9/12 border border-black rounded-2xl h-fit px-10 py-5">
       <div className="w-full pb-3">
