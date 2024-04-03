@@ -7,7 +7,6 @@ import React from "react";
 const BackButton = () => {
   const router = useRouter();
   const pathname = usePathname();
-  console.log(pathname);
   return (
     <div className="w-fit h-auto mt-5 rounded-2xl border border-black">
       <button

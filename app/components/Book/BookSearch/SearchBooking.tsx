@@ -24,12 +24,12 @@ export default function SearchBooking() {
       `/book?location=${encodeSearchLocationQuery}&destination=${encodeSearchDestinationQuery}&traveldate=${encodeSearchTravelDateQuery}`
     );
 
-    console.log(
-      "Current Query:",
-      encodeSearchLocationQuery,
-      encodeSearchDestinationQuery,
-      encodeSearchTravelDateQuery
-    );
+    // console.log(
+    //   "Current Query:",
+    //   encodeSearchLocationQuery,
+    //   encodeSearchDestinationQuery,
+    //   encodeSearchTravelDateQuery
+    // );
   };
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;

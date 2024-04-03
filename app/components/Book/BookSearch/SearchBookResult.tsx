@@ -6,6 +6,17 @@ import { PiTelevisionSimpleDuotone } from "react-icons/pi";
 import { TbAirConditioning } from "react-icons/tb";
 import { IoMdMusicalNotes } from "react-icons/io";
 import Link from "next/link";
+import useSWR from "swr";
+
+const fetcher = async (url: string) => {
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch posts");
+  }
+
+  return response.json();
+};
 
 export const SearchBookResult = () => {
   const search = useSearchParams();
@@ -17,12 +28,18 @@ export const SearchBookResult = () => {
   const encodedSearchDestinationQuery = encodeURI(searchDestinationQuery || "");
   const encodedSearchTravelDateQuery = encodeURI(searchTravelDateQuery || "");
 
-  console.log(
-    "Search Query",
-    encodedSearchLocationQuery,
-    encodedSearchDestinationQuery,
-    encodedSearchTravelDateQuery
+  // console.log(
+  //   "Search Query",
+  //   encodedSearchLocationQuery,
+  //   encodedSearchDestinationQuery,
+  //   encodedSearchTravelDateQuery
+  // );
+
+  const { data, error, isLoading } = useSWR(
+    `/api/search?location=${encodedSearchLocationQuery}`,
+    fetcher
   );
+  console.log(data);
   return (
     <div className="w-full lg:w-9/12 border border-black rounded-2xl h-fit px-10 py-5">
       <div className="w-full pb-3">
