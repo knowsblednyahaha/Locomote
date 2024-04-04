@@ -172,7 +172,7 @@ export default function SearchBooking() {
               </div>
             </div>
           </div>
-            <SearchBookResult />
+          <SearchBookResult />
         </div>
       </div>
     </section>

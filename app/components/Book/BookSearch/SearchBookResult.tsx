@@ -7,7 +7,12 @@ import { TbAirConditioning } from "react-icons/tb";
 import { IoMdMusicalNotes } from "react-icons/io";
 import Link from "next/link";
 import useSWR from "swr";
-import dayjs from "dayjs";
+import moment from "moment";
+import "moment-timezone";
+
+interface NestedObject {
+  departureTime: string; // Assuming dateTime is a string in ISO 8601 format
+}
 
 const fetcher = async (url: string) => {
   const response = await fetch(url);
@@ -29,13 +34,6 @@ export const SearchBookResult = () => {
   const encodedSearchDestinationQuery = encodeURI(searchDestinationQuery || "");
   const encodedSearchTravelDateQuery = encodeURI(searchTravelDateQuery || "");
 
-  // console.log(
-  //   "Search Query",
-  //   encodedSearchLocationQuery,
-  //   encodedSearchDestinationQuery,
-  //   encodedSearchTravelDateQuery
-  // );
-
   const { data, error, isLoading } = useSWR(
     `/api/search?location=${encodedSearchLocationQuery}&destination=${encodedSearchDestinationQuery}`,
     fetcher
@@ -44,7 +42,17 @@ export const SearchBookResult = () => {
   if (!data) {
     return null;
   }
-  console.log(data);
+
+  const compareDateTime = (a: string, b: string) => {
+    const dateA = new Date(a).getTime();
+    const dateB = new Date(b).getTime();
+    return dateA - dateB;
+  };
+
+  data.sort((a: NestedObject, b: NestedObject) =>
+    compareDateTime(b.departureTime, a.departureTime)
+  );
+
   return (
     <div className="w-full lg:w-9/12 flex flex-col gap-y-5">
       {data.map((item: any, i: number) => (
@@ -66,8 +74,7 @@ export const SearchBookResult = () => {
           <div className="flex flex-col md:flex-row md:items-center gap-x-3 gap-y-3 w-full text-center md:text-left">
             <div className="md:w-3/12">
               <span className="text-xl font-bold">
-                {dayjs(item.departureTime).format("HH")}:
-                {dayjs(item.departureTime).format("mm")}
+                {moment(item.departureTime).tz("Asia/Manila").format("LT")}
               </span>
               <p className="uppercase">{item.route[0].location}</p>
             </div>
@@ -80,7 +87,9 @@ export const SearchBookResult = () => {
               </div>
             </div>
             <div className="md:w-3/12">
-              <span className="text-xl font-bold">04-45</span>
+              <span className="text-xl font-bold">
+                {moment(item.arrivalTime).format("LT")}
+              </span>
               <p className="uppercase">{item.route[0].destination}</p>
             </div>
             <div className="md:w-1/12 text-center">
@@ -89,7 +98,7 @@ export const SearchBookResult = () => {
               </span>
             </div>
             <div className="md:w-2/12 text-center">
-              <Link href="/bookuser">
+              <Link href={`/bookuser/${item.id}`}>
                 <button className="w-32 md:w-28 h-12 md:h-content text-sm md:text-base bg-[#FE2F2F] rounded-xl text-white">
                   Book
                 </button>
@@ -98,6 +107,7 @@ export const SearchBookResult = () => {
           </div>
         </div>
       ))}
+      {isLoading && <div>Wait...</div>}
     </div>
   );
 };
