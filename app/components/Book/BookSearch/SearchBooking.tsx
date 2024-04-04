@@ -54,7 +54,6 @@ export default function SearchBooking() {
               type="text"
               placeholder="From"
               className="p-5 w-full md:rounded-s-3xl focus:outline-none font-bold"
-              required
             />
             <datalist id="location">
               <option value="Baguio City" />
@@ -70,7 +69,6 @@ export default function SearchBooking() {
               type="text"
               placeholder="To"
               className="p-5 w-full focus:outline-none font-bold"
-              required
             />
             <datalist id="destination">
               <option value="Baguio City" />
@@ -87,7 +85,6 @@ export default function SearchBooking() {
               value={travelDate}
               onChange={handleDateChange}
               min={new Date().toISOString().split("T")[0]}
-              required
             />
           </div>
           <div className="md:rounded-e-3xl md:border border-black px-5 md:w-3/12 lg:w-2/12 flex justify-center items-center">
