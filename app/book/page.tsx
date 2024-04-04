@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import Header from "../components/Book/Header";
 import SearchBooking from "../components/Book/BookSearch/SearchBooking";
 // import { PrismaClient } from "@prisma/client";
@@ -46,7 +46,9 @@ export default async function page() {
   return (
     <>
       <Header />
-      <SearchBooking />
+      <Suspense fallback={<div>Loading...</div>}>
+        <SearchBooking />
+      </Suspense>
     </>
   );
 }

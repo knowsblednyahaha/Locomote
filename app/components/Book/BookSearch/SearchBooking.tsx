@@ -169,7 +169,9 @@ export default function SearchBooking() {
               </div>
             </div>
           </div>
-          <SearchBookResult />
+          <Suspense fallback={<div>Loading...</div>}>
+            <SearchBookResult />
+          </Suspense>
         </div>
       </div>
     </section>
