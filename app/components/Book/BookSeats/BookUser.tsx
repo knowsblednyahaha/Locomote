@@ -11,44 +11,27 @@ import BusSeats from "./BusSeats";
 import Link from "next/link";
 import BackButton from "../../BackButton";
 
-export default function BookUser() {
+interface Schedule {
+  data: {
+    id: string;
+    arrivalTime: string;
+    bus: {
+      busCompany: number;
+      itemName: string;
+    }[];
+  }[];
+}
+const BookUser: React.FC<Schedule> = ({ data }) => {
   const [adultPassenger, setAdultPassenger] = useState(0);
+
+  // const { id, arrivalTime } = data;
 
   return (
     <section className="max-w-[1440px] w-full px-5 md:px-10 lg:px-20 text-black m-auto">
       <div>
         <BackButton />
       </div>
-      <div className="w-full lg:w-3/4 xl:w-2/3 border border-black rounded-2xl h-fit px-10 py-5 mt-5 m-auto">
-        <div className="w-full pb-3 flex justify-between">
-          <span className="text-sm flex flex-row gap-x-3 uppercase justify-center md:justify-start">
-            Bus Company: Victory Liner - Deluxe
-            <span className="md:flex flex-row gap-x-1 hidden ">
-              <FaWifi size={16} />
-              <PiTelevisionSimpleDuotone size={16} />
-              <TbAirConditioning size={16} />
-              <IoMdMusicalNotes size={16} />
-            </span>
-          </span>
-          <span>02/07/24</span>
-        </div>
-        <div className="flex flex-col md:flex-row md:items-center gap-x-3 gap-y-3 w-full text-center md:text-left">
-          <div className="md:w-4/12">
-            <span className="text-xl font-bold">00-15</span>
-            <p className="uppercase">Baguio City Bus Station</p>
-          </div>
-          <div className="w-full hidden md:flex flex-col justify-center items-center md:w-4/12 md:text-center px-5">
-            <span className="text-sm text-[#747474]">4hrs 30mins</span>
-            <div className="w-full text-[#747474]">
-              <i className="gg-arrow-right"></i>
-            </div>
-          </div>
-          <div className="md:w-4/12">
-            <span className="text-xl font-bold">04-45</span>
-            <p className="uppercase">Cubao Bus Station</p>
-          </div>
-        </div>
-      </div>
+
       <form
         action=""
         className="flex flex-col-reverse md:flex-row gap-y-10 gap-x-10 w-full lg:px-10 xl:px-20 py-10"
@@ -148,4 +131,5 @@ export default function BookUser() {
       </form>
     </section>
   );
-}
+};
+export default BookUser;

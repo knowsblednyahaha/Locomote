@@ -63,7 +63,7 @@ export const SearchBookResult = () => {
           >
             <div className="w-full pb-3">
               <span className="text-sm flex flex-row gap-x-3 uppercase justify-center md:justify-start">
-                Bus Company: {item.bus[0].busCompany} - {item.bus[0].type}
+                Bus Company: {item.bus[0].busCompany} - {item.bus[0].type} -
                 <span className="md:flex flex-row gap-x-1 hidden ">
                   <FaWifi size={16} />
                   <PiTelevisionSimpleDuotone size={16} />
@@ -89,7 +89,7 @@ export const SearchBookResult = () => {
               </div>
               <div className="md:w-3/12">
                 <span className="text-xl font-bold">
-                  {moment(item.arrivalTime).format("LT")}
+                  {moment(item.arrivalTime).tz("Asia/Manila").format("LT")}
                 </span>
                 <p className="uppercase">{item.route[0].destination}</p>
               </div>
