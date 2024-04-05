@@ -107,7 +107,7 @@ export default function SearchBooking() {
               name="travelDate"
               id="travelDate"
               className="p-5 w-full focus:outline-none font-bold"
-              value={travelDate || ""}
+              value={travelDate}
               onChange={handleDateChange}
               min={new Date().toISOString().split("T")[0]}
               required
