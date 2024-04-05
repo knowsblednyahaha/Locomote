@@ -28,27 +28,27 @@ export const SearchBookResult = () => {
   const search = useSearchParams();
   const searchLocationQuery = search ? search.get("location") : null;
   const searchDestinationQuery = search ? search.get("destination") : null;
-  const searchTravelDateQuery = search ? search.get("traveldate") : null;
 
   const encodedSearchLocationQuery = encodeURI(searchLocationQuery || "");
   const encodedSearchDestinationQuery = encodeURI(searchDestinationQuery || "");
-  const encodedSearchTravelDateQuery = encodeURI(searchTravelDateQuery || "");
 
   const { data, error, isLoading } = useSWR(
     `/api/search?location=${encodedSearchLocationQuery}&destination=${encodedSearchDestinationQuery}`,
     fetcher
   );
 
+  //checking data if it contains info if not it will return null
   if (!data) {
     return null;
   }
 
+  //a function that parsing data of time
   const compareDateTime = (a: string, b: string) => {
     const dateA = new Date(a).getTime();
     const dateB = new Date(b).getTime();
     return dateA - dateB;
   };
-
+  //Sorting time
   data.sort((a: NestedObject, b: NestedObject) =>
     compareDateTime(b.departureTime, a.departureTime)
   );
@@ -63,7 +63,8 @@ export const SearchBookResult = () => {
           >
             <div className="w-full pb-3">
               <span className="text-sm flex flex-row gap-x-3 uppercase justify-center md:justify-start">
-                Bus Company: {item.bus[0].busCompany} - {item.bus[0].type} -
+                Bus Company: {item.bus[0].busCompany} - {item.bus[0].type}{" "}
+                <span className="hidden md:block">-</span>
                 <span className="md:flex flex-row gap-x-1 hidden ">
                   <FaWifi size={16} />
                   <PiTelevisionSimpleDuotone size={16} />

@@ -39,8 +39,20 @@ const BookUser: React.FC<DataId> = ({ id }) => {
   if (!data) {
     return null;
   }
+  let date = localStorage.getItem("travelDate");
 
-  // console.log(data);
+  if (!date) {
+    return null;
+  }
+
+  const dateString = date;
+  const [year, month, day] = dateString.split("-");
+  const paddedMonth = month.length === 1 ? `0${month}` : month;
+  const paddedDay = day.length === 1 ? `0${day}` : day;
+  const isoDateString = `${year}-${paddedMonth}-${paddedDay}T00:00:00.000Z`;
+
+  // console.log(isoDateString);
+
   return (
     <section className="max-w-[1440px] w-full px-5 md:px-10 lg:px-20 text-black m-auto">
       <div>
@@ -122,16 +134,7 @@ const BookUser: React.FC<DataId> = ({ id }) => {
         </div>
         <div className="w-full md:w-1/2 flex flex-col gap-5">
           <div className="w-full flex gap-y-5 border border-black rounded-2xl">
-            <div className="w-1/2 flex justify-between items-center border-r-2 border-black px-5 lg:px-10 py-5">
-              <FiPlusCircle
-                onClick={() => {
-                  setAdultPassenger(adultPassenger + 1);
-                }}
-              />
-              <div className="flex flex-col justify center items-center">
-                <div>Adult</div>
-                <div>{adultPassenger}</div>
-              </div>
+            <div className="w-full flex justify-between items-center  border-black px-5 lg:px-10 py-5">
               <FiMinusCircle
                 onClick={() => {
                   setAdultPassenger(
@@ -139,62 +142,34 @@ const BookUser: React.FC<DataId> = ({ id }) => {
                   );
                 }}
               />
-            </div>
-            <div className="w-1/2 flex justify-between items-center px-5 lg:px-10 py-5">
+              <div className="flex flex-col justify center items-center">
+                <div>Passenger</div>
+                <div>{adultPassenger}</div>
+              </div>
               <FiPlusCircle
                 onClick={() => {
-                  setChildPassenger(childPassenger + 1);
-                }}
-              />
-              <div className="flex flex-col justify center items-center">
-                <div>Child</div>
-                <div>{childPassenger}</div>
-              </div>
-              <FiMinusCircle
-                onClick={() => {
-                  setChildPassenger(
-                    childPassenger == 0 ? 0 : childPassenger - 1
-                  );
+                  setAdultPassenger(adultPassenger + 1);
                 }}
               />
             </div>
           </div>
-          <div className="w-full flex flex-col gap-y-5 border border-black rounded-2xl p-5">
-            <div className="mb-3 border-b-2 border-black">
-              <span>Passenger</span>
-            </div>
-            <input
-              type="text"
-              placeholder="Fullname"
-              className="w-full border-b border-black outline-none text-xl"
-            />
-            <input
-              type="date"
-              placeholder="Date of Birth"
-              className="w-full border-b border-black outline-none text-xl"
-            />
-            <div className="flex w-full gap-x-10 px-10">
-              <div className="w-1/2">
-                <input type="radio" id="male" className="hidden" />
-                <label
-                  htmlFor={`male`}
-                  className={`flex justify-center items-center border border-black w-full h-14 rounded-2xl text-center leading-16 cursor-pointer peer-checked:bg-red-400`}
-                >
-                  Male
-                </label>
+          {numberOfPassenger !== 0 ? (
+            <div className="w-full border border-black rounded-2xl pb-5">
+              <div className="p-5 border-b border-black">
+                <span>Passenger</span>
               </div>
-              <div className="w-1/2">
-                <input type="radio" id="female" className="hidden" />
-                <label
-                  htmlFor={`female`}
-                  className={`flex justify-center items-center border border-black w-full h-14 rounded-2xl text-center leading-16 cursor-pointer peer-checked:bg-red-400
-                  `}
-                >
-                  Female
-                </label>
+              <div className="p-10">
+                <input
+                  type="text"
+                  placeholder="Enter passenger name"
+                  className="w-full border-b border-black outline-none text-xl  p-4"
+                />
               </div>
             </div>
-          </div>
+          ) : (
+            ""
+          )}
+
           <div className="hidden md:flex justify-center">
             <Link href={"/payment"} className="w-full text-center">
               <button className="w-full lg:w-2/3 h-12 text-white rounded-3xl bg-[#FE2F2F]">

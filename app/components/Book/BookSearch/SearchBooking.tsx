@@ -9,6 +9,7 @@ import { SearchBookResult } from "./SearchBookResult";
 export default function SearchBooking() {
   const [searchLocation, setSearchLocation] = useState("");
   const [searchDestination, setSearchDestination] = useState("");
+
   const [travelDate, settravelDate] = useState("");
 
   const router = useRouter();
@@ -18,18 +19,11 @@ export default function SearchBooking() {
 
     const encodeSearchLocationQuery = encodeURI(searchLocation);
     const encodeSearchDestinationQuery = encodeURI(searchDestination);
-    const encodeSearchTravelDateQuery = encodeURI(travelDate);
 
     router.push(
-      `/book?location=${encodeSearchLocationQuery}&destination=${encodeSearchDestinationQuery}&traveldate=${encodeSearchTravelDateQuery}`
+      `/book?location=${encodeSearchLocationQuery}&destination=${encodeSearchDestinationQuery}`
     );
-
-    // console.log(
-    //   "Current Query:",
-    //   encodeSearchLocationQuery,
-    //   encodeSearchDestinationQuery,
-    //   encodeSearchTravelDateQuery
-    // );
+    localStorage.setItem("travelDate", `${travelDate}`);
   };
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -85,6 +79,7 @@ export default function SearchBooking() {
               value={travelDate}
               onChange={handleDateChange}
               min={new Date().toISOString().split("T")[0]}
+              required
             />
           </div>
           <div className="md:rounded-e-3xl md:border border-black px-5 md:w-3/12 lg:w-2/12 flex justify-center items-center">
