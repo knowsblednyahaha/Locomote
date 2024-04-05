@@ -30,11 +30,7 @@ export default function SearchBooking() {
   // Get the current date in YYYY-MM-DD format
   const currentDate = formatDate(new Date());
 
-  const sessionDate = sessionStorage.getItem("travelDate");
-
-  const [travelDate, settravelDate] = useState(
-    sessionDate !== currentDate ? sessionDate : currentDate
-  );
+  const [travelDate, settravelDate] = useState(currentDate);
 
   if (typeof window !== "undefined") {
     // Access sessionStorage here
@@ -42,7 +38,7 @@ export default function SearchBooking() {
     sessionStorage.setItem("travelDate", `${travelDate}`);
     // }
   }
-  // console.log(sessionStorage.getItem("travelDate"));
+  console.log(sessionStorage.getItem("travelDate"));
 
   const router = useRouter();
 
@@ -110,7 +106,7 @@ export default function SearchBooking() {
               name="travelDate"
               id="travelDate"
               className="p-5 w-full focus:outline-none font-bold"
-              value={travelDate || ""}
+              value={travelDate}
               onChange={handleDateChange}
               min={new Date().toISOString().split("T")[0]}
               required
