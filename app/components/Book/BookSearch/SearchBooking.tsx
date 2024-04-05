@@ -34,13 +34,10 @@ export default function SearchBooking() {
     // Get the travel date from sessionStorage, or use the current date if it's not available
     () => sessionStorage.getItem("travelDate") || currentDate
   );
+
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      // Access sessionStorage here
-      // if (travelDate !== currentDate) {
-      sessionStorage.setItem("travelDate", `${travelDate}`);
-      // }
-    }
+    // Save the travel date to sessionStorage whenever it changes
+    sessionStorage.setItem("travelDate", travelDate);
   }, [travelDate]);
   // console.log(sessionStorage.getItem("travelDate"));
 
