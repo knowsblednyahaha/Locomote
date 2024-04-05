@@ -30,9 +30,6 @@ const fetcher = async (url: string) => {
 
 const BookUser: React.FC<DataId> = ({ id }) => {
   const [adultPassenger, setAdultPassenger] = useState(0);
-  const [childPassenger, setChildPassenger] = useState(0);
-
-  const numberOfPassenger = adultPassenger + childPassenger;
 
   const { data, error, isLoading } = useSWR(`/api/booking/${id}`, fetcher);
 
@@ -53,6 +50,28 @@ const BookUser: React.FC<DataId> = ({ id }) => {
 
   // console.log(isoDateString);
 
+  // Array to hold the elements
+
+  // Create an array of length 'count'
+  const elements = Array.from({ length: adultPassenger }, (_, index) => (
+    <div className="w-full border border-black rounded-2xl pb-5" key={index}>
+      <div className="p-5 border-b border-black">
+        <span>Passenger {index + 1}</span>
+      </div>
+      <div className="p-5 flex justify-center items-center">
+        <label htmlFor="fullname" className="text-lg">
+          Fullname:
+        </label>
+        <input
+          id="fullname"
+          type="text"
+          placeholder="Enter passenger name"
+          className="w-full border-b border-black outline-none text-xl  p-4"
+        />
+      </div>
+    </div>
+  ));
+
   return (
     <section className="max-w-[1440px] w-full px-5 md:px-10 lg:px-20 text-black m-auto">
       <div>
@@ -70,7 +89,7 @@ const BookUser: React.FC<DataId> = ({ id }) => {
               <IoMdMusicalNotes size={16} />
             </span>
           </span>
-          <span>02/07/24</span>
+          <span>{moment(isoDateString).tz("Asia/Manila").format("LL")}</span>
         </div>
         <div className="flex flex-col md:flex-row md:items-center gap-x-3 gap-y-3 w-full text-center md:text-left">
           <div className="md:w-4/12">
@@ -116,9 +135,7 @@ const BookUser: React.FC<DataId> = ({ id }) => {
               </div>
             </div>
             <div className="flex justify-center font-bold text-lg">
-              {numberOfPassenger !== 0
-                ? `Select ${numberOfPassenger} Seats`
-                : ""}
+              {adultPassenger !== 0 ? `Select ${adultPassenger} Seats` : ""}
             </div>
             <div>
               <BusSeats />
@@ -153,19 +170,8 @@ const BookUser: React.FC<DataId> = ({ id }) => {
               />
             </div>
           </div>
-          {numberOfPassenger !== 0 ? (
-            <div className="w-full border border-black rounded-2xl pb-5">
-              <div className="p-5 border-b border-black">
-                <span>Passenger</span>
-              </div>
-              <div className="p-10">
-                <input
-                  type="text"
-                  placeholder="Enter passenger name"
-                  className="w-full border-b border-black outline-none text-xl  p-4"
-                />
-              </div>
-            </div>
+          {adultPassenger !== 0 ? (
+            <div className="flex flex-col gap-y-5">{elements} </div>
           ) : (
             ""
           )}
