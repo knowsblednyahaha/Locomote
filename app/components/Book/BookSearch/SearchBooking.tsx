@@ -30,7 +30,9 @@ export default function SearchBooking() {
   // Get the current date in YYYY-MM-DD format
   const currentDate = formatDate(new Date());
 
-  const [travelDate, settravelDate] = useState(currentDate);
+  const initialTravelDate = sessionStorage.getItem("travelDate") || currentDate;
+
+  const [travelDate, settravelDate] = useState(initialTravelDate);
 
   if (typeof window !== "undefined") {
     // Access sessionStorage here
