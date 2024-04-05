@@ -34,11 +34,8 @@ export default function SearchBooking() {
 
   if (typeof window !== "undefined") {
     // Access sessionStorage here
-    // if (travelDate !== currentDate) {
     sessionStorage.setItem("travelDate", `${travelDate}`);
-    // }
   }
-  console.log(sessionStorage.getItem("travelDate"));
 
   const router = useRouter();
 
