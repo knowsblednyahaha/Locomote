@@ -47,8 +47,6 @@ export default function SearchBooking() {
     sessionStorage.setItem("travelDate", `${travelDate}`);
   };
 
-  sessionStorage.setItem("travelDate", `${travelDate}`);
-
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     settravelDate(value);
