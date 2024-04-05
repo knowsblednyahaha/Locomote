@@ -32,6 +32,18 @@ export default function SearchBooking() {
 
   const [travelDate, settravelDate] = useState(currentDate);
 
+  const [date, setDate] = useState("");
+
+  useEffect(() => {
+    // Check if sessionStorage is available before using it
+    if (typeof window !== "undefined") {
+      const storedDate = sessionStorage.getItem("travelDate");
+      if (storedDate) {
+        setDate(storedDate);
+      }
+    }
+  }, []);
+
   const router = useRouter();
 
   const onSearch = (event: React.FormEvent) => {
