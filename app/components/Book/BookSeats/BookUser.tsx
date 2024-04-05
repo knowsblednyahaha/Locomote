@@ -4,8 +4,9 @@ import { FaWifi } from "react-icons/fa";
 import { PiTelevisionSimpleDuotone } from "react-icons/pi";
 import { TbAirConditioning } from "react-icons/tb";
 import { IoMdMusicalNotes } from "react-icons/io";
-import { FiPlusCircle } from "react-icons/fi";
-import { FiMinusCircle } from "react-icons/fi";
+import { FiMinus } from "react-icons/fi";
+import { FiPlus } from "react-icons/fi";
+
 import "../sass/arrow.scss";
 import BusSeats from "./BusSeats";
 import Link from "next/link";
@@ -36,7 +37,9 @@ const BookUser: React.FC<DataId> = ({ id }) => {
   if (!data) {
     return null;
   }
-  let date = localStorage.getItem("travelDate");
+  let date = sessionStorage.getItem("travelDate");
+
+  console.log(date);
 
   if (!date) {
     return null;
@@ -151,23 +154,29 @@ const BookUser: React.FC<DataId> = ({ id }) => {
         </div>
         <div className="w-full md:w-1/2 flex flex-col gap-5">
           <div className="w-full flex gap-y-5 border border-black rounded-2xl">
-            <div className="w-full flex justify-between items-center  border-black px-5 lg:px-10 py-5">
-              <FiMinusCircle
+            <div className="w-full flex justify-between items-center border-black  ">
+              <div
+                className="w-2/12 px-5 lg:px-5 flex justify-center items-center border-r border-black py-7"
                 onClick={() => {
                   setAdultPassenger(
                     adultPassenger == 0 ? 0 : adultPassenger - 1
                   );
                 }}
-              />
-              <div className="flex flex-col justify center items-center">
+              >
+                <FiMinus />
+              </div>
+              <div className="w-6/12 flex flex-col justify center items-center">
                 <div>Passenger</div>
                 <div>{adultPassenger}</div>
               </div>
-              <FiPlusCircle
+              <div
+                className="w-2/12 px-5 lg:px-5 flex justify-center items-center border-l border-black py-7"
                 onClick={() => {
                   setAdultPassenger(adultPassenger + 1);
                 }}
-              />
+              >
+                <FiPlus />
+              </div>
             </div>
           </div>
           {adultPassenger !== 0 ? (

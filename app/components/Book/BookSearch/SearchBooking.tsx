@@ -1,6 +1,7 @@
 "use client";
-import React, { Suspense, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useRouter as nextRouter } from "next/router";
 import "../sass/arrow.scss";
 
 import BackButton from "../../BackButton";
@@ -10,7 +11,26 @@ export default function SearchBooking() {
   const [searchLocation, setSearchLocation] = useState("");
   const [searchDestination, setSearchDestination] = useState("");
 
-  const [travelDate, settravelDate] = useState("");
+  // useEffect(() => {
+  //   if (sessionStorage.getItem("travelDate") === null) {
+  //     window.addEventListener("beforeunload", () => {
+  //       sessionStorage.clear();
+  //     });
+  //   }
+  // }, []);
+
+  // Function to format the date in YYYY-MM-DD format
+  const formatDate = (date: Date) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  };
+
+  // Get the current date in YYYY-MM-DD format
+  const currentDate = formatDate(new Date());
+
+  const [travelDate, settravelDate] = useState(currentDate);
 
   const router = useRouter();
 
@@ -23,12 +43,18 @@ export default function SearchBooking() {
     router.push(
       `/book?location=${encodeSearchLocationQuery}&destination=${encodeSearchDestinationQuery}`
     );
-    localStorage.setItem("travelDate", `${travelDate}`);
+
+    sessionStorage.setItem("travelDate", `${travelDate}`);
   };
+
+  sessionStorage.setItem("travelDate", `${travelDate}`);
+
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     settravelDate(value);
   };
+
+  console.log(sessionStorage.getItem("travelDate"));
 
   return (
     <section className="max-w-[1440px] w-full m-auto px-5 md:px-10 lg:px-20 text-black">

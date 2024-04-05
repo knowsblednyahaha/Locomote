@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { FaWifi } from "react-icons/fa";
 import { PiTelevisionSimpleDuotone } from "react-icons/pi";
@@ -53,6 +53,8 @@ export const SearchBookResult = () => {
     compareDateTime(b.departureTime, a.departureTime)
   );
 
+  console.log(sessionStorage.getItem("travelDate"));
+
   return (
     <div className="w-full lg:w-9/12 flex flex-col gap-y-5">
       {data.length !== 0 ? (
@@ -105,7 +107,14 @@ export const SearchBookResult = () => {
                   href={`/bookuser/${item.id}`}
                   as={`bookuser/${item.id}`}
                 >
-                  <button className="w-32 md:w-28 h-12 md:h-content text-sm md:text-base bg-[#FE2F2F] rounded-xl text-white">
+                  <button
+                    className={`w-32 md:w-28 h-12 md:h-content text-sm md:text-base bg-[#FE2F2F] rounded-xl text-white ${
+                      sessionStorage.getItem("travelDate") === null
+                        ? "cursor-not-allowed opacity-25"
+                        : ""
+                    }`}
+                    disabled={sessionStorage.getItem("travelDate") === null}
+                  >
                     Book
                   </button>
                 </Link>
