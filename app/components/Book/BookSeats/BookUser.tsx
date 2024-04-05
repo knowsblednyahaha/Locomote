@@ -39,7 +39,7 @@ const BookUser: React.FC<DataId> = ({ id }) => {
   }
   let date = sessionStorage.getItem("travelDate");
 
-  console.log(date);
+  // console.log(date);
 
   if (!date) {
     return null;

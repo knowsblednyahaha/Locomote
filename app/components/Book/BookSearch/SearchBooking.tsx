@@ -30,7 +30,19 @@ export default function SearchBooking() {
   // Get the current date in YYYY-MM-DD format
   const currentDate = formatDate(new Date());
 
-  const [travelDate, settravelDate] = useState(currentDate);
+  const [travelDate, settravelDate] = useState(
+    sessionStorage.getItem("travelDate") !== currentDate
+      ? sessionStorage.getItem("travelDate")
+      : currentDate
+  );
+
+  if (typeof window !== "undefined") {
+    // Access sessionStorage here
+    // if (travelDate !== currentDate) {
+    sessionStorage.setItem("travelDate", `${travelDate}`);
+    // }
+  }
+  // console.log(sessionStorage.getItem("travelDate"));
 
   const router = useRouter();
 
@@ -51,11 +63,6 @@ export default function SearchBooking() {
     const { value } = e.target;
     settravelDate(value);
   };
-
-  if (typeof window !== "undefined") {
-    // Access sessionStorage here
-    sessionStorage.setItem("travelDate", `${travelDate}`);
-  }
 
   return (
     <section className="max-w-[1440px] w-full m-auto px-5 md:px-10 lg:px-20 text-black">

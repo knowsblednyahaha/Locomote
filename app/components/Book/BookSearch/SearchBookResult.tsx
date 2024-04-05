@@ -53,8 +53,6 @@ export const SearchBookResult = () => {
     compareDateTime(b.departureTime, a.departureTime)
   );
 
-  console.log(sessionStorage.getItem("travelDate"));
-
   return (
     <div className="w-full lg:w-9/12 flex flex-col gap-y-5">
       {data.length !== 0 ? (
