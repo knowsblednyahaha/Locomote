@@ -28,12 +28,11 @@ export default function SearchBooking() {
   };
 
   // Get the current date in YYYY-MM-DD format
-  const currentDate = formatDate(new Date()).toString();
+  const currentDate = formatDate(new Date());
 
-  const [travelDate, settravelDate] = useState(
-    sessionStorage.getItem("travelDate") !== currentDate
-      ? sessionStorage.getItem("travelDate")
-      : currentDate
+  const [travelDate, setTravelDate] = useState<string>(
+    // Get the travel date from sessionStorage, or use the current date if it's not available
+    () => sessionStorage.getItem("travelDate") || currentDate
   );
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -62,7 +61,7 @@ export default function SearchBooking() {
 
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    settravelDate(value);
+    setTravelDate(value);
   };
 
   return (
