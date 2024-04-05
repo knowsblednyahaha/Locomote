@@ -10,28 +10,79 @@ import "../sass/arrow.scss";
 import BusSeats from "./BusSeats";
 import Link from "next/link";
 import BackButton from "../../BackButton";
+import useSWR from "swr";
+import moment from "moment";
+import "moment-timezone";
 
-interface Schedule {
-  data: {
-    id: string;
-    arrivalTime: string;
-    bus: {
-      busCompany: number;
-      itemName: string;
-    }[];
-  }[];
+interface DataId {
+  id: string;
 }
-const BookUser: React.FC<Schedule> = ({ data }) => {
+
+const fetcher = async (url: string) => {
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch posts");
+  }
+
+  return response.json();
+};
+
+const BookUser: React.FC<DataId> = ({ id }) => {
   const [adultPassenger, setAdultPassenger] = useState(0);
+  const [childPassenger, setChildPassenger] = useState(0);
 
-  // const { id, arrivalTime } = data;
+  const numberOfPassenger = adultPassenger + childPassenger;
 
+  const { data, error, isLoading } = useSWR(`/api/booking/${id}`, fetcher);
+
+  if (!data) {
+    return null;
+  }
+
+  // console.log(data);
   return (
     <section className="max-w-[1440px] w-full px-5 md:px-10 lg:px-20 text-black m-auto">
       <div>
         <BackButton />
       </div>
-
+      <div className="w-full lg:w-3/4 xl:w-2/3 border border-black rounded-2xl h-fit px-10 py-5 mt-5 m-auto">
+        <div className="w-full pb-3 flex justify-between">
+          <span className="text-sm flex flex-row gap-x-3 uppercase justify-center md:justify-start">
+            Bus Company:
+            {data.bus[0].busCompany} - {data.bus[0].type}
+            <span className="md:flex flex-row gap-x-1 hidden ">
+              <FaWifi size={16} />
+              <PiTelevisionSimpleDuotone size={16} />
+              <TbAirConditioning size={16} />
+              <IoMdMusicalNotes size={16} />
+            </span>
+          </span>
+          <span>02/07/24</span>
+        </div>
+        <div className="flex flex-col md:flex-row md:items-center gap-x-3 gap-y-3 w-full text-center md:text-left">
+          <div className="md:w-4/12">
+            <span className="text-xl font-bold">
+              {moment(data.departureTime).tz("Asia/Manila").format("LT")}
+            </span>
+            <p className="uppercase">{data.route[0].location}</p>
+          </div>
+          <div className="w-full hidden md:flex flex-col justify-center items-center md:w-4/12 md:text-center px-5">
+            <span className="text-sm text-[#747474]">
+              {data.route[0].traveltime} hours
+            </span>
+            <div className="w-full text-[#747474]">
+              <i className="gg-arrow-right"></i>
+            </div>
+          </div>
+          <div className="md:w-4/12">
+            <span className="text-xl font-bold">
+              {moment(data.arrivalTime).tz("Asia/Manila").format("LT")}
+            </span>
+            <p className="uppercase">{data.route[0].destination}</p>
+          </div>
+        </div>
+      </div>
       <form
         action=""
         className="flex flex-col-reverse md:flex-row gap-y-10 gap-x-10 w-full lg:px-10 xl:px-20 py-10"
@@ -53,7 +104,9 @@ const BookUser: React.FC<Schedule> = ({ data }) => {
               </div>
             </div>
             <div className="flex justify-center font-bold text-lg">
-              Select 2 Seats
+              {numberOfPassenger !== 0
+                ? `Select ${numberOfPassenger} Seats`
+                : ""}
             </div>
             <div>
               <BusSeats />
@@ -70,24 +123,46 @@ const BookUser: React.FC<Schedule> = ({ data }) => {
         <div className="w-full md:w-1/2 flex flex-col gap-5">
           <div className="w-full flex gap-y-5 border border-black rounded-2xl">
             <div className="w-1/2 flex justify-between items-center border-r-2 border-black px-5 lg:px-10 py-5">
-              <FiPlusCircle />
+              <FiPlusCircle
+                onClick={() => {
+                  setAdultPassenger(adultPassenger + 1);
+                }}
+              />
               <div className="flex flex-col justify center items-center">
                 <div>Adult</div>
                 <div>{adultPassenger}</div>
               </div>
-              <FiMinusCircle />
+              <FiMinusCircle
+                onClick={() => {
+                  setAdultPassenger(
+                    adultPassenger == 0 ? 0 : adultPassenger - 1
+                  );
+                }}
+              />
             </div>
             <div className="w-1/2 flex justify-between items-center px-5 lg:px-10 py-5">
-              <FiPlusCircle />
+              <FiPlusCircle
+                onClick={() => {
+                  setChildPassenger(childPassenger + 1);
+                }}
+              />
               <div className="flex flex-col justify center items-center">
                 <div>Child</div>
-                <div>0</div>
+                <div>{childPassenger}</div>
               </div>
-              <FiMinusCircle />
+              <FiMinusCircle
+                onClick={() => {
+                  setChildPassenger(
+                    childPassenger == 0 ? 0 : childPassenger - 1
+                  );
+                }}
+              />
             </div>
           </div>
           <div className="w-full flex flex-col gap-y-5 border border-black rounded-2xl p-5">
-            <div></div>
+            <div className="mb-3 border-b-2 border-black">
+              <span>Passenger</span>
+            </div>
             <input
               type="text"
               placeholder="Fullname"
