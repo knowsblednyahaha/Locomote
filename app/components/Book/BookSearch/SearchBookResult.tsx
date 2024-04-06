@@ -1,5 +1,4 @@
 "use client";
-import React, { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { FaWifi } from "react-icons/fa";
 import { PiTelevisionSimpleDuotone } from "react-icons/pi";
@@ -23,8 +22,9 @@ const fetcher = async (url: string) => {
 
   return response.json();
 };
+import React from "react";
 
-export const SearchBookResult = () => {
+export function SearchBookResult() {
   const search = useSearchParams();
   const searchLocationQuery = search ? search.get("location") : null;
   const searchDestinationQuery = search ? search.get("destination") : null;
@@ -52,6 +52,8 @@ export const SearchBookResult = () => {
   data.sort((a: NestedObject, b: NestedObject) =>
     compareDateTime(b.departureTime, a.departureTime)
   );
+
+  const storedDate = sessionStorage.getItem("travelDate");
 
   return (
     <div className="w-full lg:w-9/12 flex flex-col gap-y-5">
@@ -107,11 +109,11 @@ export const SearchBookResult = () => {
                 >
                   <button
                     className={`w-32 md:w-28 h-12 md:h-content text-sm md:text-base bg-[#FE2F2F] rounded-xl text-white ${
-                      sessionStorage.getItem("travelDate") === null
+                      storedDate === null || storedDate === ""
                         ? "cursor-not-allowed opacity-25"
                         : ""
                     }`}
-                    disabled={sessionStorage.getItem("travelDate") === null}
+                    disabled={storedDate === null || storedDate === ""}
                   >
                     Book
                   </button>
@@ -126,4 +128,4 @@ export const SearchBookResult = () => {
       {isLoading && <div>Wait...</div>}
     </div>
   );
-};
+}

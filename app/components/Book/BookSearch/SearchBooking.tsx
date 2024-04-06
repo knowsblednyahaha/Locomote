@@ -117,6 +117,7 @@ export default function SearchBooking() {
               value={travelDate}
               onChange={handleDateChange}
               min={new Date().toISOString().split("T")[0]}
+              onKeyDown={(e) => e.preventDefault()}
               required
             />
           </div>
