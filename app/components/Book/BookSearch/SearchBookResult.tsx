@@ -32,8 +32,16 @@ export function SearchBookResult() {
   const encodedSearchLocationQuery = encodeURI(searchLocationQuery || "");
   const encodedSearchDestinationQuery = encodeURI(searchDestinationQuery || "");
 
+  const busCompany = search ? search.get("busCompany") : null;
+
+  const array = busCompany?.split(", ") ?? [];
+
+  const arrayValues: string | any[] = array;
+
+  console.log(busCompany);
+
   const { data, error, isLoading } = useSWR(
-    `/api/search?location=${encodedSearchLocationQuery}&destination=${encodedSearchDestinationQuery}`,
+    `/api/search?location=${encodedSearchLocationQuery}&destination=${encodedSearchDestinationQuery}&busCompany=${busCompany}`,
     fetcher
   );
 
@@ -54,15 +62,6 @@ export function SearchBookResult() {
   );
 
   const storedDate = sessionStorage.getItem("travelDate");
-
-  const busCompany = search ? search.get("busCompany") : null;
-
-  console.log(busCompany);
-
-  const arrayValues: string | any[] = [""];
-  console.log(arrayValues.length);
-
-  console.log(arrayValues);
 
   return (
     <div className="w-full lg:w-9/12 flex flex-col gap-y-5">
@@ -85,13 +84,13 @@ export function SearchBookResult() {
               </span>
             </div>
             <div className="flex flex-col md:flex-row md:items-center gap-x-3 gap-y-3 w-full text-center md:text-left">
-              <div className="md:w-3/12">
+              <div className="md:w-4/12">
                 <span className="text-xl font-bold">
                   {moment(item.departureTime).tz("Asia/Manila").format("LT")}
                 </span>
                 <p className="uppercase">{item.route[0].location}</p>
               </div>
-              <div className="w-full hidden md:flex flex-col justify-center items-center md:w-4/12 md:text-center px-5">
+              <div className="w-full hidden md:flex flex-col justify-center items-center md:w-3/12 md:text-center px-5">
                 <span className="text-sm text-[#747474]">
                   {item.route[0].traveltime} hours
                 </span>
@@ -99,7 +98,7 @@ export function SearchBookResult() {
                   <i className="gg-arrow-right"></i>
                 </div>
               </div>
-              <div className="md:w-3/12">
+              <div className="md:w-4/12">
                 <span className="text-xl font-bold">
                   {moment(item.arrivalTime).tz("Asia/Manila").format("LT")}
                 </span>

@@ -13,10 +13,12 @@ export async function GET(req: NextRequest) {
 
   const busCompany = searchParams ? searchParams.get("busCompany") : null;
 
-  const arrayValues: string | any[] = [busCompany];
+  const array = busCompany?.split(", ") ?? [];
+
+  const arrayValues: string | any[] = array;
 
   try {
-    if (arrayValues.length === 1) {
+    if (arrayValues.map(String).includes("null") || arrayValues.includes("")) {
       const post = await prisma.schedule.findMany({
         where: {
           route: {
