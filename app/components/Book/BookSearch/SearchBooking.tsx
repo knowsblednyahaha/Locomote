@@ -26,36 +26,21 @@ export default function SearchBooking() {
     const day = String(date.getDate()).padStart(2, "0");
     return `${year}-${month}-${day}`;
   };
-
-  // Get the current date in YYYY-MM-DD format
-  const currentDate = formatDate(new Date());
-
-  console.log(!sessionStorage.getItem("travelDate"));
-
-  sessionStorage.clear();
-
-  if (typeof sessionStorage !== "undefined") {
-    sessionStorage.setItem("travelDate", currentDate);
-  }
-
-  const storedTravelDate = sessionStorage.getItem("travelDate");
-  const initialTravelDate =
-    storedTravelDate !== currentDate
-      ? storedTravelDate || currentDate
-      : currentDate;
-
-  const [travelDate, setTravelDate] = useState<string>(initialTravelDate);
-
   if (typeof window !== "undefined") {
-    // Access sessionStorage here
-    sessionStorage.setItem("travelDate", `${travelDate}`);
-  }
-  useEffect(() => {
-    sessionStorage.getItem("travelDate");
-    console.log(sessionStorage.getItem("travelDate"));
-  }, [travelDate]);
+    // Get the current date in YYYY-MM-DD format
+    const currentDate = formatDate(new Date());
 
-  // const stateDate =
+    if (typeof sessionStorage !== "undefined") {
+      sessionStorage.setItem("travelDate", `${currentDate}`);
+    }
+
+    const [travelDate, setTavelDate] = useState(currentDate);
+
+    if (typeof window !== "undefined") {
+      // Access sessionStorage here
+      sessionStorage.setItem("travelDate", `${travelDate}`);
+    }
+  }
 
   const router = useRouter();
 
@@ -74,7 +59,7 @@ export default function SearchBooking() {
 
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    setTravelDate(value);
+    setTavelDate(value);
   };
 
   return (
