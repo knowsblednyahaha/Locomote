@@ -26,20 +26,19 @@ export default function SearchBooking() {
     const day = String(date.getDate()).padStart(2, "0");
     return `${year}-${month}-${day}`;
   };
+
+  // Get the current date in YYYY-MM-DD format
+  const currentDate = formatDate(new Date());
+
+  if (typeof sessionStorage !== "undefined") {
+    sessionStorage.setItem("travelDate", `${currentDate}`);
+  }
+
+  const [travelDate, setTavelDate] = useState(currentDate);
+
   if (typeof window !== "undefined") {
-    // Get the current date in YYYY-MM-DD format
-    const currentDate = formatDate(new Date());
-
-    if (typeof sessionStorage !== "undefined") {
-      sessionStorage.setItem("travelDate", `${currentDate}`);
-    }
-
-    const [travelDate, setTavelDate] = useState(currentDate);
-
-    if (typeof window !== "undefined") {
-      // Access sessionStorage here
-      sessionStorage.setItem("travelDate", `${travelDate}`);
-    }
+    // Access sessionStorage here
+    sessionStorage.setItem("travelDate", `${travelDate}`);
   }
 
   const router = useRouter();
