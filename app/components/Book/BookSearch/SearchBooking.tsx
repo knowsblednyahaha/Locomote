@@ -37,6 +37,10 @@ export default function SearchBooking() {
 
   const [travelDate, setTravelDate] = useState<string>(initialTravelDate);
 
+  if (typeof sessionStorage !== "undefined") {
+    sessionStorage.setItem("travelDate", `${travelDate}`);
+  }
+
   if (typeof window !== "undefined") {
     if (typeof sessionStorage !== "undefined") {
       sessionStorage.setItem("travelDate", `${travelDate}`);
