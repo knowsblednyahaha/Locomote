@@ -30,14 +30,22 @@ export default function SearchBooking() {
   // Get the current date in YYYY-MM-DD format
   const currentDate = formatDate(new Date());
 
-  const initialTravelDate = sessionStorage.getItem("travelDate") || currentDate;
+  console.log(sessionStorage.getItem("travelDate"));
 
-  const [travelDate, settravelDate] = useState(initialTravelDate);
+  const storedTravelDate = sessionStorage.getItem("travelDate");
+  const initialTravelDate =
+    storedTravelDate !== currentDate
+      ? storedTravelDate || currentDate
+      : currentDate;
+
+  const [travelDate, setTavelDate] = useState(initialTravelDate);
 
   if (typeof window !== "undefined") {
     // Access sessionStorage here
     sessionStorage.setItem("travelDate", `${travelDate}`);
   }
+
+  // const stateDate =
 
   const router = useRouter();
 
@@ -56,7 +64,7 @@ export default function SearchBooking() {
 
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    settravelDate(value);
+    setTavelDate(value);
   };
 
   return (
