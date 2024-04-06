@@ -55,6 +55,15 @@ export function SearchBookResult() {
 
   const storedDate = sessionStorage.getItem("travelDate");
 
+  const busCompany = search ? search.get("busCompany") : null;
+
+  console.log(busCompany);
+
+  const arrayValues: string | any[] = [""];
+  console.log(arrayValues.length);
+
+  console.log(arrayValues);
+
   return (
     <div className="w-full lg:w-9/12 flex flex-col gap-y-5">
       {data.length !== 0 ? (
