@@ -2,7 +2,7 @@ import React from "react";
 
 export default function FilterBooking() {
   return (
-    <div className="w-full hidden lg:block lg:w-3/12 border border-black rounded-2xl h-96 p-5">
+    <div className="w-full hidden lg:block lg:w-3/12 border border-black rounded-2xl h-fit p-5">
       <div>
         <span className="text-lg font-semibold">Filters</span>
       </div>
@@ -62,6 +62,11 @@ export default function FilterBooking() {
           <label htmlFor="luxurybus"> Luxury Bus</label>
           <br />
         </div>
+      </div>
+      <div className="w-full text-center pt-5">
+        <button className="w-full md:w-full h-12 md:h-content text-sm md:text-base bg-[#FE2F2F] rounded-xl text-white ">
+          Search Filter
+        </button>
       </div>
     </div>
   );

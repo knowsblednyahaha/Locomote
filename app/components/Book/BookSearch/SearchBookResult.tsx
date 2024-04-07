@@ -34,12 +34,6 @@ export function SearchBookResult() {
 
   const busCompany = search ? search.get("busCompany") : null;
 
-  const array = busCompany?.split(", ") ?? [];
-
-  const arrayValues: string | any[] = array;
-
-  console.log(busCompany);
-
   const { data, error, isLoading } = useSWR(
     `/api/search?location=${encodedSearchLocationQuery}&destination=${encodedSearchDestinationQuery}&busCompany=${busCompany}`,
     fetcher

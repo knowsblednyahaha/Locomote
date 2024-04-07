@@ -59,7 +59,7 @@ export default function SearchBooking() {
   };
 
   return (
-    <section className="max-w-[1440px] w-full m-auto px-5 md:px-10 lg:px-20 text-black">
+    <section className="max-w-[1440px] w-full m-auto px-5 md:px-10 lg:px-20 text-black pb-5">
       <div>
         <div>
           <BackButton />
