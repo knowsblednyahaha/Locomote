@@ -36,7 +36,15 @@ export function SearchBookResult() {
 
   const { data, error, isLoading } = useSWR(
     `/api/search?location=${encodedSearchLocationQuery}&destination=${encodedSearchDestinationQuery}&busCompany=${busCompany}`,
-    fetcher
+    fetcher,
+    {
+      revalidateOnMount: true,
+      initialData: {
+        distance: 0,
+        members: 0,
+        activities: 0,
+      },
+    }
   );
 
   //checking data if it contains info if not it will return null

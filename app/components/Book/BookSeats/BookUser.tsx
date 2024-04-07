@@ -138,7 +138,11 @@ const BookUser: React.FC<DataId> = ({ id }) => {
               </div>
             </div>
             <div className="flex justify-center font-bold text-lg">
-              {adultPassenger !== 0 ? `Select ${adultPassenger} Seats` : ""}
+              {adultPassenger == 0
+                ? ""
+                : adultPassenger === 1
+                ? `Select ${adultPassenger} Seat`
+                : `Select ${adultPassenger} Seats`}
             </div>
             <div>
               <BusSeats />
