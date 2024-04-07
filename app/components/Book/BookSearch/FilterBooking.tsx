@@ -23,10 +23,9 @@ export default function FilterBooking() {
     { name: "Luxury Bus", attribute: "luxurybus" },
   ];
   const router = useRouter();
-  const currentUrl = window.location.href;
-  console.log(currentUrl);
+
   const [selectedCheckboxes, setSelectedCheckboxes] = useState<string[]>([]);
-  console.log(selectedCheckboxes);
+
   const maxSelected = 2; // Change this value to set the maximum number of selected checkboxes
 
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
