@@ -123,8 +123,10 @@ export default function SearchBooking() {
             </button>
           </div>
         </form>
-        <div className="w-full mt-10 flex flex-col md:flex-row gap-x-5 gap-y-5">
+        <div className="pt-5">
           <FilterBooking />
+        </div>
+        <div className="w-full mt-5 flex flex-col md:flex-row gap-x-5 gap-y-5">
           <Suspense fallback={<div>Loading...</div>}>
             <SearchBookResult />
           </Suspense>

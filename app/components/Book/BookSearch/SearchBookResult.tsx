@@ -58,7 +58,7 @@ export function SearchBookResult() {
   const storedDate = sessionStorage.getItem("travelDate");
 
   return (
-    <div className="w-full lg:w-9/12 flex flex-col gap-y-5">
+    <div className="w-full flex flex-col gap-y-5">
       {data.length !== 0 ? (
         data.map((item: any, i: number) => (
           <div
@@ -78,7 +78,7 @@ export function SearchBookResult() {
               </span>
             </div>
             <div className="flex flex-col md:flex-row md:items-center gap-x-3 gap-y-3 w-full text-center md:text-left">
-              <div className="md:w-4/12">
+              <div className="md:w-3/12">
                 <span className="text-xl font-bold">
                   {moment(item.departureTime).tz("Asia/Manila").format("LT")}
                 </span>
@@ -92,25 +92,29 @@ export function SearchBookResult() {
                   <i className="gg-arrow-right"></i>
                 </div>
               </div>
-              <div className="md:w-4/12">
+              <div className="md:w-3/12">
                 <span className="text-xl font-bold">
                   {moment(item.arrivalTime).tz("Asia/Manila").format("LT")}
                 </span>
                 <p className="uppercase">{item.route[0].destination}</p>
+              </div>
+              <div className="md:w-2/12 text-center flex flex-col">
+                <span className="text-base font-bold"> Available Seats</span>
+                <span className="text-base"> 45</span>
               </div>
               <div className="md:w-1/12 text-center">
                 <span className="text-lg font-bold">
                   {item.route[0].travelprice}₱
                 </span>
               </div>
-              <div className="md:w-2/12 text-center">
+              <div className="md:w-1/12 text-center">
                 <Link
                   rel="preload"
                   href={`/bookuser/${item.id}`}
                   as={`bookuser/${item.id}`}
                 >
                   <button
-                    className={`w-32 md:w-28 h-12 md:h-content text-sm md:text-base bg-[#FE2F2F] rounded-xl text-white ${
+                    className={`w-32 md:w-full h-12 md:h-content text-sm md:text-base bg-[#FE2F2F] rounded-xl text-white ${
                       storedDate === null || storedDate === ""
                         ? "cursor-not-allowed opacity-25"
                         : ""
