@@ -13,7 +13,7 @@ export async function GET(req: NextRequest) {
 
   const busCompany = searchParams ? searchParams.get("busCompany") : null;
 
-  const array = busCompany?.split(", ") ?? [];
+  const array = busCompany?.split(",") ?? [];
 
   const arrayValues: string | any[] = array;
 
