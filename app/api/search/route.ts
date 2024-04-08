@@ -13,59 +13,64 @@ export async function GET(req: NextRequest) {
 
   const busCompany = searchParams ? searchParams.get("busCompany") : null;
 
-  const array = busCompany?.split(",") ?? [];
+  let busCompanies: string[] = [];
 
-  const arrayValues: string | any[] = array;
+  if (busCompany) {
+    // Split the comma-separated string into an array
+    busCompanies = busCompany.split(",");
+  } else {
+    // If busCompanyParam is null or undefined, use default values
+    busCompanies = [
+      "JoyBus",
+      "Partas",
+      "Victory Liner",
+      "Genesis",
+      "Solid North",
+    ];
+  }
+
+  const busType = searchParams ? searchParams.get("busType") : null;
+
+  let busTypes: string[] = [];
+
+  if (busType) {
+    // Split the comma-separated string into an array
+    busTypes = busType.split(",");
+  } else {
+    // If busCompanyParam is null or undefined, use default values
+    busTypes = ["Deluxe", "Super Deluxe", "First Class Express", "Luxury Bus"];
+  }
 
   try {
-    if (arrayValues.map(String).includes("null") || arrayValues.includes("")) {
-      const post = await prisma.schedule.findMany({
-        where: {
-          route: {
-            some: {
-              location: { contains: `${locationValue}`, mode: "insensitive" },
-              destination: {
-                contains: `${destinationValue}`,
-                mode: "insensitive",
-              },
+    const post = await prisma.schedule.findMany({
+      where: {
+        route: {
+          some: {
+            location: { contains: `${locationValue}`, mode: "insensitive" },
+            destination: {
+              contains: `${destinationValue}`,
+              mode: "insensitive",
             },
           },
         },
-        include: {
-          route: true,
-          bus: true,
+        bus: {
+          some: {
+            busCompany: {
+              in: busCompanies,
+            },
+            type: {
+              in: busTypes,
+            },
+          },
         },
-      });
+      },
+      include: {
+        route: true,
+        bus: true,
+      },
+    });
 
-      return NextResponse.json(post, { status: 200 });
-    } else {
-      const post = await prisma.schedule.findMany({
-        where: {
-          route: {
-            some: {
-              location: { contains: `${locationValue}`, mode: "insensitive" },
-              destination: {
-                contains: `${destinationValue}`,
-                mode: "insensitive",
-              },
-            },
-          },
-          bus: {
-            some: {
-              busCompany: {
-                in: arrayValues,
-              },
-            },
-          },
-        },
-        include: {
-          route: true,
-          bus: true,
-        },
-      });
-
-      return NextResponse.json(post, { status: 200 });
-    }
+    return NextResponse.json(post, { status: 200 });
   } catch (error) {
     return NextResponse.json(
       { message: "could not delete post" },

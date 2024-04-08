@@ -24,44 +24,72 @@ export default function FilterBooking() {
   ];
   const router = useRouter();
 
-  const [selectedCheckboxes, setSelectedCheckboxes] = useState<string[]>([]);
+  const [selectedBusCompany, setSelectedBusCompany] = useState<string[]>([]);
+  const [selectedBusType, setSelectedBusType] = useState<string[]>([]);
   // console.log(selectedCheckboxes);
 
-  const maxSelected = 5; // Change this value to set the maximum number of selected checkboxes
+  const maxSelectedBusCompany = 5; // Change this value to set the maximum number of selected checkboxes
 
-  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleBusCompanyChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const { value, checked } = event.target;
 
     if (checked) {
-      if (selectedCheckboxes.length < maxSelected) {
-        setSelectedCheckboxes([...selectedCheckboxes, value]);
+      if (selectedBusCompany.length < maxSelectedBusCompany) {
+        setSelectedBusCompany([...selectedBusCompany, value]);
       } else {
         // Prevent further selection if the maximum limit is reached
         event.preventDefault();
       }
     } else {
-      setSelectedCheckboxes(
-        selectedCheckboxes.filter((checkbox) => checkbox !== value)
+      setSelectedBusCompany(
+        selectedBusCompany.filter((checkbox) => checkbox !== value)
+      );
+    }
+  };
+
+  const handleBusTypeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value, checked } = event.target;
+
+    if (checked) {
+      if (selectedBusType.length < maxSelectedBusCompany) {
+        setSelectedBusType([...selectedBusType, value]);
+      } else {
+        // Prevent further selection if the maximum limit is reached
+        event.preventDefault();
+      }
+    } else {
+      setSelectedBusType(
+        selectedBusType.filter((checkbox) => checkbox !== value)
       );
     }
   };
 
   const handleApplyFilters = () => {
     const query =
-      selectedCheckboxes.length > 0
-        ? `?busCompany=${selectedCheckboxes.join(",")}`
+      selectedBusCompany.length > 0 || selectedBusType.length > 0
+        ? `?busCompany=${selectedBusCompany.join(
+            ","
+          )}&busType=${selectedBusType.join(",")}`
         : "";
     router.push(`/book${query}`);
+    setIsOpen(!isOpen);
   };
 
   const handleClearFilters = () => {
-    setSelectedCheckboxes([]);
+    setSelectedBusCompany([]);
+    setSelectedBusType([]);
     router.push("/book");
+    setIsOpen(!isOpen);
   };
 
   return (
-    <div className="w-fit border border-black rounded-2xl h-fit px-5 py-3">
-      <button className="flex gap-x-2 items-center" onClick={toggleModal}>
+    <div className="w-fit border border-black rounded-2xl h-fit">
+      <button
+        className="flex gap-x-2 items-center px-5 py-3"
+        onClick={toggleModal}
+      >
         <SlidersHorizontal size={20} />
         <span className="text-sm font-semibold">Filters</span>
       </button>
@@ -92,8 +120,8 @@ export default function FilterBooking() {
                         id={item.attribute}
                         value={item.name}
                         className="w-4 h-4 text-blue-600 border-gray-900 rounded-2xl focus:ring-blue-500  focus:ring-2 mr-1"
-                        checked={selectedCheckboxes.includes(`${item.name}`)}
-                        onChange={handleCheckboxChange}
+                        checked={selectedBusCompany.includes(`${item.name}`)}
+                        onChange={handleBusCompanyChange}
                       />
                       <label
                         htmlFor={item.attribute}
@@ -116,6 +144,8 @@ export default function FilterBooking() {
                         id={item.attribute}
                         value={item.name}
                         className="w-4 h-4 text-blue-600 border-gray-900 rounded-2xl focus:ring-blue-500  focus:ring-2 mr-1"
+                        checked={selectedBusType.includes(`${item.name}`)}
+                        onChange={handleBusTypeChange}
                       />
                       <label
                         htmlFor={item.attribute}
