@@ -35,7 +35,12 @@ const BookUser: React.FC<DataId> = ({ id }) => {
   const { data, error, isLoading } = useSWR(`/api/booking/${id}`, fetcher);
 
   if (error) return <div>Error fetching data</div>;
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading)
+    return (
+      <div className="flex items-center justify-center p-10">
+        <div className="w-12 h-12 border-4 border-gray-300 border-t-4 border-t-gray-800 rounded-full animate-spin"></div>
+      </div>
+    );
 
   if (!data) {
     return null;
