@@ -1,7 +1,6 @@
 "use client";
 import React, { Suspense, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useRouter as nextRouter } from "next/router";
 import "../sass/arrow.scss";
 
 import BackButton from "../../BackButton";

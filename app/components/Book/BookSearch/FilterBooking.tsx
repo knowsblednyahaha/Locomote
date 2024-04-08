@@ -25,8 +25,9 @@ export default function FilterBooking() {
   const router = useRouter();
 
   const [selectedCheckboxes, setSelectedCheckboxes] = useState<string[]>([]);
+  // console.log(selectedCheckboxes);
 
-  const maxSelected = 2; // Change this value to set the maximum number of selected checkboxes
+  const maxSelected = 5; // Change this value to set the maximum number of selected checkboxes
 
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = event.target;

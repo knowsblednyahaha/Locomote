@@ -47,6 +47,8 @@ export function SearchBookResult() {
     }
   );
 
+  if (error) return <div>Error fetching data</div>;
+  if (isLoading) return <div>Loading...</div>;
   //checking data if it contains info if not it will return null
   if (!data) {
     return null;
@@ -63,7 +65,8 @@ export function SearchBookResult() {
     compareDateTime(b.departureTime, a.departureTime)
   );
 
-  const storedDate = sessionStorage.getItem("travelDate");
+  const storedDate =
+    typeof window !== "undefined" ? sessionStorage.getItem("travelDate") : null;
 
   return (
     <div className="w-full flex flex-col gap-y-5">
@@ -139,7 +142,6 @@ export function SearchBookResult() {
       ) : (
         <div className="font-bold"> No result found.</div>
       )}
-      {isLoading && <div>Wait...</div>}
     </div>
   );
 }
