@@ -20,7 +20,7 @@ const fetcher = async (url: string) => {
     throw new Error("Failed to fetch posts");
   }
 
-  return response.json();
+  return await response.json();
 };
 import React from "react";
 
@@ -39,6 +39,9 @@ export function SearchBookResult() {
     fetcher,
     {
       revalidateOnMount: true,
+      revalidateIfState: false,
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
       initialData: {
         distance: 0,
         members: 0,

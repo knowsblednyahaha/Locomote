@@ -126,9 +126,9 @@ export default function SearchBooking() {
           <FilterBooking />
         </div>
         <div className="w-full mt-5 flex flex-col md:flex-row gap-x-5 gap-y-5">
-          <Suspense fallback={<div>Loading...</div>}>
+          {/* <Suspense fallback={<div>Loading...</div>}>
             <SearchBookResult />
-          </Suspense>
+          </Suspense> */}
         </div>
       </div>
     </section>

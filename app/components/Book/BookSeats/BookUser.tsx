@@ -26,13 +26,16 @@ const fetcher = async (url: string) => {
     throw new Error("Failed to fetch posts");
   }
 
-  return response.json();
+  return await response.json();
 };
 
 const BookUser: React.FC<DataId> = ({ id }) => {
   const [adultPassenger, setAdultPassenger] = useState(0);
 
   const { data, error, isLoading } = useSWR(`/api/booking/${id}`, fetcher);
+
+  if (error) return <div>Error fetching data</div>;
+  if (isLoading) return <div>Loading...</div>;
 
   if (!data) {
     return null;
