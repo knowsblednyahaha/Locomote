@@ -51,7 +51,49 @@ export function SearchBookResult() {
   );
 
   if (error) return <div>Error fetching data</div>;
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading)
+    return (
+      <div className="w-full flex flex-col gap-y-5">
+        <div className="animate-pulse w-full border border-black rounded-2xl h-fit px-10 py-5">
+          <div className="w-full pb-3">
+            <span className="text-sm flex flex-row gap-x-3 uppercase justify-center md:justify-start">
+              <span className="bg-gray-400 h-4 w-60 block rounded-xl"></span>
+              <span className="hidden md:block"></span>
+              <span className="md:flex flex-row gap-x-1 hidden ">
+                <div className="bg-gray-400 h-4 w-4 rounded-full"></div>
+                <div className="bg-gray-400 h-4 w-4 rounded-full"></div>
+                <div className="bg-gray-400 h-4 w-4 rounded-full"></div>
+                <div className="bg-gray-400 h-4 w-4 rounded-full"></div>
+              </span>
+            </span>
+          </div>
+          <div className="flex items-center flex-col md:flex-row md:items-center gap-x-3 gap-y-3 w-full text-center md:text-left">
+            <div className="md:w-3/12 flex flex-col items-center md:items-start">
+              <span className="text-xl font-bold bg-gray-400 h-7 w-24 block rounded-xl"></span>
+              <p className="uppercase bg-gray-400 h-5 w-28 block mt-2 rounded-xl"></p>
+            </div>
+            <div className="w-full hidden md:flex flex-col justify-center items-center md:w-2/12 md:text-center px-5 rounded-xl">
+              <span className="text-sm text-[#747474] bg-gray-400 h-5 w-28 block rounded-xl"></span>
+              {/* <div className="w-full text-[#747474] bg-gray-400 h-6 mt-2"></div> */}
+            </div>
+            <div className="md:w-3/12 flex flex-col items-center md:items-start">
+              <span className="text-xl font-bold bg-gray-400 h-7 w-24 block rounded-xl"></span>
+              <p className="uppercase bg-gray-400 h-5 w-28 block mt-2 rounded-xl"></p>
+            </div>
+            <div className="md:w-2/12 text-center flex flex-col items-center md:items-start">
+              <span className="text-base font-bold bg-gray-400 h-7 w-24 md:w-16 block rounded-xl"></span>
+              <span className="text-base bg-gray-400 h-5 w-28 md:w-24 block mt-2 rounded-xl"></span>
+            </div>
+            <div className="md:w-1/12 text-center">
+              <span className="text-lg font-bold bg-gray-400 h-7 w-20 md:w-14 block rounded-xl"></span>
+            </div>
+            <div className="md:w-1/12 text-center">
+              <span className="bg-gray-400 h-12 w-32 md:w-12 lg:w-16 xl:w-24 block rounded-xl"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   //checking data if it contains info if not it will return null
   if (!data) {
     return null;
@@ -143,7 +185,7 @@ export function SearchBookResult() {
           </div>
         ))
       ) : (
-        <div className="font-bold"> No result found.</div>
+        <div>No result found.</div>
       )}
     </div>
   );
