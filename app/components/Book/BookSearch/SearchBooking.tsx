@@ -69,6 +69,7 @@ export default function SearchBooking() {
         >
           <div className="border border-black md:w-3/12 lg:w-4/12 md:rounded-s-3xl">
             <input
+              id="location"
               list="location"
               value={searchLocation}
               onChange={(event) => setSearchLocation(event.target.value)}
@@ -84,6 +85,7 @@ export default function SearchBooking() {
           </div>
           <div className="border border-black md:w-3/12 lg:w-4/12">
             <input
+              id="destination"
               list="destination"
               value={searchDestination}
               onChange={(event) => setSearchDestination(event.target.value)}

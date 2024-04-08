@@ -103,7 +103,7 @@ const BookUser: React.FC<DataId> = ({ id }) => {
           <span>{moment(isoDateString).tz("Asia/Manila").format("LL")}</span>
         </div>
         <div className="flex flex-col md:flex-row md:items-center gap-x-3 gap-y-3 w-full text-center md:text-left">
-          <div className="md:w-4/12">
+          <div className="md:w-4/12 flex flex-col items-center justify-center">
             <span className="text-xl font-bold">
               {moment(data.departureTime).tz("Asia/Manila").format("LT")}
             </span>
@@ -117,7 +117,7 @@ const BookUser: React.FC<DataId> = ({ id }) => {
               <i className="gg-arrow-right"></i>
             </div>
           </div>
-          <div className="md:w-4/12">
+          <div className="md:w-4/12 flex flex-col items-center justify-center">
             <span className="text-xl font-bold">
               {moment(data.arrivalTime).tz("Asia/Manila").format("LT")}
             </span>

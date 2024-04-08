@@ -1,13 +1,12 @@
 "use client";
+import React from "react";
+import { AirVent, Music, Tv2, Wifi } from "lucide-react";
 import { useSearchParams } from "next/navigation";
-import { FaWifi } from "react-icons/fa";
-import { PiTelevisionSimpleDuotone } from "react-icons/pi";
-import { TbAirConditioning } from "react-icons/tb";
-import { IoMdMusicalNotes } from "react-icons/io";
 import Link from "next/link";
 import useSWR from "swr";
 import moment from "moment";
 import "moment-timezone";
+import { Deluxe, FirstClassExpress, LuxuryBus, SuperDeluxe } from "./BusIcons";
 
 interface NestedObject {
   departureTime: string; // Assuming dateTime is a string in ISO 8601 format
@@ -22,7 +21,6 @@ const fetcher = async (url: string) => {
 
   return await response.json();
 };
-import React from "react";
 
 export function SearchBookResult() {
   const search = useSearchParams();
@@ -146,16 +144,23 @@ export function SearchBookResult() {
               <span className="text-sm flex flex-row gap-x-3 uppercase justify-center md:justify-start">
                 Bus Company: {item.bus[0].busCompany} - {item.bus[0].type}{" "}
                 <span className="hidden md:block">-</span>
-                <span className="md:flex flex-row gap-x-1 hidden ">
-                  <FaWifi size={16} />
-                  <PiTelevisionSimpleDuotone size={16} />
-                  <TbAirConditioning size={16} />
-                  <IoMdMusicalNotes size={16} />
+                <span className="md:flex flex-row gap-x-2 hidden">
+                  {item.bus[0].type === "Deluxe" ? (
+                    <Deluxe />
+                  ) : item.bus[0].type === "Super Deluxe" ? (
+                    <SuperDeluxe />
+                  ) : item.bus[0].type === "First Class Express" ? (
+                    <FirstClassExpress />
+                  ) : item.bus[0].type === "First Class Express" ? (
+                    <LuxuryBus />
+                  ) : (
+                    ""
+                  )}
                 </span>
               </span>
             </div>
             <div className="flex flex-col md:flex-row md:items-center gap-x-3 gap-y-3 w-full text-center md:text-left">
-              <div className="md:w-3/12">
+              <div className="md:w-3/12 flex flex-col items-center justify-center">
                 <span className="text-xl font-bold">
                   {moment(item.departureTime).tz("Asia/Manila").format("LT")}
                 </span>
@@ -169,7 +174,7 @@ export function SearchBookResult() {
                   <i className="gg-arrow-right"></i>
                 </div>
               </div>
-              <div className="md:w-3/12">
+              <div className="md:w-3/12 flex flex-col items-center justify-center">
                 <span className="text-xl font-bold">
                   {moment(item.arrivalTime).tz("Asia/Manila").format("LT")}
                 </span>
