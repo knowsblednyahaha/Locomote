@@ -22,11 +22,16 @@ export default function SearchBooking() {
 
   // Get the current date in YYYY-MM-DD format
   const currentDate = formatDate(new Date());
-  const [travelDate, setTravelDate] = useState<string>(currentDate);
+  const [travelDate, setTravelDate] = useState<string>("");
+
+  console.log(sessionStorage.getItem("travelDate"));
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const storedDate = sessionStorage.getItem("travelDate");
+      const storedDate =
+        sessionStorage.getItem("travelDate") === null
+          ? sessionStorage.setItem("travelDate", currentDate)
+          : sessionStorage.getItem("travelDate");
       if (storedDate) {
         setTravelDate(storedDate);
       }
@@ -127,7 +132,7 @@ export default function SearchBooking() {
         </form>
         <div className="pt-5 flex justify-between items-center">
           <FilterBooking />
-          <MonthPicker />
+          {/* <MonthPicker /> */}
         </div>
         <div className="w-full mt-5 flex flex-col md:flex-row gap-x-5 gap-y-5">
           <Suspense fallback={<div>Loading...</div>}>

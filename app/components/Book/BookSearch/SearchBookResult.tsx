@@ -122,7 +122,7 @@ export function SearchBookResult() {
   const compareDateTime = (a: string, b: string) => {
     const dateA = new Date(a).getTime();
     const dateB = new Date(b).getTime();
-    return dateA - dateB;
+    return dateB - dateA;
   };
   //Sorting time
   data.sort((a: NestedObject, b: NestedObject) =>

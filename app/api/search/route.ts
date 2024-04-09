@@ -45,6 +45,9 @@ export async function GET(req: NextRequest) {
   try {
     const post = await prisma.schedule.findMany({
       where: {
+        bookingDate: {
+          gte: new Date("2024-04-19"),
+        },
         route: {
           some: {
             location: { contains: `${locationValue}`, mode: "insensitive" },
@@ -68,7 +71,9 @@ export async function GET(req: NextRequest) {
       include: {
         route: true,
         bus: true,
-        // user: true,
+      },
+      orderBy: {
+        departureTime: "asc",
       },
     });
 
