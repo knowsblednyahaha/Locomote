@@ -24,17 +24,22 @@ export default function SearchBooking() {
   const currentDate = formatDate(new Date());
   const [travelDate, setTravelDate] = useState<string>("");
 
+  console.log(travelDate);
+
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const storedDate =
-        sessionStorage.getItem("travelDate") === null
-          ? sessionStorage.setItem("travelDate", currentDate)
-          : sessionStorage.getItem("travelDate");
-      if (storedDate) {
+      const storedDate = sessionStorage.getItem("travelDate");
+
+      if (!storedDate) {
+        // Store the current date in sessionStorage if it's not already stored
+        sessionStorage.setItem("travelDate", currentDate);
+        setTravelDate(currentDate);
+      } else {
+        // Retrieve the stored date from sessionStorage and set it in the state
         setTravelDate(storedDate);
       }
     }
-  }, [currentDate]);
+  }, []);
 
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
