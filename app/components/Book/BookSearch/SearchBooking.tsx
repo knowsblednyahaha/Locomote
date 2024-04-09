@@ -39,7 +39,7 @@ export default function SearchBooking() {
         setTravelDate(storedDate);
       }
     }
-  }, []);
+  }, [currentDate]);
 
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
