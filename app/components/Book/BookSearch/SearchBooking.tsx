@@ -6,7 +6,6 @@ import "../sass/arrow.scss";
 import BackButton from "../../BackButton";
 import { SearchBookResult } from "./SearchBookResult";
 import FilterBooking from "./FilterBooking";
-import MonthPicker from "./MonthPicker";
 
 export default function SearchBooking() {
   const [searchLocation, setSearchLocation] = useState("");
@@ -24,7 +23,7 @@ export default function SearchBooking() {
   const currentDate = formatDate(new Date());
   const [travelDate, setTravelDate] = useState<string>("");
 
-  console.log(travelDate);
+  console.log(new Date());
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -118,9 +117,8 @@ export default function SearchBooking() {
               }`}
               value={travelDate}
               onChange={handleDateChange}
-              min={new Date().toISOString().split("T")[0]}
+              min={currentDate}
               onKeyDown={(e) => e.preventDefault()}
-              autoFocus={travelDate === ""}
               required
             />
           </div>
