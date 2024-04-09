@@ -178,18 +178,17 @@ export function SearchBookResult() {
                 <span className="text-xl font-bold">
                   {moment(item.arrivalTime).tz("Asia/Manila").format("LT")}
                 </span>
-                <p className="uppercase">{item.route[0].destination}</p>
+                <p className="uppercase text-center">
+                  {item.route[0].destination}
+                </p>
               </div>
-              <div className="md:w-2/12 text-center flex flex-col">
-                <span className="text-base font-bold"> Available Seats</span>
-                <span className="text-base"> 45</span>
-              </div>
+
               <div className="md:w-1/12 text-center">
                 <span className="text-lg font-bold">
                   {item.route[0].travelprice}₱
                 </span>
               </div>
-              <div className="md:w-1/12 text-center">
+              <div className="md:w-2/12 text-center">
                 <Link
                   rel="preload"
                   href={`/bookuser/${item.id}`}

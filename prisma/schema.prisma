@@ -26,7 +26,6 @@ model User {
 
 model Bus {
   id          String    @id @default(auto()) @map("_id") @db.ObjectId// Unique identifier for the bus
-  busNumber   String?   @unique // Bus number
   busCompany  String
   type        String    // Type of the bus (e.g., Sleeper, AC, etc.)
   capacity    Int       // Capacity of the bus (number of seats)
@@ -56,17 +55,23 @@ model Schedule {
   bookId          String    @db.ObjectId
 }
 
+model Ticket {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  seatNumber    Int
+  fullname      String
+  createdAt     DateTime  @default(now())
+  isPaidBoolean Boolean   @default(false)
+  booking         Booking  @relation(fields: [bookId], references: [id])
+  bookId          String    @db.ObjectId
+}
+
 // Define the Booking model to store information about bookings made by users
 model Booking {
   id            String    @id @default(auto()) @map("_id") @db.ObjectId// Unique identifier for the booking
   bookingDate   DateTime   // Date and time when the booking was made
-  isPaid        Boolean   @default(false) // Indicates if the booking is paid
-  seatNumber    Int[]     @default([])
-  passengerName  String[] @default([])
-  createdAt     DateTime  @default(now())
 
-  
   // Add more fields as needed (e.g., seat number, total amount, etc.)
   schedule      Schedule[]
+  ticket        Ticket[]
   user          User[]
 }

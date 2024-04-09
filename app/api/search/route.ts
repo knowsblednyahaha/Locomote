@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client";
 import { NextApiRequest } from "next";
+import { PrismaClient } from "@prisma/client";
+import { withAccelerate } from "@prisma/extension-accelerate";
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient().$extends(withAccelerate());
 export async function GET(req: NextRequest) {
   const searchParams = req.nextUrl.searchParams;
   const location = searchParams ? searchParams.get("location") : null;
@@ -69,11 +70,10 @@ export async function GET(req: NextRequest) {
         bus: true,
       },
     });
-
     return NextResponse.json(post, { status: 200 });
   } catch (error) {
     return NextResponse.json(
-      { message: "could not delete post" },
+      { message: "could not show post" },
       { status: 500 }
     );
   }
