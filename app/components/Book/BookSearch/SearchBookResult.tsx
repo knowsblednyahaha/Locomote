@@ -166,7 +166,7 @@ export function SearchBookResult() {
                 </span>
                 <p className="uppercase">{item.route[0].location}</p>
               </div>
-              <div className="w-full hidden md:flex flex-col justify-center items-center md:w-3/12 md:text-center px-5">
+              <div className="w-full hidden md:flex flex-col justify-center items-center md:w-2/12 md:text-center px-5">
                 <span className="text-sm text-[#747474]">
                   {item.route[0].traveltime} hours
                 </span>
@@ -182,7 +182,10 @@ export function SearchBookResult() {
                   {item.route[0].destination}
                 </p>
               </div>
-
+              <div className="md:w-2/12 text-center flex flex-col gap-y-1 justify-center items-center">
+                <span className="text-base ">Available Seats</span>
+                <span className="text-sm font-semibold">45</span>
+              </div>
               <div className="md:w-1/12 text-center">
                 <span className="text-lg font-bold">
                   {item.route[0].travelprice}₱
