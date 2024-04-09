@@ -68,12 +68,15 @@ export async function GET(req: NextRequest) {
       include: {
         route: true,
         bus: true,
+        // user: true,
       },
     });
+
     return NextResponse.json(post, { status: 200 });
   } catch (error) {
+    console.error("Error fetching schedules:", error);
     return NextResponse.json(
-      { message: "could not show post" },
+      { message: "Could not fetch schedules" },
       { status: 500 }
     );
   }

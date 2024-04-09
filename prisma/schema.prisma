@@ -20,8 +20,8 @@ model User {
   password    String    // User's password (should be hashed)
   name        String
 
-  book        Booking      @relation(fields: [bookId], references: [id]) // Reference to the user who made the booking
-  bookId      String    @db.ObjectId
+  schedule        Schedule      @relation(fields: [schedId], references: [id]) // Reference to the user who made the booking
+  schedId      String    @db.ObjectId
 }
 
 model Bus {
@@ -48,11 +48,11 @@ model Schedule {
   id              String    @id @default(auto()) @map("_id") @db.ObjectId // Unique identifier for the schedule
   departureTime   DateTime  // Departure time of the schedule
   arrivalTime     DateTime  // Arrival time of the schedule
+  bookingDate     DateTime
   bus             Bus[]
   route           Route[]
-  // Booking Booking[]
-  booking         Booking  @relation(fields: [bookId], references: [id])
-  bookId          String    @db.ObjectId
+  ticket          Ticket[]
+  user            User[]
 }
 
 model Ticket {
@@ -61,17 +61,7 @@ model Ticket {
   fullname      String
   createdAt     DateTime  @default(now())
   isPaidBoolean Boolean   @default(false)
-  booking         Booking  @relation(fields: [bookId], references: [id])
-  bookId          String    @db.ObjectId
+  schedule      Schedule  @relation(fields: [schedId], references: [id])
+  schedId       String    @db.ObjectId
 }
 
-// Define the Booking model to store information about bookings made by users
-model Booking {
-  id            String    @id @default(auto()) @map("_id") @db.ObjectId// Unique identifier for the booking
-  bookingDate   DateTime   // Date and time when the booking was made
-
-  // Add more fields as needed (e.g., seat number, total amount, etc.)
-  schedule      Schedule[]
-  ticket        Ticket[]
-  user          User[]
-}

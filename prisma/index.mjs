@@ -43,10 +43,10 @@ async function main() {
   //   },
   // });
 
-  const allUsers = await prisma.booking.findMany({
+  const allUsers = await prisma.schedule.findMany({
     include: {
-      schedule: true,
-      user: true,
+      route: true,
+      bus: true,
     },
   });
   console.log(allUsers);

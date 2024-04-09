@@ -6,6 +6,7 @@ import "../sass/arrow.scss";
 import BackButton from "../../BackButton";
 import { SearchBookResult } from "./SearchBookResult";
 import FilterBooking from "./FilterBooking";
+import MonthPicker from "./MonthPicker";
 
 export default function SearchBooking() {
   const [searchLocation, setSearchLocation] = useState("");
@@ -21,7 +22,7 @@ export default function SearchBooking() {
 
   // Get the current date in YYYY-MM-DD format
   const currentDate = formatDate(new Date());
-  const [travelDate, setTravelDate] = useState<string>("");
+  const [travelDate, setTravelDate] = useState<string>(currentDate);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -124,8 +125,9 @@ export default function SearchBooking() {
             </button>
           </div>
         </form>
-        <div className="pt-5">
+        <div className="pt-5 flex justify-between items-center">
           <FilterBooking />
+          <MonthPicker />
         </div>
         <div className="w-full mt-5 flex flex-col md:flex-row gap-x-5 gap-y-5">
           <Suspense fallback={<div>Loading...</div>}>
