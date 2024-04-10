@@ -60,7 +60,7 @@ const Payment: React.FC<Data> = ({ id }) => {
     },
   ];
 
-  const { data, error, isLoading } = useSWR(`/api/payment/${id}`, fetcher);
+  const { data, error, isLoading } = useSWR(`/api/booking/${id}`, fetcher);
 
   if (error) return <div>Error fetching data</div>;
   if (isLoading)
@@ -121,8 +121,16 @@ const Payment: React.FC<Data> = ({ id }) => {
               </div>
             </div>
             <div className="flex justify-between">
-              <div className="text-gray-500">Seat Number:</div>
-              <div className="font-semibold">9, 10</div>
+              <div className="text-gray-500">Passenger Info:</div>
+            </div>
+            <div className="flex justify-between">
+              <div className="text-gray-500">
+                Passenger Name:{" "}
+                <span className="font-semibold text-black">Daniel Zyrick</span>
+              </div>
+              <div className="text-gray-500">
+                Seat Number: <span className="font-semibold text-black">2</span>
+              </div>
             </div>
           </div>
           <div className="flex justify-between px-10 py-5">

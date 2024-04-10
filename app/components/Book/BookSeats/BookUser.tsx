@@ -30,7 +30,7 @@ const fetcher = async (url: string) => {
 };
 
 const BookUser: React.FC<DataId> = ({ id }) => {
-  const [adultPassenger, setAdultPassenger] = useState(0);
+  const [passengerCount, setpassengerCount] = useState(0);
 
   const { data, error, isLoading } = useSWR(`/api/booking/${id}`, fetcher, {
     revalidateOnMount: true,
@@ -72,10 +72,11 @@ const BookUser: React.FC<DataId> = ({ id }) => {
   // Array to hold the elements
 
   // Create an array of length 'count'
-  const elements = Array.from({ length: adultPassenger }, (_, index) => (
+  const elements = Array.from({ length: passengerCount }, (_, index) => (
     <div className="w-full border border-black rounded-2xl pb-5" key={index}>
-      <div className="p-5 border-b border-black">
+      <div className="p-5 border-b border-black flex justify-between">
         <span>Passenger {index + 1}</span>
+        <span>Seat Number: </span>
       </div>
       <div className="p-5 flex justify-center items-center">
         <label htmlFor="fullname" className="text-lg">
@@ -86,6 +87,7 @@ const BookUser: React.FC<DataId> = ({ id }) => {
           type="text"
           placeholder="Enter passenger name"
           className="w-full border-b border-black outline-none text-xl  p-4"
+          required
         />
       </div>
     </div>
@@ -154,19 +156,26 @@ const BookUser: React.FC<DataId> = ({ id }) => {
               </div>
             </div>
             <div className="flex justify-center font-bold text-lg">
-              {adultPassenger == 0
-                ? ""
-                : adultPassenger === 1
-                ? `Select ${adultPassenger} Seat`
-                : `Select ${adultPassenger} Seats`}
+              {passengerCount == 0
+                ? "Please enter the passenger number."
+                : passengerCount === 1
+                ? `Select ${passengerCount} Seat`
+                : `Select ${passengerCount} Seats`}
             </div>
             <div>
-              <BusSeats />
+              <BusSeats passengerCount={passengerCount} />
             </div>
           </div>
           <div className="flex justify-center md:hidden pt-5">
             <Link href={`/payment/${data.id}`} className="w-full">
-              <button className="w-full lg:w-2/3 h-12 text-white rounded-3xl bg-[#FE2F2F]">
+              <button
+                className={`w-full lg:w-2/3 h-12 text-white rounded-3xl ${
+                  passengerCount === 0
+                    ? "bg-gray-500 cursor-not-allowed"
+                    : "bg-[#FE2F2F]"
+                }`}
+                disabled={passengerCount === 0}
+              >
                 Proceed to payment
               </button>
             </Link>
@@ -178,8 +187,8 @@ const BookUser: React.FC<DataId> = ({ id }) => {
               <div
                 className="w-2/12 px-5 lg:px-5 flex justify-center items-center border-r border-black py-7"
                 onClick={() => {
-                  setAdultPassenger(
-                    adultPassenger == 0 ? 0 : adultPassenger - 1
+                  setpassengerCount(
+                    passengerCount == 0 ? 0 : passengerCount - 1
                   );
                 }}
               >
@@ -187,19 +196,19 @@ const BookUser: React.FC<DataId> = ({ id }) => {
               </div>
               <div className="w-6/12 flex flex-col justify center items-center">
                 <div>Passenger</div>
-                <div>{adultPassenger}</div>
+                <div>{passengerCount}</div>
               </div>
               <div
                 className="w-2/12 px-5 lg:px-5 flex justify-center items-center border-l border-black py-7"
                 onClick={() => {
-                  setAdultPassenger(adultPassenger + 1);
+                  setpassengerCount(passengerCount + 1);
                 }}
               >
                 <FiPlus />
               </div>
             </div>
           </div>
-          {adultPassenger !== 0 ? (
+          {passengerCount !== 0 ? (
             <div className="flex flex-col gap-y-5">{elements} </div>
           ) : (
             ""
@@ -207,7 +216,14 @@ const BookUser: React.FC<DataId> = ({ id }) => {
 
           <div className="hidden md:flex justify-center">
             <Link href={`/payment/${data.id}`} className="w-full text-center">
-              <button className="w-full lg:w-2/3 h-12 text-white rounded-3xl bg-[#FE2F2F]">
+              <button
+                className={`w-full lg:w-2/3 h-12 text-white rounded-3xl ${
+                  passengerCount === 0
+                    ? "bg-gray-500 cursor-not-allowed"
+                    : "bg-[#FE2F2F]"
+                }`}
+                disabled={passengerCount === 0}
+              >
                 Proceed to payment
               </button>
             </Link>

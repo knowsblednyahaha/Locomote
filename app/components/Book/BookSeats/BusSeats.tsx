@@ -1,84 +1,330 @@
+import { useState } from "react";
 import BusSeat from "./BusSeat";
 
-const BusSeats = () => {
+interface PassengerNumber {
+  passengerCount: number;
+}
+
+const BusSeats: React.FC<PassengerNumber> = ({ passengerCount }) => {
+  const [selectedSeat, setSelectedSeat] = useState<number[]>([]);
+
+  const handleSeatSelection = (seatNumber: number, isSelected: boolean) => {
+    if (isSelected) {
+      setSelectedSeat((prevSelectedSeats) => [
+        ...prevSelectedSeats,
+        seatNumber,
+      ]);
+    } else {
+      setSelectedSeat((prevSelectedSeats) =>
+        prevSelectedSeats.filter((seat) => seat !== seatNumber)
+      );
+    }
+  };
+
   return (
     <div className="w-full flex flex-col items-center gap-y-2">
       <div className="flex flex-row gap-x-2">
-        <BusSeat seatNumber={1} disabled />
-        <BusSeat seatNumber={2} />
+        <BusSeat
+          seatNumber={1}
+          // disabled={passengerCount === 0 || true}
+          passengerCount={passengerCount}
+          onSelect={handleSeatSelection}
+          selectedSeat={selectedSeat}
+        />
+        <BusSeat
+          seatNumber={2}
+          passengerCount={passengerCount}
+          selectedSeat={selectedSeat}
+          onSelect={handleSeatSelection}
+        />
         <div className="w-10 h-10 lg:w-16 lg:h-16"></div>
-        <BusSeat seatNumber={3} disabled />
-        <BusSeat seatNumber={4} disabled />
+        <BusSeat
+          seatNumber={3}
+          passengerCount={passengerCount}
+          selectedSeat={selectedSeat}
+          onSelect={handleSeatSelection}
+        />
+        <BusSeat
+          seatNumber={4}
+          passengerCount={passengerCount}
+          selectedSeat={selectedSeat}
+          onSelect={handleSeatSelection}
+        />
       </div>
       <div className="flex flex-row gap-x-2">
-        <BusSeat seatNumber={5} disabled />
-        <BusSeat seatNumber={6} />
+        <BusSeat
+          seatNumber={5}
+          passengerCount={passengerCount}
+          selectedSeat={selectedSeat}
+          onSelect={handleSeatSelection}
+        />
+        <BusSeat
+          seatNumber={6}
+          passengerCount={passengerCount}
+          selectedSeat={selectedSeat}
+          onSelect={handleSeatSelection}
+        />
         <div className="w-10 h-10 lg:w-16 lg:h-16"></div>
-        <BusSeat seatNumber={7} disabled />
-        <BusSeat seatNumber={8} disabled />
+        <BusSeat
+          seatNumber={7}
+          passengerCount={passengerCount}
+          selectedSeat={selectedSeat}
+          onSelect={handleSeatSelection}
+        />
+        <BusSeat
+          seatNumber={8}
+          passengerCount={passengerCount}
+          selectedSeat={selectedSeat}
+          onSelect={handleSeatSelection}
+        />
       </div>
       <div className="flex flex-row gap-x-2">
-        <BusSeat seatNumber={9} />
-        <BusSeat seatNumber={10} />
+        <BusSeat
+          seatNumber={9}
+          passengerCount={passengerCount}
+          selectedSeat={selectedSeat}
+          onSelect={handleSeatSelection}
+        />
+        <BusSeat
+          seatNumber={10}
+          passengerCount={passengerCount}
+          selectedSeat={selectedSeat}
+          onSelect={handleSeatSelection}
+        />
         <div className="w-10 h-10 lg:w-16 lg:h-16"></div>
-        <BusSeat seatNumber={11} />
-        <BusSeat seatNumber={12} disabled />
+        <BusSeat
+          seatNumber={11}
+          passengerCount={passengerCount}
+          selectedSeat={selectedSeat}
+          onSelect={handleSeatSelection}
+        />
+        <BusSeat
+          seatNumber={12}
+          passengerCount={passengerCount}
+          selectedSeat={selectedSeat}
+          onSelect={handleSeatSelection}
+        />
       </div>
       <div className="flex flex-row gap-x-2">
-        <BusSeat seatNumber={13} disabled />
-        <BusSeat seatNumber={14} disabled />
+        <BusSeat
+          seatNumber={13}
+          passengerCount={passengerCount}
+          selectedSeat={selectedSeat}
+          onSelect={handleSeatSelection}
+        />
+        <BusSeat
+          seatNumber={14}
+          passengerCount={passengerCount}
+          selectedSeat={selectedSeat}
+          onSelect={handleSeatSelection}
+        />
         <div className="w-10 h-10 lg:w-16 lg:h-16"></div>
-        <BusSeat seatNumber={15} />
-        <BusSeat seatNumber={16} />
+        <BusSeat
+          seatNumber={15}
+          passengerCount={passengerCount}
+          selectedSeat={selectedSeat}
+          onSelect={handleSeatSelection}
+        />
+        <BusSeat
+          seatNumber={16}
+          passengerCount={passengerCount}
+          selectedSeat={selectedSeat}
+          onSelect={handleSeatSelection}
+        />
       </div>
       <div className="flex flex-row gap-x-2">
-        <BusSeat seatNumber={17} />
-        <BusSeat seatNumber={18} />
+        <BusSeat
+          seatNumber={17}
+          passengerCount={passengerCount}
+          selectedSeat={selectedSeat}
+          onSelect={handleSeatSelection}
+        />
+        <BusSeat
+          seatNumber={18}
+          passengerCount={passengerCount}
+          selectedSeat={selectedSeat}
+          onSelect={handleSeatSelection}
+        />
         <div className="w-10 h-10 lg:w-16 lg:h-16"></div>
-        <BusSeat seatNumber={19} />
-        <BusSeat seatNumber={20} />
+        <BusSeat
+          seatNumber={19}
+          passengerCount={passengerCount}
+          selectedSeat={selectedSeat}
+          onSelect={handleSeatSelection}
+        />
+        <BusSeat
+          seatNumber={20}
+          passengerCount={passengerCount}
+          selectedSeat={selectedSeat}
+          onSelect={handleSeatSelection}
+        />
       </div>
       <div className="flex flex-row gap-x-2">
-        <BusSeat seatNumber={21} />
-        <BusSeat seatNumber={22} />
+        <BusSeat
+          seatNumber={21}
+          passengerCount={passengerCount}
+          selectedSeat={selectedSeat}
+          onSelect={handleSeatSelection}
+        />
+        <BusSeat
+          seatNumber={22}
+          passengerCount={passengerCount}
+          selectedSeat={selectedSeat}
+          onSelect={handleSeatSelection}
+        />
         <div className="w-10 h-10 lg:w-16 lg:h-16"></div>
-        <BusSeat seatNumber={23} />
-        <BusSeat seatNumber={24} disabled />
+        <BusSeat
+          seatNumber={23}
+          passengerCount={passengerCount}
+          selectedSeat={selectedSeat}
+          onSelect={handleSeatSelection}
+        />
+        <BusSeat
+          seatNumber={24}
+          passengerCount={passengerCount}
+          selectedSeat={selectedSeat}
+          onSelect={handleSeatSelection}
+        />
       </div>
       <div className="flex flex-row gap-x-2">
-        <BusSeat seatNumber={25} disabled />
-        <BusSeat seatNumber={26} disabled />
+        <BusSeat
+          seatNumber={25}
+          passengerCount={passengerCount}
+          selectedSeat={selectedSeat}
+          onSelect={handleSeatSelection}
+        />
+        <BusSeat
+          seatNumber={26}
+          passengerCount={passengerCount}
+          selectedSeat={selectedSeat}
+          onSelect={handleSeatSelection}
+        />
         <div className="w-10 h-10 lg:w-16 lg:h-16"></div>
-        <BusSeat seatNumber={27} />
-        <BusSeat seatNumber={28} />
+        <BusSeat
+          seatNumber={27}
+          passengerCount={passengerCount}
+          selectedSeat={selectedSeat}
+          onSelect={handleSeatSelection}
+        />
+        <BusSeat
+          seatNumber={28}
+          passengerCount={passengerCount}
+          selectedSeat={selectedSeat}
+          onSelect={handleSeatSelection}
+        />
       </div>
       <div className="flex flex-row gap-x-2">
-        <BusSeat seatNumber={29} />
-        <BusSeat seatNumber={30} />
+        <BusSeat
+          seatNumber={29}
+          passengerCount={passengerCount}
+          selectedSeat={selectedSeat}
+          onSelect={handleSeatSelection}
+        />
+        <BusSeat
+          seatNumber={30}
+          passengerCount={passengerCount}
+          selectedSeat={selectedSeat}
+          onSelect={handleSeatSelection}
+        />
         <div className="w-10 h-10 lg:w-16 lg:h-16"></div>
-        <BusSeat seatNumber={31} />
-        <BusSeat seatNumber={32} />
+        <BusSeat
+          seatNumber={31}
+          passengerCount={passengerCount}
+          selectedSeat={selectedSeat}
+          onSelect={handleSeatSelection}
+        />
+        <BusSeat
+          seatNumber={32}
+          passengerCount={passengerCount}
+          selectedSeat={selectedSeat}
+          onSelect={handleSeatSelection}
+        />
       </div>
       <div className="flex flex-row gap-x-2">
-        <BusSeat seatNumber={33} />
-        <BusSeat seatNumber={34} />
+        <BusSeat
+          seatNumber={33}
+          passengerCount={passengerCount}
+          selectedSeat={selectedSeat}
+          onSelect={handleSeatSelection}
+        />
+        <BusSeat
+          seatNumber={34}
+          passengerCount={passengerCount}
+          selectedSeat={selectedSeat}
+          onSelect={handleSeatSelection}
+        />
         <div className="w-10 h-10 lg:w-16 lg:h-16"></div>
-        <BusSeat seatNumber={35} />
-        <BusSeat seatNumber={36} />
+        <BusSeat
+          seatNumber={35}
+          passengerCount={passengerCount}
+          selectedSeat={selectedSeat}
+          onSelect={handleSeatSelection}
+        />
+        <BusSeat
+          seatNumber={36}
+          passengerCount={passengerCount}
+          selectedSeat={selectedSeat}
+          onSelect={handleSeatSelection}
+        />
       </div>
       <div className="flex flex-row gap-x-2">
-        <BusSeat seatNumber={37} />
-        <BusSeat seatNumber={38} />
+        <BusSeat
+          seatNumber={37}
+          passengerCount={passengerCount}
+          selectedSeat={selectedSeat}
+          onSelect={handleSeatSelection}
+        />
+        <BusSeat
+          seatNumber={38}
+          passengerCount={passengerCount}
+          selectedSeat={selectedSeat}
+          onSelect={handleSeatSelection}
+        />
         <div className="w-10 h-10 lg:w-16 lg:h-16"></div>
-        <BusSeat seatNumber={39} />
-        <BusSeat seatNumber={40} />
+        <BusSeat
+          seatNumber={39}
+          passengerCount={passengerCount}
+          selectedSeat={selectedSeat}
+          onSelect={handleSeatSelection}
+        />
+        <BusSeat
+          seatNumber={40}
+          passengerCount={passengerCount}
+          selectedSeat={selectedSeat}
+          onSelect={handleSeatSelection}
+        />
       </div>
       <div className="flex flex-row gap-x-2">
-        <BusSeat seatNumber={41} disabled />
-        <BusSeat seatNumber={42} />
-        <BusSeat seatNumber={43} />
-        <BusSeat seatNumber={44} disabled />
-        <BusSeat seatNumber={45} disabled />
+        <BusSeat
+          seatNumber={41}
+          passengerCount={passengerCount}
+          selectedSeat={selectedSeat}
+          onSelect={handleSeatSelection}
+        />
+        <BusSeat
+          seatNumber={42}
+          passengerCount={passengerCount}
+          selectedSeat={selectedSeat}
+          onSelect={handleSeatSelection}
+        />
+        <BusSeat
+          seatNumber={43}
+          passengerCount={passengerCount}
+          selectedSeat={selectedSeat}
+          onSelect={handleSeatSelection}
+        />
+        <BusSeat
+          seatNumber={44}
+          passengerCount={passengerCount}
+          selectedSeat={selectedSeat}
+          onSelect={handleSeatSelection}
+        />
+        <BusSeat
+          seatNumber={45}
+          passengerCount={passengerCount}
+          selectedSeat={selectedSeat}
+          onSelect={handleSeatSelection}
+        />
       </div>
       {/* Add more rows and seats as needed */}
     </div>
