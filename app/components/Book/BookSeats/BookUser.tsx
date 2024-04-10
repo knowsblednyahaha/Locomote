@@ -32,7 +32,17 @@ const fetcher = async (url: string) => {
 const BookUser: React.FC<DataId> = ({ id }) => {
   const [adultPassenger, setAdultPassenger] = useState(0);
 
-  const { data, error, isLoading } = useSWR(`/api/booking/${id}`, fetcher);
+  const { data, error, isLoading } = useSWR(`/api/booking/${id}`, fetcher, {
+    revalidateOnMount: true,
+    revalidateIfState: false,
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
+    initialData: {
+      distance: 0,
+      members: 0,
+      activities: 0,
+    },
+  });
 
   if (error) return <div>Error fetching data</div>;
   if (isLoading)
@@ -46,8 +56,6 @@ const BookUser: React.FC<DataId> = ({ id }) => {
     return null;
   }
   let date = sessionStorage.getItem("travelDate");
-
-  // console.log(date);
 
   if (!date) {
     return null;
@@ -157,7 +165,7 @@ const BookUser: React.FC<DataId> = ({ id }) => {
             </div>
           </div>
           <div className="flex justify-center md:hidden pt-5">
-            <Link href={"/payment"} className="w-full">
+            <Link href={`/payment/${data.id}`} className="w-full">
               <button className="w-full lg:w-2/3 h-12 text-white rounded-3xl bg-[#FE2F2F]">
                 Proceed to payment
               </button>
@@ -198,7 +206,7 @@ const BookUser: React.FC<DataId> = ({ id }) => {
           )}
 
           <div className="hidden md:flex justify-center">
-            <Link href={"/payment"} className="w-full text-center">
+            <Link href={`/payment/${data.id}`} className="w-full text-center">
               <button className="w-full lg:w-2/3 h-12 text-white rounded-3xl bg-[#FE2F2F]">
                 Proceed to payment
               </button>

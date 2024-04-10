@@ -23,8 +23,6 @@ export default function SearchBooking() {
   const currentDate = formatDate(new Date());
   const [travelDate, setTravelDate] = useState<string>("");
 
-  console.log(new Date());
-
   useEffect(() => {
     if (typeof window !== "undefined") {
       const storedDate = sessionStorage.getItem("travelDate");
