@@ -8,12 +8,16 @@ interface PassengerNumber {
 const BusSeats: React.FC<PassengerNumber> = ({ passengerCount }) => {
   const [selectedSeat, setSelectedSeat] = useState<number[]>([]);
 
+  console.log(selectedSeat);
+
   const handleSeatSelection = (seatNumber: number, isSelected: boolean) => {
     if (isSelected) {
       setSelectedSeat((prevSelectedSeats) => [
         ...prevSelectedSeats,
         seatNumber,
       ]);
+    } else if (selectedSeat.length !== passengerCount) {
+      selectedSeat.pop();
     } else {
       setSelectedSeat((prevSelectedSeats) =>
         prevSelectedSeats.filter((seat) => seat !== seatNumber)

@@ -33,3 +33,29 @@ export async function GET(
     );
   }
 }
+
+export async function POST(
+  req: NextRequest,
+  {
+    params,
+  }: {
+    params: {
+      id: any;
+      slug: string;
+    };
+  }
+) {
+  try {
+    const data = params;
+    const post = await prisma.schedule.createMany({
+      data: [],
+    });
+
+    return NextResponse.json(post, { status: 200 });
+  } catch (error) {
+    return NextResponse.json(
+      { message: "could not delete post" },
+      { status: 500 }
+    );
+  }
+}

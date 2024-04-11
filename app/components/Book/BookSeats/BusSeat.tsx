@@ -1,4 +1,3 @@
-"use client";
 import { useEffect, useState } from "react";
 
 interface BusSeatProps {
@@ -18,15 +17,6 @@ const BusSeat: React.FC<BusSeatProps> = ({
 }) => {
   const [isSelected, setIsSelected] = useState<boolean>(false);
 
-  // console.log(isSelected);
-  // console.log(passengerCount);
-
-  useEffect(() => {
-    if (passengerCount === 0) {
-      setIsSelected(false);
-    }
-  }, [passengerCount]);
-
   const handleSeatSelection = () => {
     if (!disabled) {
       const newSelectedState = !isSelected;
@@ -34,7 +24,6 @@ const BusSeat: React.FC<BusSeatProps> = ({
       onSelect(seatNumber, newSelectedState);
     }
   };
-
   return (
     <div className="flex justify-center items-center">
       <input

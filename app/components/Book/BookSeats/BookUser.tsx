@@ -11,7 +11,7 @@ import "../sass/arrow.scss";
 import BusSeats from "./BusSeats";
 import Link from "next/link";
 import BackButton from "../../BackButton";
-import useSWR from "swr";
+import useSWR, { mutate } from "swr";
 import moment from "moment";
 import "moment-timezone";
 
@@ -61,6 +61,26 @@ const BookUser: React.FC<DataId> = ({ id }) => {
     return null;
   }
 
+  const postData = async (postData: any) => {
+    try {
+      // Make the POST request
+      const response = await fetch(`/api/booking/${id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(postData),
+      });
+
+      // If the POST request is successful, trigger a revalidation
+      if (response.ok) {
+        mutate(`/api/booking/${id}`);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
   const dateString = date;
   const [year, month, day] = dateString.split("-");
   const paddedMonth = month.length === 1 ? `0${month}` : month;
@@ -92,6 +112,8 @@ const BookUser: React.FC<DataId> = ({ id }) => {
       </div>
     </div>
   ));
+
+  console.log();
 
   return (
     <section className="max-w-[1440px] w-full px-5 md:px-10 lg:px-20 text-black m-auto">
