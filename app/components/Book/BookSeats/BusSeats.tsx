@@ -1,17 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BusSeat from "./BusSeat";
 
 interface PassengerNumber {
   passengerCount: number;
-  sendDataSeatPassengers: (data: number[]) => void;
+  sendDataBookUser: (setSelectedSeats: number[]) => void;
 }
 
 const BusSeats: React.FC<PassengerNumber> = ({
   passengerCount,
-  sendDataSeatPassengers,
+  sendDataBookUser,
 }) => {
   const [selectedSeat, setSelectedSeat] = useState<number[]>([]);
   console.log(selectedSeat);
+
+  useEffect(() => {
+    sendDataBookUser(selectedSeat);
+  }, [sendDataBookUser, selectedSeat]);
 
   const handleSeatSelection = (seatNumber: number, isSelected: boolean) => {
     if (isSelected) {

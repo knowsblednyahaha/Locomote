@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import { FaWifi } from "react-icons/fa";
 import { PiTelevisionSimpleDuotone } from "react-icons/pi";
 import { TbAirConditioning } from "react-icons/tb";
@@ -33,11 +33,7 @@ const BookUser: React.FC<DataId> = ({ id }) => {
   const [passengerCount, setpassengerCount] = useState(0);
   const [selectedSeats, setSelectedSeats] = useState<number[]>([]);
 
-  console.log(selectedSeats);
-
-  function handleDataSelectedSeats(data: React.SetStateAction<number[]>) {
-    setSelectedSeats(data);
-  }
+  console.log(selectedSeats.length !== 0);
 
   const { data, error, isLoading } = useSWR(`/api/booking/${id}`, fetcher, {
     revalidateOnMount: true,
@@ -103,7 +99,10 @@ const BookUser: React.FC<DataId> = ({ id }) => {
     <div className="w-full border border-black rounded-2xl pb-5" key={index}>
       <div className="p-5 border-b border-black flex justify-between">
         <span>Passenger {index + 1}</span>
-        <span>Seat Number: </span>
+        <span>
+          Seat Number:{" "}
+          <span className="font-semibold">{selectedSeats[index]}</span>
+        </span>
       </div>
       <div className="p-5 flex justify-center items-center">
         <label htmlFor="fullname" className="text-lg">
@@ -192,10 +191,12 @@ const BookUser: React.FC<DataId> = ({ id }) => {
                 : `Select ${passengerCount} Seats`}
             </div>
             <div>
-              <BusSeats
-                passengerCount={passengerCount}
-                sendDataSeatPassengers={handleDataSelectedSeats}
-              />
+              <Suspense fallback={<div>Loading...</div>}>
+                <BusSeats
+                  passengerCount={passengerCount}
+                  sendDataBookUser={setSelectedSeats}
+                />
+              </Suspense>
             </div>
           </div>
           <div className="flex justify-center md:hidden pt-5">
