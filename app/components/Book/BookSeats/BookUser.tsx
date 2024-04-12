@@ -31,6 +31,13 @@ const fetcher = async (url: string) => {
 
 const BookUser: React.FC<DataId> = ({ id }) => {
   const [passengerCount, setpassengerCount] = useState(0);
+  const [selectedSeats, setSelectedSeats] = useState<number[]>([]);
+
+  console.log(selectedSeats);
+
+  function handleDataSelectedSeats(data: React.SetStateAction<number[]>) {
+    setSelectedSeats(data);
+  }
 
   const { data, error, isLoading } = useSWR(`/api/booking/${id}`, fetcher, {
     revalidateOnMount: true,
@@ -185,7 +192,10 @@ const BookUser: React.FC<DataId> = ({ id }) => {
                 : `Select ${passengerCount} Seats`}
             </div>
             <div>
-              <BusSeats passengerCount={passengerCount} />
+              <BusSeats
+                passengerCount={passengerCount}
+                sendDataSeatPassengers={handleDataSelectedSeats}
+              />
             </div>
           </div>
           <div className="flex justify-center md:hidden pt-5">

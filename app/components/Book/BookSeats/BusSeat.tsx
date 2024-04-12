@@ -4,12 +4,16 @@ interface BusSeatProps {
   seatNumber: number;
   disabled?: boolean;
   passengerCount: number;
+  selectedSeat: number[];
+  onSelect: (seatNumber: number, isSelected: boolean) => void;
 }
 
 const BusSeat: React.FC<BusSeatProps> = ({
   seatNumber,
   disabled = false,
   passengerCount,
+  selectedSeat,
+  onSelect,
 }) => {
   const [isSelected, setIsSelected] = useState<boolean>(false);
 
@@ -17,6 +21,7 @@ const BusSeat: React.FC<BusSeatProps> = ({
     if (!disabled) {
       const newSelectedState = !isSelected;
       setIsSelected(newSelectedState);
+      onSelect(seatNumber, newSelectedState);
     }
   };
   return (
@@ -27,7 +32,13 @@ const BusSeat: React.FC<BusSeatProps> = ({
         className="hidden"
         checked={isSelected}
         onChange={handleSeatSelection}
-        disabled={passengerCount === 0}
+        disabled={
+          passengerCount === 0
+            ? true
+            : isSelected
+            ? false
+            : selectedSeat.length === passengerCount
+        }
       />
       <label
         htmlFor={`seat-${seatNumber}`}
@@ -37,7 +48,15 @@ const BusSeat: React.FC<BusSeatProps> = ({
           disabled
             ? "bg-[#747474] text-white cursor-no-drop cursor-not-allowed"
             : ""
-        }${passengerCount === 0 ? "cursor-not-allowed" : "cursor-pointer"}`}
+        }${
+          passengerCount === 0
+            ? "cursor-not-allowed"
+            : isSelected
+            ? "cursor-pointer"
+            : selectedSeat.length === passengerCount
+            ? "cursor-not-allowed"
+            : "cursor-pointer"
+        }`}
       >
         {seatNumber}
       </label>
