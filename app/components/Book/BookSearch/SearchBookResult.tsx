@@ -3,10 +3,11 @@ import React from "react";
 import { AirVent, Music, Tv2, Wifi } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
-import useSWR from "swr";
 import moment from "moment";
 import "moment-timezone";
 import { Deluxe, FirstClassExpress, LuxuryBus, SuperDeluxe } from "./BusIcons";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
 interface NestedObject {
   departureTime: string; // Assuming dateTime is a string in ISO 8601 format
@@ -52,22 +53,23 @@ export function SearchBookResult() {
     // If busCompanyParam is null or undefined, use default values
     busTypes = "Deluxe,Super Deluxe,First Class Express,Luxury Bus";
   }
-
-  const { data, error, isLoading } = useSWR(
-    `/api/search?location=${encodedSearchLocationQuery}&destination=${encodedSearchDestinationQuery}&busCompany=${busCompanies}&busType=${busTypes}`,
-    fetcher,
-    {
-      revalidateOnMount: true,
-      revalidateIfState: false,
-      revalidateOnFocus: false,
-      revalidateOnReconnect: false,
-      initialData: {
-        distance: 0,
-        members: 0,
-        activities: 0,
-      },
-    }
-  );
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["schedules"],
+    queryFn: async () => {
+      const response = await axios.get(
+        `/api/search?location=${encodedSearchLocationQuery}&destination=${encodedSearchDestinationQuery}&busCompany=${busCompanies}&busType=${busTypes}`,
+        {
+          // query URL without using browser cache
+          headers: {
+            "Cache-Control": "no-cache",
+            Pragma: "no-cache",
+            Expires: "0",
+          },
+        }
+      );
+      return response.data;
+    },
+  });
 
   if (error) return <div>Error fetching data</div>;
   if (isLoading)

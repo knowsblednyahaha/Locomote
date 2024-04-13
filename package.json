@@ -11,6 +11,8 @@
   "dependencies": {
     "@prisma/client": "^5.12.1",
     "@prisma/extension-accelerate": "^1.0.0",
+    "@tanstack/react-query": "^5.29.2",
+    "axios": "^1.6.8",
     "lucide-react": "^0.354.0",
     "moment": "^2.30.1",
     "moment-timezone": "^0.5.45",
@@ -19,8 +21,7 @@
     "react-dom": "^18",
     "react-icons": "^5.0.1",
     "react-tooltip": "^5.26.3",
-    "sass": "^1.71.0",
-    "swr": "^2.2.5"
+    "sass": "^1.71.0"
   },
   "devDependencies": {
     "@types/node": "^20",

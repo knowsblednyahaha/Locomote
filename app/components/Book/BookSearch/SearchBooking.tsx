@@ -2,10 +2,12 @@
 import React, { Suspense, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import "../sass/arrow.scss";
-
 import BackButton from "../../BackButton";
 import { SearchBookResult } from "./SearchBookResult";
 import FilterBooking from "./FilterBooking";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 export default function SearchBooking() {
   const [searchLocation, setSearchLocation] = useState("");
@@ -135,7 +137,9 @@ export default function SearchBooking() {
         </div>
         <div className="w-full mt-5 flex flex-col md:flex-row gap-x-5 gap-y-5">
           <Suspense fallback={<div>Loading...</div>}>
-            <SearchBookResult />
+            <QueryClientProvider client={queryClient}>
+              <SearchBookResult />
+            </QueryClientProvider>
           </Suspense>
         </div>
       </div>

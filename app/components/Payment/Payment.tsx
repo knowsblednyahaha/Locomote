@@ -3,10 +3,11 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import "../Book/sass/arrow.scss";
-import BackButton from "../BackButton";
-import useSWR from "swr";
 import moment from "moment";
 import "moment-timezone";
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
+import BackButton from "../BackButton";
 
 interface Data {
   id: string;
@@ -60,7 +61,20 @@ const Payment: React.FC<Data> = ({ id }) => {
     },
   ];
 
-  const { data, error, isLoading } = useSWR(`/api/payment/${id}`, fetcher);
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["payment"],
+    queryFn: async () => {
+      const response = await axios.get(`/api/booking/${id}`, {
+        // query URL without using browser cache
+        headers: {
+          "Cache-Control": "no-cache",
+          Pragma: "no-cache",
+          Expires: "0",
+        },
+      });
+      return response.data;
+    },
+  });
 
   if (error) return <div>Error fetching data</div>;
   if (isLoading)

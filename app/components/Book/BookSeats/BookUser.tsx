@@ -11,9 +11,10 @@ import "../sass/arrow.scss";
 import BusSeats from "./BusSeats";
 import Link from "next/link";
 import BackButton from "../../BackButton";
-import useSWR, { mutate } from "swr";
 import moment from "moment";
 import "moment-timezone";
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 
 interface DataId {
   id: string;
@@ -35,15 +36,18 @@ const BookUser: React.FC<DataId> = ({ id }) => {
 
   console.log(selectedSeats.length !== 0);
 
-  const { data, error, isLoading } = useSWR(`/api/booking/${id}`, fetcher, {
-    revalidateOnMount: true,
-    revalidateIfState: false,
-    revalidateOnFocus: false,
-    revalidateOnReconnect: false,
-    initialData: {
-      distance: 0,
-      members: 0,
-      activities: 0,
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["bookUser"],
+    queryFn: async () => {
+      const response = await axios.get(`/api/booking/${id}`, {
+        // query URL without using browser cache
+        headers: {
+          "Cache-Control": "no-cache",
+          Pragma: "no-cache",
+          Expires: "0",
+        },
+      });
+      return response.data;
     },
   });
 
@@ -63,26 +67,6 @@ const BookUser: React.FC<DataId> = ({ id }) => {
   if (!date) {
     return null;
   }
-
-  const postData = async (postData: any) => {
-    try {
-      // Make the POST request
-      const response = await fetch(`/api/booking/${id}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(postData),
-      });
-
-      // If the POST request is successful, trigger a revalidation
-      if (response.ok) {
-        mutate(`/api/booking/${id}`);
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
 
   const dateString = date;
   const [year, month, day] = dateString.split("-");
