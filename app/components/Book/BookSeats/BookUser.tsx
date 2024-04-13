@@ -20,16 +20,6 @@ interface DataId {
   id: string;
 }
 
-const fetcher = async (url: string) => {
-  const response = await fetch(url);
-
-  if (!response.ok) {
-    throw new Error("Failed to fetch posts");
-  }
-
-  return await response.json();
-};
-
 const BookUser: React.FC<DataId> = ({ id }) => {
   const [passengerCount, setpassengerCount] = useState(0);
   const [selectedSeats, setSelectedSeats] = useState<number[]>([]);

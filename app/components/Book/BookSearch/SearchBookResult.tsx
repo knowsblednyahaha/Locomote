@@ -13,16 +13,6 @@ interface NestedObject {
   departureTime: string; // Assuming dateTime is a string in ISO 8601 format
 }
 
-const fetcher = async (url: string) => {
-  const response = await fetch(url);
-
-  if (!response.ok) {
-    throw new Error("Failed to fetch posts");
-  }
-
-  return await response.json();
-};
-
 export function SearchBookResult() {
   const search = useSearchParams();
   const searchLocationQuery = search ? search.get("location") : null;
