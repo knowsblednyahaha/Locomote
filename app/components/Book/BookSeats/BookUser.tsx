@@ -23,8 +23,18 @@ interface DataId {
 const BookUser: React.FC<DataId> = ({ id }) => {
   const [passengerCount, setpassengerCount] = useState(0);
   const [selectedSeats, setSelectedSeats] = useState<number[]>([]);
+  const [passengerNames, setPassengerNames] = useState<string[]>([]);
 
-  console.log(selectedSeats.length !== 0);
+  console.log(selectedSeats);
+  console.log(passengerNames);
+
+  const handleNameChange = (index: number, newName: string) => {
+    setPassengerNames((prevNames) => {
+      const updatedNames = [...prevNames];
+      updatedNames[index] = newName;
+      return updatedNames;
+    });
+  };
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["bookUser"],
@@ -79,14 +89,16 @@ const BookUser: React.FC<DataId> = ({ id }) => {
         </span>
       </div>
       <div className="p-5 flex justify-center items-center">
-        <label htmlFor="fullname" className="text-lg">
+        <label htmlFor={`fullname-${index}`} className="text-lg">
           Fullname:
         </label>
         <input
-          id="fullname"
+          id={`fullname-${index}`}
           type="text"
           placeholder="Enter passenger name"
           className="w-full border-b border-black outline-none text-xl  p-4"
+          value={passengerNames[index] || ""}
+          onChange={(e) => handleNameChange(index, e.target.value)}
           required
         />
       </div>

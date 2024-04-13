@@ -11,7 +11,6 @@ const BusSeats: React.FC<PassengerNumber> = ({
   sendDataBookUser,
 }) => {
   const [selectedSeat, setSelectedSeat] = useState<number[]>([]);
-  console.log(selectedSeat);
 
   useEffect(() => {
     sendDataBookUser(selectedSeat);
