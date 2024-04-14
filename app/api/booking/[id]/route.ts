@@ -33,3 +33,40 @@ export async function GET(
     );
   }
 }
+
+interface BookingRequestData {
+  selectedSeats: number[];
+  passengerNames: string[];
+}
+
+export async function POST(
+  req: NextRequest,
+  {
+    params,
+  }: {
+    params: {
+      id: any;
+    };
+  }
+) {
+  const bodyData = req.body as unknown as BookingRequestData;
+  const { selectedSeats, passengerNames } = bodyData;
+  try {
+    const post = await prisma.ticket.createMany({
+      data: [
+        {
+          seatNumber: selectedSeats[0],
+          fullname: passengerNames[0],
+          schedId: params.id,
+        },
+      ],
+    });
+
+    return NextResponse.json(post, { status: 200 });
+  } catch (error) {
+    return NextResponse.json(
+      { message: "could not delete post" },
+      { status: 500 }
+    );
+  }
+}

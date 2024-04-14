@@ -14,11 +14,16 @@ import BackButton from "../../BackButton";
 import moment from "moment";
 import "moment-timezone";
 import axios from "axios";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
 interface DataId {
   id: string;
 }
+
+export type InputPost = {
+  selectedSeats: number[];
+  passengerNames: string[];
+};
 
 const BookUser: React.FC<DataId> = ({ id }) => {
   const [passengerCount, setpassengerCount] = useState(0);
@@ -27,6 +32,12 @@ const BookUser: React.FC<DataId> = ({ id }) => {
 
   console.log(selectedSeats);
   console.log(passengerNames);
+
+  const newObject = selectedSeats.map((seat, index) => {
+    return { seat: seat, name: passengerNames[index] };
+  });
+
+  console.log(newObject);
 
   const handleNameChange = (index: number, newName: string) => {
     setPassengerNames((prevNames) => {
@@ -104,8 +115,6 @@ const BookUser: React.FC<DataId> = ({ id }) => {
       </div>
     </div>
   ));
-
-  console.log();
 
   return (
     <section className="max-w-[1440px] w-full px-5 md:px-10 lg:px-20 text-black m-auto">
@@ -236,6 +245,7 @@ const BookUser: React.FC<DataId> = ({ id }) => {
           <div className="hidden md:flex justify-center">
             <Link href={`/payment/${data.id}`} className="w-full text-center">
               <button
+                type="submit"
                 className={`w-full lg:w-2/3 h-12 text-white rounded-3xl ${
                   passengerCount === 0
                     ? "bg-gray-500 cursor-not-allowed"
