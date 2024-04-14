@@ -67,13 +67,15 @@ export default function FilterBooking() {
   };
 
   const handleApplyFilters = () => {
-    const query =
-      selectedBusCompany.length > 0 || selectedBusType.length > 0
-        ? `?busCompany=${selectedBusCompany.join(
-            ","
-          )}&busType=${selectedBusType.join(",")}`
-        : "";
-    router.push(`/book${query}`);
+    const queryParams = new URLSearchParams();
+    if (selectedBusCompany.length > 0 || selectedBusType.length > 0) {
+      queryParams.set("busCompany", selectedBusCompany.join(","));
+      queryParams.set("busType", selectedBusType.join(","));
+    }
+    const newUrl = `${window.location.pathname}?${queryParams.toString()}`;
+
+    // Update the URL without reloading the page
+    window.history.pushState({ path: newUrl }, "", newUrl);
     setIsOpen(!isOpen);
   };
 
