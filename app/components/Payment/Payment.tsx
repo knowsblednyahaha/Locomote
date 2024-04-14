@@ -66,6 +66,8 @@ const Payment: React.FC<Data> = ({ id }) => {
     },
   });
 
+  console.log(data);
+
   if (error) return <div>Error fetching data</div>;
   if (isLoading)
     return (

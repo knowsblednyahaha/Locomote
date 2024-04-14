@@ -33,12 +33,6 @@ const BookUser: React.FC<DataId> = ({ id }) => {
   console.log(selectedSeats);
   console.log(passengerNames);
 
-  const newObject = selectedSeats.map((seat, index) => {
-    return { seat: seat, name: passengerNames[index] };
-  });
-
-  console.log(newObject);
-
   const handleNameChange = (index: number, newName: string) => {
     setPassengerNames((prevNames) => {
       const updatedNames = [...prevNames];

@@ -8,10 +8,19 @@ import "moment-timezone";
 import { Deluxe, FirstClassExpress, LuxuryBus, SuperDeluxe } from "./BusIcons";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import useSWR from "swr";
 
 interface NestedObject {
   departureTime: string; // Assuming dateTime is a string in ISO 8601 format
 }
+
+const fetcher = async (url: string) => {
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error("Failed to fetch posts");
+  }
+  return await response.json();
+};
 
 export function SearchBookResult() {
   const search = useSearchParams();
@@ -43,23 +52,21 @@ export function SearchBookResult() {
     // If busCompanyParam is null or undefined, use default values
     busTypes = "Deluxe,Super Deluxe,First Class Express,Luxury Bus";
   }
-  const { data, isLoading, error } = useQuery({
-    queryKey: ["schedules"],
-    queryFn: async () => {
-      const response = await axios.get(
-        `/api/search?location=${encodedSearchLocationQuery}&destination=${encodedSearchDestinationQuery}&busCompany=${busCompanies}&busType=${busTypes}`,
-        {
-          // query URL without using browser cache
-          headers: {
-            "Cache-Control": "no-cache",
-            Pragma: "no-cache",
-            Expires: "0",
-          },
-        }
-      );
-      return response.data;
-    },
-  });
+  const { data, error, isLoading } = useSWR(
+    `/api/search?location=${encodedSearchLocationQuery}&destination=${encodedSearchDestinationQuery}&busCompany=${busCompanies}&busType=${busTypes}`,
+    fetcher,
+    {
+      revalidateOnMount: true,
+      revalidateIfState: false,
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+      initialData: {
+        distance: 0,
+        members: 0,
+        activities: 0,
+      },
+    }
+  );
 
   if (error) return <div>Error fetching data</div>;
   if (isLoading)
