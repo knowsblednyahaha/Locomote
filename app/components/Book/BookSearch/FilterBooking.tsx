@@ -67,15 +67,19 @@ export default function FilterBooking() {
   };
 
   const handleApplyFilters = () => {
-    const queryParams = new URLSearchParams();
+    const queryParams = new URLSearchParams(window.location.search);
+
+    // Add busCompany and busType parameters to the query string
     if (selectedBusCompany.length > 0 || selectedBusType.length > 0) {
       queryParams.set("busCompany", selectedBusCompany.join(","));
       queryParams.set("busType", selectedBusType.join(","));
     }
+
+    // Construct the new URL with the updated query parameters
     const newUrl = `${window.location.pathname}?${queryParams.toString()}`;
 
-    // Update the URL without reloading the page
-    window.history.pushState({ path: newUrl }, "", newUrl);
+    // Push the new URL to the browser history without reloading the page
+    window.history.pushState({}, "", newUrl);
     setIsOpen(!isOpen);
   };
 
