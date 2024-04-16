@@ -30,8 +30,21 @@ const BookUser: React.FC<DataId> = ({ id }) => {
   const [selectedSeats, setSelectedSeats] = useState<number[]>([]);
   const [passengerNames, setPassengerNames] = useState<string[]>([]);
 
-  console.log(selectedSeats);
-  console.log(passengerNames);
+  const handlePostData = async () => {
+    try {
+      console.log("Selected Seats:", selectedSeats);
+      console.log("Passenger Names:", passengerNames);
+
+      const response = await axios.post(`/api/booking/${id}`, {
+        selectedSeats: selectedSeats,
+        passengerNames: passengerNames,
+      });
+
+      console.log("Response:", response.data);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
 
   const handleNameChange = (index: number, newName: string) => {
     setPassengerNames((prevNames) => {
@@ -191,6 +204,7 @@ const BookUser: React.FC<DataId> = ({ id }) => {
           <div className="flex justify-center md:hidden pt-5">
             <Link href={`/payment/${data.id}`} className="w-full">
               <button
+                onClick={handlePostData}
                 className={`w-full lg:w-2/3 h-12 text-white rounded-3xl ${
                   passengerCount === 0
                     ? "bg-gray-500 cursor-not-allowed"
@@ -239,7 +253,7 @@ const BookUser: React.FC<DataId> = ({ id }) => {
           <div className="hidden md:flex justify-center">
             <Link href={`/payment/${data.id}`} className="w-full text-center">
               <button
-                type="submit"
+                onClick={handlePostData}
                 className={`w-full lg:w-2/3 h-12 text-white rounded-3xl ${
                   passengerCount === 0
                     ? "bg-gray-500 cursor-not-allowed"

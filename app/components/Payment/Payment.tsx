@@ -54,7 +54,7 @@ const Payment: React.FC<Data> = ({ id }) => {
   const { data, isLoading, error } = useQuery({
     queryKey: ["payment"],
     queryFn: async () => {
-      const response = await axios.get(`/api/booking/${id}`, {
+      const response = await axios.get(`/api/payment/${id}`, {
         // query URL without using browser cache
         headers: {
           "Cache-Control": "no-cache",
@@ -132,10 +132,15 @@ const Payment: React.FC<Data> = ({ id }) => {
             <div className="flex justify-between px-5 py-2">
               <div className="text-gray-500">
                 Passenger Name:{" "}
-                <span className="font-semibold text-black">Daniel Zyrick</span>
+                <span className="font-semibold text-black">
+                  {data.ticket[0].fullname}
+                </span>
               </div>
               <div className="text-gray-500">
-                Seat Number: <span className="font-semibold text-black">2</span>
+                Seat Number:{" "}
+                <span className="font-semibold text-black">
+                  {data.ticket[0].seatNumber}
+                </span>
               </div>
             </div>
           </div>

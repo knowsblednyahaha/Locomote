@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 import { withAccelerate } from "@prisma/extension-accelerate";
+import { NextApiRequest, NextApiResponse } from "next";
 
 const prisma = new PrismaClient().$extends(withAccelerate());
 
@@ -34,11 +35,6 @@ export async function GET(
   }
 }
 
-interface BookingRequestData {
-  selectedSeats: number[];
-  passengerNames: string[];
-}
-
 export async function POST(
   req: NextRequest,
   {
@@ -49,20 +45,18 @@ export async function POST(
     };
   }
 ) {
-  const bodyData = req.body as unknown as BookingRequestData;
-  const { selectedSeats, passengerNames } = bodyData;
   try {
-    const post = await prisma.ticket.createMany({
-      data: [
-        {
-          seatNumber: selectedSeats[0],
-          fullname: passengerNames[0],
-          schedId: params.id,
-        },
-      ],
+    const body = await req.json();
+    const { selectedSeats, passengerNames } = body;
+    // Create tickets in the database
+    const tickets = await prisma.ticket.createMany({
+      data: passengerNames.map((fullname: string, index: number) => ({
+        fullname,
+        seatNumber: selectedSeats[index],
+        schedId: params.id,
+      })),
     });
-
-    return NextResponse.json(post, { status: 200 });
+    return NextResponse.json({ tickets }, { status: 200 });
   } catch (error) {
     return NextResponse.json(
       { message: "could not delete post" },
