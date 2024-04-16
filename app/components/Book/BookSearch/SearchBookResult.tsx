@@ -181,9 +181,17 @@ export function SearchBookResult() {
                   {item.route[0].destination}
                 </p>
               </div>
-              <div className="md:w-2/12 text-center flex flex-col gap-y-1 justify-center items-center">
+              <div
+                className={`md:w-2/12 text-center flex flex-col gap-y-1 justify-center items-center ${
+                  item.bus[0].capacity - item.ticket.length <= 5
+                    ? "text-red-700"
+                    : ""
+                }`}
+              >
                 <span className="text-base ">Available Seats</span>
-                <span className="text-sm font-semibold">45</span>
+                <span className="text-sm font-semibold">
+                  {item.bus[0].capacity - item.ticket.length}
+                </span>
               </div>
               <div className="md:w-1/12 text-center">
                 <span className="text-lg font-bold">

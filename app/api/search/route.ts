@@ -70,6 +70,7 @@ export async function GET(req: NextRequest) {
       include: {
         route: true,
         bus: true,
+        ticket: true,
       },
       orderBy: {
         departureTime: "asc",

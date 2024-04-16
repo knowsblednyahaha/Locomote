@@ -32,15 +32,10 @@ const BookUser: React.FC<DataId> = ({ id }) => {
 
   const handlePostData = async () => {
     try {
-      console.log("Selected Seats:", selectedSeats);
-      console.log("Passenger Names:", passengerNames);
-
       const response = await axios.post(`/api/booking/${id}`, {
         selectedSeats: selectedSeats,
         passengerNames: passengerNames,
       });
-
-      console.log("Response:", response.data);
     } catch (error) {
       console.error("Error:", error);
     }
@@ -85,6 +80,11 @@ const BookUser: React.FC<DataId> = ({ id }) => {
   if (!date) {
     return null;
   }
+  // const [bookedSeats, setBookedSeats] = useState([]);
+  const bookedSeats = data.ticket.map(
+    (data: any, index: any) => data.seatNumber
+  );
+  console.log(bookedSeats);
 
   const dateString = date;
   const [year, month, day] = dateString.split("-");
@@ -197,6 +197,7 @@ const BookUser: React.FC<DataId> = ({ id }) => {
                 <BusSeats
                   passengerCount={passengerCount}
                   sendDataBookUser={setSelectedSeats}
+                  bookedSeats={bookedSeats}
                 />
               </Suspense>
             </div>
