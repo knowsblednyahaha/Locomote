@@ -84,7 +84,6 @@ const BookUser: React.FC<DataId> = ({ id }) => {
   const bookedSeats = data.ticket.map(
     (data: any, index: any) => data.seatNumber
   );
-  console.log(bookedSeats);
 
   const dateString = date;
   const [year, month, day] = dateString.split("-");
@@ -252,7 +251,10 @@ const BookUser: React.FC<DataId> = ({ id }) => {
           )}
 
           <div className="hidden md:flex justify-center">
-            <Link href={`/payment/${data.id}`} className="w-full text-center">
+            <Link
+              href={`/payment/${data.id}?seatNumber=${selectedSeats}`}
+              className="w-full text-center"
+            >
               <button
                 onClick={handlePostData}
                 className={`w-full lg:w-2/3 h-12 text-white rounded-3xl ${

@@ -8,6 +8,7 @@ import "moment-timezone";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import BackButton from "../BackButton";
+import { useSearchParams } from "next/navigation";
 
 interface Data {
   id: string;
@@ -50,18 +51,25 @@ const Payment: React.FC<Data> = ({ id }) => {
       ],
     },
   ];
+  const search = useSearchParams();
+  const seatNumber = search ? search.get("seatNumber") : null;
+  const selectedSeats = seatNumber !== null ? seatNumber : "";
+  console.log(selectedSeats);
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["payment"],
     queryFn: async () => {
-      const response = await axios.get(`/api/payment/${id}`, {
-        // query URL without using browser cache
-        headers: {
-          "Cache-Control": "no-cache",
-          Pragma: "no-cache",
-          Expires: "0",
-        },
-      });
+      const response = await axios.get(
+        `/api/payment/${id}?seatNumber=${selectedSeats}`,
+        {
+          // query URL without using browser cache
+          headers: {
+            "Cache-Control": "no-cache",
+            Pragma: "no-cache",
+            Expires: "0",
+          },
+        }
+      );
       return response.data;
     },
   });
@@ -91,7 +99,7 @@ const Payment: React.FC<Data> = ({ id }) => {
       <div className="w-full h-fit flex flex-col justify-center md:flex-row gap-x-5 lg:gap-x-10 gap-y-5 lg:px-10 py-5 mt-10 m-auto">
         <div className="w-full md:w-1/2 h-fit border border-black rounded-2xl ">
           <div className="flex justify-between border-b border-black px-10 py-5">
-            <div className="text-xl">{data.bus[0].busCompany}</div>
+            <div className="text-xl">{data[0].bus[0].busCompany}</div>
             <div>{moment(data.departureTime).format("LL")}</div>
           </div>
           <div className="flex justify-between border-b border-black px-10 py-5">
@@ -100,7 +108,7 @@ const Payment: React.FC<Data> = ({ id }) => {
                 <span className="text-xl font-bold">
                   {moment(data.departureTime).tz("Asia/Manila").format("LT")}
                 </span>
-                <p className="uppercase">{data.route[0].location}</p>
+                <p className="uppercase">{data[0].route[0].location}</p>
               </div>
               <div className="w-full hidden md:flex flex-col justify-center items-center md:w-4/12 md:text-center px-5">
                 <div className="w-full text-[#747474]">
@@ -111,44 +119,52 @@ const Payment: React.FC<Data> = ({ id }) => {
                 <span className="text-xl font-bold">
                   {moment(data.arrivalTime).tz("Asia/Manila").format("LT")}
                 </span>
-                <p className="uppercase">{data.route[0].destination}</p>
+                <p className="uppercase">{data[0].route[0].destination}</p>
               </div>
             </div>
           </div>
           <div className="flex flex-col gap-y-3 border-b border-black px-10 py-5">
             <div className="flex justify-between">
               <div className="text-gray-500">Bus Type:</div>
-              <div className="font-semibold">{data.bus[0].type}</div>
+              <div className="font-semibold">{data[0].bus[0].type}</div>
             </div>
             <div className="flex justify-between">
               <div className="text-gray-500">Estimate travel duration:</div>
               <div className="font-semibold">
-                {data.route[0].traveltime} Hours{" "}
+                {data[0].route[0].traveltime} Hours{" "}
               </div>
             </div>
           </div>
           <div className="flex flex-col border-b border-black px-10 py-5">
             <div className="text-gray-500">Passenger Info:</div>
-            <div className="flex justify-between px-5 py-2">
-              <div className="text-gray-500">
-                Passenger Name:{" "}
-                <span className="font-semibold text-black">
-                  {data.ticket[0].fullname}
-                </span>
+            {data[0].ticket.map((data: any, i: number) => (
+              <div className="flex justify-between px-5 py-2">
+                <div className="text-gray-500">
+                  Passenger Name:{" "}
+                  <span className="font-semibold text-black">
+                    {data.fullname}
+                  </span>
+                </div>
+                <div className="text-gray-500">
+                  Seat Number:{" "}
+                  <span className="font-semibold text-black">
+                    {data.seatNumber}
+                  </span>
+                </div>
               </div>
-              <div className="text-gray-500">
-                Seat Number:{" "}
-                <span className="font-semibold text-black">
-                  {data.ticket[0].seatNumber}
-                </span>
-              </div>
-            </div>
+            ))}
           </div>
 
           <div className="flex justify-between px-10 py-5">
-            <div>Number of total seats: 2</div>
+            <div>Number of total seats: {data[0].ticket.length}</div>
             <div>
-              Total: <span className="font-bold">₱1,478</span>
+              Total:{" "}
+              <span className="font-bold">
+                {(
+                  data[0].route[0].travelprice * data[0].ticket.length
+                ).toLocaleString()}
+                ₱
+              </span>
             </div>
           </div>
         </div>

@@ -11,18 +11,34 @@ export async function GET(
   }: {
     params: {
       id: any;
-      slug: string;
     };
   }
 ) {
   try {
+    const searchParams = req.nextUrl.searchParams;
+    const seatNumber = searchParams ? searchParams.get("seatNumber") : null;
+    const selectedSeats = seatNumber?.split(",").map((i) => Number(i));
+    console.log(selectedSeats);
     const data = params;
-    const post = await prisma.schedule.findFirst({
-      where: { id: data.id },
+    const post = await prisma.schedule.findMany({
+      where: {
+        id: data.id,
+        ticket: {
+          some: {
+            seatNumber: {
+              in: selectedSeats,
+            },
+          },
+        },
+      },
       include: {
         route: true,
         bus: true,
-        ticket: true,
+        ticket: {
+          where: {
+            seatNumber: { in: selectedSeats },
+          },
+        },
       },
     });
 
