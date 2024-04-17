@@ -138,7 +138,7 @@ const Payment: React.FC<Data> = ({ id }) => {
           <div className="flex flex-col border-b border-black px-10 py-5">
             <div className="text-gray-500">Passenger Info:</div>
             {data[0].ticket.map((data: any, i: number) => (
-              <div className="flex justify-between px-5 py-2">
+              <div className="flex justify-between px-5 py-2" key={i}>
                 <div className="text-gray-500">
                   Passenger Name:{" "}
                   <span className="font-semibold text-black">
