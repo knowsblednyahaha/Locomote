@@ -18,7 +18,6 @@ export async function GET(
     const searchParams = req.nextUrl.searchParams;
     const seatNumber = searchParams ? searchParams.get("seatNumber") : null;
     const selectedSeats = seatNumber?.split(",").map((i) => Number(i));
-    console.log(selectedSeats);
     const data = params;
     const post = await prisma.schedule.findMany({
       where: {
@@ -43,6 +42,40 @@ export async function GET(
     });
 
     return NextResponse.json(post, { status: 200 });
+  } catch (error) {
+    return NextResponse.json(
+      { message: "could not delete post" },
+      { status: 500 }
+    );
+  }
+}
+export async function PATCH(
+  req: NextRequest,
+  {
+    params,
+  }: {
+    params: {
+      id: any;
+    };
+  }
+) {
+  const body = await req.json();
+  const { selectedSeats } = body;
+  const seatNumber = selectedSeats?.split(",").map((i: any) => Number(i));
+  console.log(seatNumber);
+  try {
+    const updatedTickets = await prisma.ticket.updateMany({
+      where: {
+        seatNumber: {
+          in: seatNumber,
+        },
+        schedId: params.id, // Assuming you have params defined elsewhere
+      },
+      data: {
+        isPaid: true,
+      },
+    });
+    return NextResponse.json({ updatedTickets }, { status: 200 });
   } catch (error) {
     return NextResponse.json(
       { message: "could not delete post" },

@@ -14,54 +14,53 @@ datasource db {
 }
 
 model User {
-  id          String @id @default(auto()) @map("_id") @db.ObjectId
-  username    String    @unique // User's username
-  email       String    @unique // User's email address
-  password    String    // User's password (should be hashed)
-  name        String
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  username String @unique // User's username
+  email    String @unique // User's email address
+  password String // User's password (should be hashed)
+  name     String
 
-  schedule        Schedule      @relation(fields: [schedId], references: [id]) // Reference to the user who made the booking
-  schedId      String    @db.ObjectId
+  schedule Schedule @relation(fields: [schedId], references: [id]) // Reference to the user who made the booking
+  schedId  String   @db.ObjectId
 }
 
 model Bus {
-  id          String    @id @default(auto()) @map("_id") @db.ObjectId// Unique identifier for the bus
-  busCompany  String
-  type        String    // Type of the bus (e.g., Sleeper, AC, etc.)
-  capacity    Int       // Capacity of the bus (number of seats)
-  schedule    Schedule  @relation(fields: [scheduleId], references: [id])
-  scheduleId  String    @db.ObjectId
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId // Unique identifier for the bus
+  busCompany String
+  type       String // Type of the bus (e.g., Sleeper, AC, etc.)
+  capacity   Int // Capacity of the bus (number of seats)
+  schedule   Schedule @relation(fields: [scheduleId], references: [id])
+  scheduleId String   @db.ObjectId
 }
 
 model Route {
-  id           String    @id @default(auto()) @map("_id") @db.ObjectId// Unique identifier for the route
-  location     String    // Source location of the route
-  destination  String    // Destination location of the route
-  traveltime   String
-  travelprice  String
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId // Unique identifier for the route
+  location    String // Source location of the route
+  destination String // Destination location of the route
+  traveltime  String
+  travelprice String
   // Add more fields as needed (e.g., route code, duration, etc.)
-  schedule    Schedule  @relation(fields: [scheduleId], references: [id])
-  scheduleId  String    @db.ObjectId
+  schedule    Schedule @relation(fields: [scheduleId], references: [id])
+  scheduleId  String   @db.ObjectId
 }
 
 model Schedule {
-  id              String    @id @default(auto()) @map("_id") @db.ObjectId // Unique identifier for the schedule
-  departureTime   DateTime  // Departure time of the schedule
-  arrivalTime     DateTime  // Arrival time of the schedule
-  bookingDate     DateTime
-  bus             Bus[]
-  route           Route[]
-  ticket          Ticket[]
-  user            User[]
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId // Unique identifier for the schedule
+  departureTime DateTime // Departure time of the schedule
+  arrivalTime   DateTime // Arrival time of the schedule
+  bookingDate   DateTime
+  bus           Bus[]
+  route         Route[]
+  ticket        Ticket[]
+  user          User[]
 }
 
 model Ticket {
-  id            String    @id @default(auto()) @map("_id") @db.ObjectId
-  seatNumber    Int
-  fullname      String
-  createdAt     DateTime  @default(now())
-  isPaidBoolean Boolean   @default(false)
-  schedule      Schedule  @relation(fields: [schedId], references: [id])
-  schedId       String    @db.ObjectId
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  seatNumber Int
+  fullname   String
+  createdAt  DateTime @default(now())
+  isPaid     Boolean  @default(false)
+  schedule   Schedule @relation(fields: [schedId], references: [id])
+  schedId    String   @db.ObjectId
 }
-

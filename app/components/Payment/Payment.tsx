@@ -87,7 +87,15 @@ const Payment: React.FC<Data> = ({ id }) => {
   if (!data) {
     return null;
   }
-
+  const handlePostData = async () => {
+    try {
+      const response = await axios.patch(`/api/payment/${id}`, {
+        selectedSeats: selectedSeats,
+      });
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
   return (
     <section className="max-w-[1440px] w-full px-5 md:px-10 lg:px-20 text-black m-auto pb-20">
       <div>
@@ -100,13 +108,15 @@ const Payment: React.FC<Data> = ({ id }) => {
         <div className="w-full md:w-1/2 h-fit border border-black rounded-2xl ">
           <div className="flex justify-between border-b border-black px-10 py-5">
             <div className="text-xl">{data[0].bus[0].busCompany}</div>
-            <div>{moment(data.departureTime).format("LL")}</div>
+            <div>
+              {moment(data[0].bookingDate).tz("Asia/Manila").format("LL")}
+            </div>
           </div>
           <div className="flex justify-between border-b border-black px-10 py-5">
             <div className="flex flex-col md:flex-row md:items-center gap-x-3 gap-y-3 w-full text-center md:text-left">
               <div className="md:w-4/12">
                 <span className="text-xl font-bold">
-                  {moment(data.departureTime).tz("Asia/Manila").format("LT")}
+                  {moment(data[0].departureTime).tz("Asia/Manila").format("LT")}
                 </span>
                 <p className="uppercase">{data[0].route[0].location}</p>
               </div>
@@ -117,7 +127,7 @@ const Payment: React.FC<Data> = ({ id }) => {
               </div>
               <div className="md:w-4/12">
                 <span className="text-xl font-bold">
-                  {moment(data.arrivalTime).tz("Asia/Manila").format("LT")}
+                  {moment(data[0].arrivalTime).tz("Asia/Manila").format("LT")}
                 </span>
                 <p className="uppercase">{data[0].route[0].destination}</p>
               </div>
@@ -199,9 +209,14 @@ const Payment: React.FC<Data> = ({ id }) => {
         </div>
       </div>
       <div className="w-full mt-10 text-center">
-        <button className="w-56 h-12 bg-[#FE2F2F] rounded-3xl text-white">
-          <Link href="">Submit payment</Link>
-        </button>
+        <Link href={`/ticketinfo/${id}`}>
+          <button
+            onClick={handlePostData}
+            className="w-56 h-12 bg-[#FE2F2F] rounded-3xl text-white"
+          >
+            Submit payment
+          </button>
+        </Link>
       </div>
     </section>
   );
