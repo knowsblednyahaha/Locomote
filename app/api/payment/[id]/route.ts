@@ -62,7 +62,6 @@ export async function PATCH(
   const body = await req.json();
   const { selectedSeats } = body;
   const seatNumber = selectedSeats?.split(",").map((i: any) => Number(i));
-  console.log(seatNumber);
   try {
     const updatedTickets = await prisma.ticket.updateMany({
       where: {

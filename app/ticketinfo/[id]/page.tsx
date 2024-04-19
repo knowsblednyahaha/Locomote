@@ -6,7 +6,7 @@ export default function page({ params }: { params: { id: string } }) {
   return (
     <>
       <Header />
-      <TicketInfo />
+      <TicketInfo id={params.id} />
     </>
   );
 }

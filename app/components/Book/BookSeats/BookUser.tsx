@@ -80,10 +80,17 @@ const BookUser: React.FC<DataId> = ({ id }) => {
   if (!date) {
     return null;
   }
+
+  // const seatIds = data[0].ticket.map((ticket: any) => ticket.id);
+  // const stringSeatId = seatIds.join(", ");
+  // console.log(data);
+
   // const [bookedSeats, setBookedSeats] = useState([]);
   const bookedSeats = data.ticket.map(
     (data: any, index: any) => data.seatNumber
   );
+
+  console.log(bookedSeats);
 
   const dateString = date;
   const [year, month, day] = dateString.split("-");

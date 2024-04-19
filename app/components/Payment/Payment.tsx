@@ -87,6 +87,12 @@ const Payment: React.FC<Data> = ({ id }) => {
   if (!data) {
     return null;
   }
+
+  const seatIds = data[0].ticket.map((ticket: any) => ticket.id);
+  const stringSeatId = seatIds.join(", ");
+
+  console.log(stringSeatId);
+
   const handlePostData = async () => {
     try {
       const response = await axios.patch(`/api/payment/${id}`, {
@@ -209,7 +215,7 @@ const Payment: React.FC<Data> = ({ id }) => {
         </div>
       </div>
       <div className="w-full mt-10 text-center">
-        <Link href={`/ticketinfo/${id}`}>
+        <Link href={`/ticketinfo/${id}?sIds=${stringSeatId}`}>
           <button
             onClick={handlePostData}
             className="w-56 h-12 bg-[#FE2F2F] rounded-3xl text-white"
