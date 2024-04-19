@@ -16,35 +16,36 @@ export async function GET(
 ) {
   try {
     const searchParams = req.nextUrl.searchParams;
-    const seatNumber = searchParams ? searchParams.get("sIds") : null;
-    const selectedSeats = seatNumber?.split(",").map((i) => Number(i));
+    const seatId = searchParams ? searchParams.get("sIds") : null;
+    const selectedSeatId = seatId?.split(",");
+    console.log(selectedSeatId);
     const data = params;
-    // const post = await prisma.schedule.findMany({
-    //   where: {
-    //     id: data.id,
-    //     ticket: {
-    //       some: {
-    //         seatNumber: {
-    //           in: selectedSeats,
-    //         },
-    //       },
-    //     },
-    //   },
-    //   include: {
-    //     route: true,
-    //     bus: true,
-    //     ticket: {
-    //       where: {
-    //         seatNumber: { in: selectedSeats },
-    //       },
-    //     },
-    //   },
-    // });
+    const post = await prisma.schedule.findMany({
+      where: {
+        id: data.id,
+        ticket: {
+          some: {
+            id: {
+              in: selectedSeatId,
+            },
+          },
+        },
+      },
+      include: {
+        route: true,
+        bus: true,
+        ticket: {
+          where: {
+            id: { in: selectedSeatId },
+          },
+        },
+      },
+    });
 
-    return NextResponse.json(selectedSeats, { status: 200 });
+    return NextResponse.json(post, { status: 200 });
   } catch (error) {
     return NextResponse.json(
-      { message: "could not delete post" },
+      { message: "could not get post" },
       { status: 500 }
     );
   }
