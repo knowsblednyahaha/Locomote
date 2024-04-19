@@ -17,7 +17,7 @@ export async function GET(
   try {
     const searchParams = req.nextUrl.searchParams;
     const seatId = searchParams ? searchParams.get("sIds") : null;
-    const selectedSeatId = seatId?.split(",");
+    const selectedSeatId = seatId?.split(", ");
     console.log(selectedSeatId);
     const data = params;
     const post = await prisma.schedule.findMany({
@@ -36,7 +36,9 @@ export async function GET(
         bus: true,
         ticket: {
           where: {
-            id: { in: selectedSeatId },
+            id: {
+              in: selectedSeatId,
+            },
           },
         },
       },
