@@ -111,14 +111,14 @@ const Payment: React.FC<Data> = ({ id }) => {
         Payment
       </div>
       <div className="w-full h-fit flex flex-col justify-center md:flex-row gap-x-5 lg:gap-x-10 gap-y-5 lg:px-10 py-5 mt-10 m-auto">
-        <div className="w-full md:w-1/2 h-fit border border-black rounded-2xl ">
-          <div className="flex justify-between border-b border-black px-10 py-5">
+        <div className="w-full md:w-1/2 h-fit border border-gray-400 rounded-2xl drop-shadow-2xl shadow-[-10px_-10px_30px_4px_rgba(0,0,0,0.1),_10px_10px_30px_4px_rgba(45,78,255,0.15)] ">
+          <div className="flex justify-between border-b border-gray-400 px-10 py-5">
             <div className="text-xl">{data[0].bus[0].busCompany}</div>
             <div>
               {moment(data[0].bookingDate).tz("Asia/Manila").format("LL")}
             </div>
           </div>
-          <div className="flex justify-between border-b border-black px-10 py-5">
+          <div className="flex justify-between border-b border-gray-400 px-10 py-5">
             <div className="flex flex-col md:flex-row md:items-center gap-x-3 gap-y-3 w-full text-center md:text-left">
               <div className="md:w-4/12">
                 <span className="text-xl font-bold">
@@ -139,30 +139,38 @@ const Payment: React.FC<Data> = ({ id }) => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col gap-y-3 border-b border-black px-10 py-5">
+          <div className="flex flex-col gap-y-3 border-b border-gray-400 px-10 py-5">
             <div className="flex justify-between">
-              <div className="text-gray-500">Bus Type:</div>
-              <div className="font-semibold">{data[0].bus[0].type}</div>
+              <div>
+                <span>Bus Type:</span>{" "}
+              </div>
+              <div className="font-semibold">
+                <span>{data[0].bus[0].type}</span>
+              </div>
             </div>
             <div className="flex justify-between">
-              <div className="text-gray-500">Estimate travel duration:</div>
+              <div>
+                <span>Estimate travel duration:</span>
+              </div>
               <div className="font-semibold">
-                {data[0].route[0].traveltime} Hours{" "}
+                <span>{data[0].route[0].traveltime} Hours </span>
               </div>
             </div>
           </div>
-          <div className="flex flex-col border-b border-black px-10 py-5">
-            <div className="text-gray-500">Passenger Info:</div>
+          <div className="flex flex-col border-b border-gray-400 px-10 py-5">
+            <div>
+              <span>Passenger Info:</span>
+            </div>
             {data[0].ticket.map((data: any, i: number) => (
               <div className="flex justify-between px-5 py-2" key={i}>
-                <div className="text-gray-500">
-                  Passenger Name:{" "}
+                <div>
+                  <span>Passenger Name: </span>
                   <span className="font-semibold text-black">
                     {data.fullname}
                   </span>
                 </div>
-                <div className="text-gray-500">
-                  Seat Number:{" "}
+                <div>
+                  <span>Seat Number: </span>
                   <span className="font-semibold text-black">
                     {data.seatNumber}
                   </span>
@@ -187,7 +195,7 @@ const Payment: React.FC<Data> = ({ id }) => {
         <div className="w-full md:w-1/2 h-fit flex flex-col gap-y-5">
           {paymentMethod.map((item, i) => (
             <label
-              className="w-full border border-black rounded-2xl p-5 flex justify-between"
+              className="w-full border border-gray-400 rounded-2xl p-5 flex justify-between"
               key={i}
               htmlFor={item.radioItem}
             >

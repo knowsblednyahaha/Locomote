@@ -265,11 +265,11 @@ const BookUser: React.FC<DataId> = ({ id }) => {
               <button
                 onClick={handlePostData}
                 className={`w-full lg:w-2/3 h-12 text-white rounded-3xl ${
-                  passengerCount === 0
+                  passengerCount === 0 || passengerNames.length === 0
                     ? "bg-gray-500 cursor-not-allowed"
                     : "bg-[#FE2F2F]"
                 }`}
-                disabled={passengerCount === 0}
+                disabled={passengerCount === 0 || passengerNames.length === 0}
               >
                 Proceed to payment
               </button>

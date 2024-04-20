@@ -24,7 +24,6 @@ const TicketInfo: React.FC<Data> = ({ id }) => {
   const search = useSearchParams();
   const seatId = search.get("sIds");
   const selectedSeatsId = encodeURI(seatId || "");
-  console.log(selectedSeatsId);
 
   const { data, error, isLoading } = useSWR(
     `/api/ticketinfo/${id}?sIds=${selectedSeatsId}`,
@@ -54,8 +53,6 @@ const TicketInfo: React.FC<Data> = ({ id }) => {
     return null;
   }
 
-  console.log(data[0].ticket);
-
   return (
     <section className="max-w-[1440px] w-full m-auto ">
       <div className="max-w-[1440px] w-full flex flex-col px-5 md:px-10 lg:px-20">
@@ -68,22 +65,22 @@ const TicketInfo: React.FC<Data> = ({ id }) => {
         <div className="w-full flex justify-center gap-x-10">
           {data[0].ticket.map((info: any, i: number) => (
             <div
-              className="w-2/6 border rounded-2xl mt-10  drop-shadow-2xl shadow-[-10px_-10px_30px_4px_rgba(0,0,0,0.1),_10px_10px_30px_4px_rgba(45,78,255,0.15)]"
+              className="w-2/6 border border-gray-400 rounded-2xl drop-shadow-2xl shadow-[-10px_-10px_30px_4px_rgba(0,0,0,0.1),_10px_10px_30px_4px_rgba(45,78,255,0.15)] mt-10"
               key={i}
             >
-              <div className="flex justify-between border-b border-gray-300 p-5">
+              <div className="flex justify-between border-b border-gray-400 p-5">
                 <div>
                   <span>{data[0].bus[0].busCompany}</span>
                 </div>
                 <div>
-                  <span>
+                  <span className="font-semibold">
                     {moment(data[0].bookingDate).tz("Asia/Manila").format("LL")}
                   </span>
                 </div>
               </div>
-              <div className="flex border-b border-gray-300 p-5">
+              <div className="flex border-b border-gray-400 p-5">
                 <div className="w-2/3 flex flex-col text-center">
-                  <span>
+                  <span className="font-semibold text-xl">
                     {moment(data[0].departureTime)
                       .tz("Asia/Manila")
                       .format("LT")}
@@ -94,34 +91,40 @@ const TicketInfo: React.FC<Data> = ({ id }) => {
                   <i className="gg-arrow-right !h-[23px]"></i>
                 </div>
                 <div className="w-2/3 flex flex-col text-center">
-                  <span>
+                  <span className="font-semibold text-xl">
                     {moment(data[0].arrivalTime).tz("Asia/Manila").format("LT")}
                   </span>
                   <span>{data[0].route[0].destination}</span>
                 </div>
               </div>
-              <div className="flex border-b border-gray-300 p-5">
+              <div className="flex border-b border-gray-400 p-5">
                 <div className="w-2/6 flex flex-col text-center">
-                  <span>{data[0].bus[0].type}</span>
-                  <span>Bus Type</span>
+                  <span className="font-semibold text-xl">
+                    {data[0].bus[0].type}
+                  </span>
+                  <span className="text-gray-600">Bus Type</span>
                 </div>
                 <div className="w-2/6 flex flex-col text-center">
-                  <span>{data[0].route[0].traveltime} Hours</span>
-                  <span>Travel Duration</span>
+                  <span className="font-semibold text-xl">
+                    {data[0].route[0].traveltime} Hours
+                  </span>
+                  <span className="text-gray-600">Travel Duration</span>
                 </div>
                 <div className="w-2/6 flex flex-col text-center">
-                  <span>{data[0].route[0].travelprice}</span>
-                  <span>Price</span>
+                  <span className="font-semibold text-xl">
+                    {data[0].route[0].travelprice}
+                  </span>
+                  <span className="text-gray-600">Price</span>
                 </div>
               </div>
-              <div className="flex border-b border-gray-300 p-5">
+              <div className="flex border-b border-gray-400 p-5">
                 <div className="w-1/2 flex gap-x-2 justify-center">
-                  <span>Fullname:</span>
-                  <span>{info.fullname}</span>
+                  <span className="text-gray-600">Fullname:</span>
+                  <span className="font-semibold">{info.fullname}</span>
                 </div>
                 <div className="w-1/2 flex gap-x-2 justify-center">
-                  <span>Seat Number:</span>
-                  <span>{info.seatNumber}</span>
+                  <span className="text-gray-600">Seat Number:</span>
+                  <span className="font-semibold">{info.seatNumber}</span>
                 </div>
               </div>
               <div className="flex p-5">
