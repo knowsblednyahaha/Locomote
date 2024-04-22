@@ -15,7 +15,7 @@ export const Login = () => {
             <label htmlFor="email">Email or Username</label>
             <input
               type="text"
-              className="border border-gray-400 h-[40px] rounded-2xl pl-3"
+              className="border border-gray-400 h-[40px] rounded-xl pl-3"
               id="email"
               placeholder="Email"
             />
@@ -24,7 +24,7 @@ export const Login = () => {
             <label htmlFor="password">Password</label>
             <input
               type="text"
-              className="border border-gray-400 h-[40px] rounded-2xl pl-3"
+              className="border border-gray-400 h-[40px] rounded-xl pl-3"
               id="password"
               placeholder="Your password"
             />
