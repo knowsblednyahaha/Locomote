@@ -15,6 +15,7 @@ export default function Newsletter() {
             type="text"
             placeholder="Email Address"
             className="w-full h-12 md:h-14 lg:h-16 border-b border-black focus-visible:border-b pl-3 md:text-lg lg:text-xl xl:text-2xl focus:outline-none"
+            id="Newsletter"
           />
           <button className="w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 bg-[#FE2F2F] rounded-3xl lg:rounded-full text-white flex justify-center items-center ml-[-3rem] md:ml-[-3.5rem] ">
             <GoArrowRight className="text-xl md:text-2xl" />

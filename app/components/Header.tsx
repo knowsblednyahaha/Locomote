@@ -1,11 +1,11 @@
 "use client";
+import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { useState } from "react";
 import { IoIosMenu } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
 
-export const Header = () => {
+export default function Header() {
   const pathname = usePathname();
 
   const navItems = [
@@ -18,14 +18,14 @@ export const Header = () => {
 
   return (
     <header className="max-w-[1440px] w-full m-auto ">
-      <div className="max-w-[1440px] w-full w-full flex justify-between items-center text-white py-5 px-5 md:px-10 lg:px-20 z-20 shadow-md shadow-black/20">
+      <div className="max-w-[1440px] w-full w-full flex justify-between items-center py-5 px-5 md:px-10 lg:px-20 z-20">
         <div className="cursor-pointer">
-          <Link href={"/"}>
-            <h3 className="text-black">Locomote</h3>
+          <Link href="/">
+            <h3>Locomote</h3>
           </Link>
         </div>
         <div className="hidden gap-x-12 items-center sm:flex flex-row sm:text-sm md:text-md">
-          <ul className="flex gap-x-12 text-black">
+          <ul className="flex gap-x-12">
             {navItems.map((item, i) => (
               <li
                 className={
@@ -41,14 +41,19 @@ export const Header = () => {
           </ul>
           <div className="flex gap-x-5">
             <Link href={"/book"}>
-              <button className="sm:h-10 sm:w-24 bg-white text-black rounded-3xl border border-black">
+              <button className="sm:h-10 sm:w-24 bg-white text-black border border-gray-600 rounded-3xl">
                 Book
+              </button>
+            </Link>
+            <Link href={"/login"}>
+              <button className="sm:h-10 sm:w-24 bg-[#FE2F2F] text-white rounded-3xl">
+                Login
               </button>
             </Link>
           </div>
         </div>
         <div className="sm:hidden md:invisible">
-          <div className="text-2xl md:hidden text-black">
+          <div className="text-2xl md:hidden">
             <IoIosMenu onClick={() => setMenu(!menu)} />
           </div>
         </div>
@@ -81,4 +86,4 @@ export const Header = () => {
       </div>
     </header>
   );
-};
+}
