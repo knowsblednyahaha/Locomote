@@ -4,7 +4,7 @@ import React from "react";
 export const Login = () => {
   return (
     <section className="max-w-[1440px] w-full h-[90vh] flex justify-center items-center py-5 px-5 md:px-10 lg:px-20 z-20 m-auto ">
-      <div className="w-2/6 p-10 border border-gray-400 shadow-[0_8px_30px_rgb(0,0,0,0.12)] rounded-2xl">
+      <div className="w-full md:w-4/6 lg:w-3/6 xl:w-2/6 p-10 border border-gray-400 shadow-[0_8px_30px_rgb(0,0,0,0.12)] rounded-2xl">
         <div className="text-center pb-10">
           <Link href={"/"}>
             <h3 className="text-2xl font-semibold">Sign In</h3>
