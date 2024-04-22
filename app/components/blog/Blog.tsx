@@ -26,23 +26,23 @@ const Blog = () => {
   return (
     <section className="max-w-[1440px] w-full w-full py-20 px-5 md:px-10 lg:px-20 z-20 m-auto">
       <div className="flex flex-col justify-between items-center pb-20 ">
-        <div className="w-5/6 text-center pb-5">
-          <h3 className="text-5xl font-medium">
+        <div className="w-full md:w-5/6 text-center pb-5">
+          <h3 className="text-3xl md:text-5xl font-medium">
             Welcome aboard to the Locomote Blog, your ultimate destination for
             travel inspiration, tips, and stories.
           </h3>
         </div>
-        <div className="w-1/2 text-center">
-          <p>
+        <div className="w-full md:w-1/2 text-center">
+          <p className="text-sm md:text-base">
             Whether you're a seasoned traveler or new to the road, our blog is
             here to accompany you on your journey, offering insights, advice,
             and a glimpse into the exciting world of travel.
           </p>
         </div>
       </div>
-      <div className="w-full flex gap-x-10">
+      <div className="w-full flex flex-col lg:flex-row gap-x-10 gap-y-10">
         {blogItems.map((data, i) => (
-          <div className="w-1/3" key={i}>
+          <div className="w-full lg:w-1/3" key={i}>
             <Link href={""} className="flex flex-col">
               <div className="relative w-full h-[200px] mb-5">
                 <Image

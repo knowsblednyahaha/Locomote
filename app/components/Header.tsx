@@ -58,7 +58,7 @@ export default function Header() {
           </div>
         </div>
         {menu && (
-          <div className="fixed sm:hidden top-0 left-0 w-full h-screen z-0 bg-[#FFF] px-0 animate-[reveal_.5s_ease-in-out]  ">
+          <div className="fixed sm:hidden top-0 left-0 w-full h-screen z-10 bg-[#FFF] px-0 animate-[reveal_.5s_ease-in-out]">
             <div className="py-5 px-5 md:px-10 lg:px-20">
               <div className="flex justify-between text-black">
                 <div>

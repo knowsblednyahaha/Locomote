@@ -5,11 +5,11 @@ const About = () => {
   return (
     <section className="max-w-[1440px] w-full w-full flex flex-col justify-between items-center py-5 px-5 md:px-10 lg:px-20 z-20 m-auto">
       <div className="flex flex-col py-10">
-        <div className="w-1/3">
+        <div className="w-full mb-5 md:w-1/3 md:mb-0">
           <h3 className="text-5xl font-medium">About Us</h3>
         </div>
         <div className="w-full">
-          <div className="float-right w-2/3">
+          <div className="float-right md:w-2/3">
             <p className="text-lg">
               You may have a flawless travel experience with only a click at
               Locomote. Locomote is dedicated to make travel easy, convenient,
@@ -18,21 +18,21 @@ const About = () => {
             </p>
           </div>
         </div>
-        <div className="w-full relative h-[400px] my-10">
+        <div className="w-full relative h-[250px] md:h-[400px] my-10">
           <Image
             src={"/img/busabout1.jpg"}
-            className="w-full bg-no-repeat object-cover rounded-3xl"
+            className="w-full bg-no-repeat object-cover rounded-3xl object-[left_40%_bottom_45%]"
             alt={"AboutImage"}
             fill={true}
             priority
           />
         </div>
       </div>
-      <div className="w-full flex border-t border-b border-gray-500 py-16">
-        <div className="w-1/3">
+      <div className="w-full flex flex-col md:flex-row border-t border-b border-gray-500 py-16">
+        <div className="w-full md:w-1/3 mb-5 md:mb-0">
           <h5 className="text-2xl font-medium">Our Mission</h5>
         </div>
-        <div className="w-2/3">
+        <div className="w-full md:w-2/3">
           <p className="text-lg">
             At Locomote, our mission is clear: to provide travelers with a
             stress-free and reliable way to book bus tickets, empowering them to
