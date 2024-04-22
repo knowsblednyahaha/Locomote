@@ -6,7 +6,7 @@ const About = () => {
     <section className="max-w-[1440px] w-full w-full flex flex-col justify-between items-center py-5 px-5 md:px-10 lg:px-20 z-20 m-auto">
       <div className="flex flex-col py-10">
         <div className="w-1/3">
-          <h3 className="text-5xl font-semibold">About Us</h3>
+          <h3 className="text-5xl font-medium">About Us</h3>
         </div>
         <div className="w-full">
           <div className="float-right w-2/3">
@@ -18,9 +18,9 @@ const About = () => {
             </p>
           </div>
         </div>
-        <div className="w-full relative h-[300px] my-10">
+        <div className="w-full relative h-[400px] my-10">
           <Image
-            src={"/img/aboutimage2.jpg"}
+            src={"/img/busabout1.jpg"}
             className="w-full bg-no-repeat object-cover rounded-3xl"
             alt={"AboutImage"}
             fill={true}
@@ -30,7 +30,7 @@ const About = () => {
       </div>
       <div className="w-full flex border-t border-b border-gray-500 py-16">
         <div className="w-1/3">
-          <h5 className="text-2xl font-semibold">Our Mission</h5>
+          <h5 className="text-2xl font-medium">Our Mission</h5>
         </div>
         <div className="w-2/3">
           <p className="text-lg">

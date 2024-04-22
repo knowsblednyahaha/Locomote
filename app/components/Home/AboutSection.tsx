@@ -41,7 +41,7 @@ export default function AboutSection() {
       <div>
         <div className="w-full flex flex-col md:flex-row justify-center items-center pt-10">
           <div className="text-center md:text-left w-full md:w-1/2 lg:w-3/5 pb-5 lg:mr-[-10rem] xl:mr-[-15rem] z-10">
-            <h3 className="text-2xl md:text-4xl lg:text-5xl xl:text-7xl md:leading-none font-bold">
+            <h3 className="text-2xl md:text-4xl lg:text-5xl xl:text-7xl md:leading-none font-semibold">
               Our goal is to offer transportation solutions.
             </h3>
           </div>
