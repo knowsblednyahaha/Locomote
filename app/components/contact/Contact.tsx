@@ -19,7 +19,7 @@ const Contact = () => {
           </form>
         </div>
         <div className="w-2/6 relative">
-          <Image src={"/"} alt={""} />
+          {/* <Image src={"/"} alt={""} /> */}
         </div>
       </div>
     </section>
