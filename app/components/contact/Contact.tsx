@@ -17,7 +17,10 @@ const Contact = () => {
               <input type="text" className="border" />
             </div>
             <div>
-              <input type="text" />
+              <input type="text" className="border" />
+            </div>
+            <div>
+              <button>Submit</button>
             </div>
           </form>
         </div>
