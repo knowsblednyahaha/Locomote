@@ -9,6 +9,9 @@ const Contact = () => {
           <div className="w-1/3">
             <h3 className="text-3xl">Contact Us</h3>
           </div>
+          <div className="w-1/3">
+            <h3 className="text-xl">Are you in need of assistance?</h3>
+          </div>
           <form action="">
             <div>
               <input type="text" className="border" />
