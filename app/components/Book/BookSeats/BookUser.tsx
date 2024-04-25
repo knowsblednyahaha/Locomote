@@ -90,7 +90,7 @@ const BookUser: React.FC<DataId> = ({ id }) => {
     (data: any, index: any) => data.seatNumber
   );
 
-  console.log(bookedSeats);
+  console.log(bookedSeats.length === 45);
 
   const dateString = date;
   const [year, month, day] = dateString.split("-");
@@ -244,7 +244,11 @@ const BookUser: React.FC<DataId> = ({ id }) => {
               <div
                 className="w-2/12 px-5 lg:px-5 flex justify-center items-center border-l border-black py-7"
                 onClick={() => {
-                  setpassengerCount(passengerCount + 1);
+                  setpassengerCount(
+                    bookedSeats.length === 45
+                      ? passengerCount
+                      : passengerCount + 1
+                  );
                 }}
               >
                 <FiPlus />

@@ -184,7 +184,7 @@ export function SearchBookResult() {
               <div
                 className={`md:w-2/12 text-center flex flex-col gap-y-1 justify-center items-center ${
                   item.bus[0].capacity - item.ticket.length <= 5
-                    ? "text-red-700"
+                    ? "text-red-500"
                     : ""
                 }`}
               >
