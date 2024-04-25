@@ -90,7 +90,7 @@ const BookUser: React.FC<DataId> = ({ id }) => {
     (data: any, index: any) => data.seatNumber
   );
 
-  console.log(bookedSeats.length === 45);
+  console.log(data);
 
   const dateString = date;
   const [year, month, day] = dateString.split("-");
@@ -245,7 +245,7 @@ const BookUser: React.FC<DataId> = ({ id }) => {
                 className="w-2/12 px-5 lg:px-5 flex justify-center items-center border-l border-black py-7"
                 onClick={() => {
                   setpassengerCount(
-                    bookedSeats.length === 45
+                    bookedSeats.length + passengerCount > data.bus[0].capacity
                       ? passengerCount
                       : passengerCount + 1
                   );
