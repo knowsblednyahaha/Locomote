@@ -11,20 +11,20 @@ export const Login = () => {
           </Link>
         </div>
         <form className="flex flex-col gap-y-5">
-          <div className="flex flex-col w-full">
+          <div className="flex flex-col w-full gap-y-2">
             <label htmlFor="email">Email or Username</label>
             <input
               type="text"
-              className="border border-gray-400 h-[40px] rounded-xl pl-3"
+              className="border border-gray-400 h-[50px] rounded-xl pl-3"
               id="email"
               placeholder="Email"
             />
           </div>
-          <div className="flex flex-col w-full">
+          <div className="flex flex-col w-full gap-y-2">
             <label htmlFor="password">Password</label>
             <input
               type="text"
-              className="border border-gray-400 h-[40px] rounded-xl pl-3"
+              className="border border-gray-400 h-[50px] rounded-xl pl-3"
               id="password"
               placeholder="Your password"
             />

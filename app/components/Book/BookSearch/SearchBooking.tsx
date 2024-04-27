@@ -24,6 +24,7 @@ export default function SearchBooking() {
   // Get the current date in YYYY-MM-DD format
   const currentDate = formatDate(new Date());
   const [travelDate, setTravelDate] = useState<string>("");
+  console.log(travelDate);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -55,11 +56,12 @@ export default function SearchBooking() {
 
     const encodeSearchLocationQuery = encodeURI(searchLocation);
     const encodeSearchDestinationQuery = encodeURI(searchDestination);
+    const encodeSearchTravelDate = encodeURI(travelDate);
 
     encodeSearchLocationQuery === "" && encodeSearchDestinationQuery === ""
-      ? router.push(`/book`)
+      ? router.push(`/book?traveldate=${encodeSearchTravelDate}`)
       : router.push(
-          `/book?location=${encodeSearchLocationQuery}&destination=${encodeSearchDestinationQuery}`
+          `/book?location=${encodeSearchLocationQuery}&destination=${encodeSearchDestinationQuery}&traveldate=${encodeSearchTravelDate}`
         );
 
     sessionStorage.setItem("travelDate", `${travelDate}`);

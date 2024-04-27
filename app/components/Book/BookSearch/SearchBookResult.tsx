@@ -26,9 +26,13 @@ export function SearchBookResult() {
   const search = useSearchParams();
   const searchLocationQuery = search ? search.get("location") : null;
   const searchDestinationQuery = search ? search.get("destination") : null;
+  const searchTravelDateQuery = search ? search.get("traveldate") : null;
 
   const encodedSearchLocationQuery = encodeURI(searchLocationQuery || "");
   const encodedSearchDestinationQuery = encodeURI(searchDestinationQuery || "");
+  const encodedSearchTravelDateQuery = encodeURI(searchTravelDateQuery || "");
+
+  console.log(encodedSearchTravelDateQuery);
 
   const busCompany = search ? search.get("busCompany") : null;
   let busCompanies: string = "";
@@ -53,7 +57,7 @@ export function SearchBookResult() {
     busTypes = "Deluxe,Super Deluxe,First Class Express,Luxury Bus";
   }
   const { data, error, isLoading } = useSWR(
-    `/api/search?location=${encodedSearchLocationQuery}&destination=${encodedSearchDestinationQuery}&busCompany=${busCompanies}&busType=${busTypes}`,
+    `/api/search?location=${encodedSearchLocationQuery}&destination=${encodedSearchDestinationQuery}&traveldate=${encodedSearchTravelDateQuery}&busCompany=${busCompanies}&busType=${busTypes}`,
     fetcher,
     {
       revalidateOnMount: true,

@@ -7,9 +7,13 @@ export async function GET(req: NextRequest) {
   const searchParams = req.nextUrl.searchParams;
   const location = searchParams ? searchParams.get("location") : null;
   const destination = searchParams ? searchParams.get("destination") : null;
+  const traveldate = searchParams ? searchParams.get("traveldate") : null;
 
   const locationValue = location !== null ? location : "";
   const destinationValue = destination !== null ? destination : "";
+  const traveldateValue = traveldate !== null ? traveldate : new Date();
+
+  console.log(traveldateValue);
 
   const busCompany = searchParams ? searchParams.get("busCompany") : null;
 
@@ -45,7 +49,7 @@ export async function GET(req: NextRequest) {
     const post = await prisma.schedule.findMany({
       where: {
         bookingDate: {
-          gte: new Date("2024-04-19"),
+          gte: new Date(traveldateValue),
         },
         route: {
           some: {
@@ -70,7 +74,11 @@ export async function GET(req: NextRequest) {
       include: {
         route: true,
         bus: true,
-        ticket: true,
+        ticket: {
+          select: {
+            id: true,
+          },
+        },
       },
       orderBy: {
         departureTime: "asc",

@@ -19,7 +19,7 @@ const Contact = () => {
               <label htmlFor="name">Name</label>
               <input
                 type="text"
-                className="border border-black rounded-xl h-[50px] pl-3"
+                className="border border-gray-500 rounded-xl h-[50px] pl-3"
                 id="name"
               />
             </div>
@@ -27,7 +27,7 @@ const Contact = () => {
               <label htmlFor="email">Email</label>
               <input
                 type="text"
-                className="border border-black rounded-xl h-[50px] pl-3"
+                className="border border-gray-500 rounded-xl h-[50px] pl-3"
                 id="email"
               />
             </div>
@@ -35,7 +35,7 @@ const Contact = () => {
           <div className="flex flex-col gap-y-2 pb-5">
             <label htmlFor="message">Message</label>
             <textarea
-              className="border border-black rounded-xl pl-3 pt-2"
+              className="border border-gray-500 rounded-xl pl-3 pt-2"
               id="message"
               rows={4}
             />
