@@ -3,9 +3,10 @@ import React, { Suspense, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import "../sass/arrow.scss";
 import BackButton from "../../BackButton";
-import { SearchBookResult } from "./SearchBookResult";
+
 import FilterBooking from "./FilterBooking";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import SearchBookResult from "./SearchBookResult";
 
 const queryClient = new QueryClient();
 
@@ -24,7 +25,6 @@ export default function SearchBooking() {
   // Get the current date in YYYY-MM-DD format
   const currentDate = formatDate(new Date());
   const [travelDate, setTravelDate] = useState<string>("");
-  console.log(travelDate);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -63,7 +63,6 @@ export default function SearchBooking() {
       : router.push(
           `/book?location=${encodeSearchLocationQuery}&destination=${encodeSearchDestinationQuery}&traveldate=${encodeSearchTravelDate}`
         );
-
     sessionStorage.setItem("travelDate", `${travelDate}`);
   };
 
@@ -140,7 +139,7 @@ export default function SearchBooking() {
         <div className="w-full mt-5 flex flex-col md:flex-row gap-x-5 gap-y-5">
           <Suspense fallback={<div>Loading...</div>}>
             <QueryClientProvider client={queryClient}>
-              <SearchBookResult />
+              <SearchBookResult travelDate={travelDate} />
             </QueryClientProvider>
           </Suspense>
         </div>

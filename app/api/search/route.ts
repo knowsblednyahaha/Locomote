@@ -7,13 +7,11 @@ export async function GET(req: NextRequest) {
   const searchParams = req.nextUrl.searchParams;
   const location = searchParams ? searchParams.get("location") : null;
   const destination = searchParams ? searchParams.get("destination") : null;
-  const traveldate = searchParams ? searchParams.get("traveldate") : null;
+  const traveldate = searchParams ? searchParams.get("traveldate") : new Date();
 
   const locationValue = location !== null ? location : "";
   const destinationValue = destination !== null ? destination : "";
   const traveldateValue = traveldate !== null ? traveldate : new Date();
-
-  console.log(traveldateValue);
 
   const busCompany = searchParams ? searchParams.get("busCompany") : null;
 

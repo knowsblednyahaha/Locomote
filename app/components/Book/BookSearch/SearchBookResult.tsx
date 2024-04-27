@@ -14,6 +14,10 @@ interface NestedObject {
   departureTime: string; // Assuming dateTime is a string in ISO 8601 format
 }
 
+interface DataProps {
+  travelDate: string;
+}
+
 const fetcher = async (url: string) => {
   const response = await fetch(url);
   if (!response.ok) {
@@ -22,20 +26,31 @@ const fetcher = async (url: string) => {
   return await response.json();
 };
 
-export function SearchBookResult() {
+const SearchBookResult: React.FC<DataProps> = ({ travelDate }) => {
   const search = useSearchParams();
   const searchLocationQuery = search ? search.get("location") : null;
   const searchDestinationQuery = search ? search.get("destination") : null;
-  const searchTravelDateQuery = search ? search.get("traveldate") : null;
 
   const encodedSearchLocationQuery = encodeURI(searchLocationQuery || "");
   const encodedSearchDestinationQuery = encodeURI(searchDestinationQuery || "");
-  const encodedSearchTravelDateQuery = encodeURI(searchTravelDateQuery || "");
-
-  console.log(encodedSearchTravelDateQuery);
 
   const busCompany = search ? search.get("busCompany") : null;
   let busCompanies: string = "";
+
+  // Function to format the date in YYYY-MM-DD format
+  const formatDate = (date: Date) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  };
+
+  // Get the current date in YYYY-MM-DD format
+  const currentDate = formatDate(new Date());
+
+  if (travelDate == "") {
+    travelDate = currentDate;
+  }
 
   if (busCompany) {
     // Split the comma-separated string into an array
@@ -56,8 +71,9 @@ export function SearchBookResult() {
     // If busCompanyParam is null or undefined, use default values
     busTypes = "Deluxe,Super Deluxe,First Class Express,Luxury Bus";
   }
+
   const { data, error, isLoading } = useSWR(
-    `/api/search?location=${encodedSearchLocationQuery}&destination=${encodedSearchDestinationQuery}&traveldate=${encodedSearchTravelDateQuery}&busCompany=${busCompanies}&busType=${busTypes}`,
+    `/api/search?location=${encodedSearchLocationQuery}&destination=${encodedSearchDestinationQuery}&traveldate=${travelDate}&busCompany=${busCompanies}&busType=${busTypes}`,
     fetcher,
     {
       revalidateOnMount: true,
@@ -228,4 +244,5 @@ export function SearchBookResult() {
       )}
     </div>
   );
-}
+};
+export default SearchBookResult;
