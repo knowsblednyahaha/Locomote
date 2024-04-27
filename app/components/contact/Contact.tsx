@@ -1,11 +1,10 @@
 import React from "react";
-import Image from "next/image";
 
 const Contact = () => {
   return (
-    <section className="max-w-[1440px] h-[51.1vh] w-full w-full py-10 px-5 md:px-10 lg:px-20 z-20 m-auto">
-      <div className="w-full flex">
-        <div className="w-1/3">
+    <section className="max-w-[1440px] lg:h-[51.1vh] w-full w-full py-10 px-5 md:px-10 lg:px-20 z-20 m-auto">
+      <div className="w-full flex flex-col lg:flex-row">
+        <div className="w-full lg:w-1/3 pb-5">
           <div className="mb-5">
             <h3 className="text-3xl">Contact Us</h3>
           </div>
@@ -13,22 +12,26 @@ const Contact = () => {
             <h3 className="text-xl">Are you in need of assistance?</h3>
           </div>
         </div>
-        <form action="" className="w-2/3">
-          <div className="flex gap-x-10 pb-5">
-            <div className="flex flex-col w-1/2 gap-y-2">
+        <form action="" className="w-full lg:w-2/3 items-center">
+          <div className="flex flex-col md:flex-row gap-x-10 pb-5 gap-y-5">
+            <div className="flex flex-col w-full md:w-1/2 gap-y-2">
               <label htmlFor="name">Name</label>
               <input
                 type="text"
                 className="border border-gray-500 rounded-xl h-[50px] pl-3"
                 id="name"
+                name="name"
+                autoComplete="given-name"
               />
             </div>
-            <div className="flex flex-col w-1/2 gap-y-2">
+            <div className="flex flex-col w-full md:w-1/2 gap-y-2">
               <label htmlFor="email">Email</label>
               <input
-                type="text"
+                type="email"
                 className="border border-gray-500 rounded-xl h-[50px] pl-3"
                 id="email"
+                name="email"
+                autoComplete="off"
               />
             </div>
           </div>

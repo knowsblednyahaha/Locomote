@@ -226,11 +226,17 @@ const SearchBookResult: React.FC<DataProps> = ({ travelDate }) => {
                 >
                   <button
                     className={`w-32 md:w-full h-12 md:h-content text-sm md:text-base bg-[#FE2F2F] rounded-xl text-white ${
-                      storedDate === null || storedDate === ""
+                      storedDate === null ||
+                      storedDate === "" ||
+                      item.bus[0].capacity - item.ticket.length <= 0
                         ? "cursor-not-allowed opacity-25"
                         : ""
                     }`}
-                    disabled={storedDate === null || storedDate === ""}
+                    disabled={
+                      storedDate === null ||
+                      storedDate === "" ||
+                      item.bus[0].capacity - item.ticket.length <= 0
+                    }
                   >
                     Book
                   </button>
