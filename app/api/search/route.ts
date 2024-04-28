@@ -74,7 +74,7 @@ export async function GET(req: NextRequest) {
         bus: true,
         ticket: {
           select: {
-            id: true,
+            seatNumber: true,
           },
         },
       },

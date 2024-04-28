@@ -10,7 +10,7 @@ export const Login = () => {
             <h3 className="text-2xl font-semibold">Sign In</h3>
           </Link>
         </div>
-        <form className="flex flex-col gap-y-5">
+        <form className="flex flex-col gap-y-2">
           <div className="flex flex-col w-full gap-y-2">
             <label htmlFor="email">Email or Username</label>
             <input

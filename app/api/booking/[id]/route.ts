@@ -23,7 +23,11 @@ export async function GET(
       include: {
         route: true,
         bus: true,
-        ticket: true,
+        ticket: {
+          select: {
+            seatNumber: true,
+          },
+        },
       },
     });
 

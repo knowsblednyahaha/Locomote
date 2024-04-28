@@ -50,6 +50,7 @@ const Blog = () => {
                   className="w-full bg-no-repeat object-cover "
                   alt={data.alt}
                   fill={true}
+                  sizes="100%"
                   priority
                 />
               </div>

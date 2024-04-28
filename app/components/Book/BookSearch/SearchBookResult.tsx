@@ -238,7 +238,9 @@ const SearchBookResult: React.FC<DataProps> = ({ travelDate }) => {
                       item.bus[0].capacity - item.ticket.length <= 0
                     }
                   >
-                    Book
+                    {item.bus[0].capacity - item.ticket.length <= 0
+                      ? "Full"
+                      : "Book"}
                   </button>
                 </Link>
               </div>

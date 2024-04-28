@@ -65,9 +65,15 @@ export const Header = () => {
               </div>
             </div>
             <div className="h-full flex flex-col justify-center items-center text-black text-5xl gap-y-10">
-              <div>About</div>
-              <div>Blog</div>
-              <div>Contact</div>
+              <div>
+                <Link href={"/about"}>About</Link>
+              </div>
+              <div>
+                <Link href={"/blog"}>Blog</Link>
+              </div>
+              <div>
+                <Link href={"/contact"}>Contact</Link>
+              </div>
               <div>
                 <Link href={"/login"}>
                   <button className="h-20 w-52 bg-[#FE2F2F] text-white rounded-3xl">

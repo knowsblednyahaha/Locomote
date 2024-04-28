@@ -245,7 +245,7 @@ const BookUser: React.FC<DataId> = ({ id }) => {
                 className="w-2/12 px-5 lg:px-5 flex justify-center items-center border-l border-black py-7"
                 onClick={() => {
                   setpassengerCount(
-                    bookedSeats.length + passengerCount > data.bus[0].capacity
+                    bookedSeats.length + passengerCount == data.bus[0].capacity
                       ? passengerCount
                       : passengerCount + 1
                   );
