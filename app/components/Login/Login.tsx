@@ -14,7 +14,7 @@ export const Login = () => {
           <div className="flex flex-col w-full gap-y-2">
             <label htmlFor="email">Email or Username</label>
             <input
-              type="text"
+              type="email"
               className="border border-gray-400 h-[50px] rounded-xl pl-3"
               id="email"
               placeholder="Email"
@@ -23,14 +23,14 @@ export const Login = () => {
           <div className="flex flex-col w-full gap-y-2">
             <label htmlFor="password">Password</label>
             <input
-              type="text"
+              type="password"
               className="border border-gray-400 h-[50px] rounded-xl pl-3"
               id="password"
               placeholder="Your password"
             />
           </div>
-          <div className="text-center">
-            <button className="w-[100px] bg-black text-white p-3 rounded-2xl">
+          <div className="text-center mt-3">
+            <button className="w-full bg-black text-white p-3 rounded-xl">
               Sign In
             </button>
           </div>

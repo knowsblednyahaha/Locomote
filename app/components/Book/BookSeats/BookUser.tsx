@@ -15,6 +15,12 @@ import moment from "moment";
 import "moment-timezone";
 import axios from "axios";
 import { useMutation, useQuery } from "@tanstack/react-query";
+import {
+  Deluxe,
+  FirstClassExpress,
+  LuxuryBus,
+  SuperDeluxe,
+} from "../BookSearch/BusIcons";
 
 interface DataId {
   id: string;
@@ -140,10 +146,17 @@ const BookUser: React.FC<DataId> = ({ id }) => {
             Bus Company:
             {data.bus[0].busCompany} - {data.bus[0].type}
             <span className="md:flex flex-row gap-x-1 hidden ">
-              <FaWifi size={16} />
-              <PiTelevisionSimpleDuotone size={16} />
-              <TbAirConditioning size={16} />
-              <IoMdMusicalNotes size={16} />
+              {data.bus[0].type === "Deluxe" ? (
+                <Deluxe />
+              ) : data.bus[0].type === "Super Deluxe" ? (
+                <SuperDeluxe />
+              ) : data.bus[0].type === "First Class Express" ? (
+                <FirstClassExpress />
+              ) : data.bus[0].type === "First Class Express" ? (
+                <LuxuryBus />
+              ) : (
+                ""
+              )}
             </span>
           </span>
           <span>{moment(isoDateString).tz("Asia/Manila").format("LL")}</span>
@@ -228,7 +241,7 @@ const BookUser: React.FC<DataId> = ({ id }) => {
           <div className="w-full flex gap-y-5 border border-black rounded-2xl">
             <div className="w-full flex justify-between items-center border-black  ">
               <div
-                className="w-2/12 px-5 lg:px-5 flex justify-center items-center border-r border-black py-7"
+                className="w-2/12 px-5 lg:px-5 flex justify-center items-center border-r border-black py-7 cursor-pointer"
                 onClick={() => {
                   setpassengerCount(
                     passengerCount == 0 ? 0 : passengerCount - 1
@@ -242,7 +255,7 @@ const BookUser: React.FC<DataId> = ({ id }) => {
                 <div>{passengerCount}</div>
               </div>
               <div
-                className="w-2/12 px-5 lg:px-5 flex justify-center items-center border-l border-black py-7"
+                className="w-2/12 px-5 lg:px-5 flex justify-center items-center border-l border-black py-7 cursor-pointer"
                 onClick={() => {
                   setpassengerCount(
                     bookedSeats.length + passengerCount == data.bus[0].capacity
