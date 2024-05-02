@@ -18,7 +18,7 @@ export default function Homehero() {
       </div>
       <div className="w-full h-[30vh] md:h-[30vh] px-5 md:px-10 lg:px-20 text-center md:text-left flex flex-col md:flex-row justify-center items-center gap-x-5">
         <div className="md:w-3/5 xl:w-4/6 pb-5 md:pb-0 md:pr-5">
-          <h1 className="text-4xl sm:text-5xl md:text-[3.75rem] md:leading-none lg:text-[4.5rem] xl:text-[6rem]">
+          <h1 className="text-4xl sm:text-5xl md:text-[3.15rem] md:leading-none lg:text-[4.15rem] xl:text-[5.75rem]">
             Ride in comfort with Locomote.
           </h1>
         </div>
