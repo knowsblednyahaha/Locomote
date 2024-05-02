@@ -106,7 +106,7 @@ const SearchBookResult: React.FC<DataProps> = ({ travelDate }) => {
             </span>
           </div>
           <div className="flex items-center flex-col md:flex-row md:items-center gap-x-3 gap-y-3 w-full text-center md:text-left">
-            <div className="md:w-3/12 flex flex-col items-center md:items-start">
+            <div className="md:w-3/12 flex flex-col items-center md:items-center">
               <span className="text-xl font-bold bg-gray-300 h-7 w-24 block rounded-xl"></span>
               <p className="uppercase bg-gray-300 h-5 w-28 block mt-2 rounded-xl"></p>
             </div>
@@ -114,19 +114,19 @@ const SearchBookResult: React.FC<DataProps> = ({ travelDate }) => {
               <span className="text-sm text-[#747474] bg-gray-300 h-5 w-28 block rounded-xl"></span>
               {/* <div className="w-full text-[#747474] bg-gray-300 h-6 mt-2"></div> */}
             </div>
-            <div className="md:w-3/12 flex flex-col items-center md:items-start">
+            <div className="md:w-3/12 flex flex-col items-center md:items-center">
               <span className="text-xl font-bold bg-gray-300 h-7 w-24 block rounded-xl"></span>
               <p className="uppercase bg-gray-300 h-5 w-28 block mt-2 rounded-xl"></p>
             </div>
-            <div className="md:w-2/12 text-center flex flex-col items-center md:items-start">
-              <span className="text-base font-bold bg-gray-300 h-7 w-24 md:w-16 block rounded-xl"></span>
-              <span className="text-base bg-gray-300 h-5 w-28 md:w-24 block mt-2 rounded-xl"></span>
+            <div className="md:w-2/12 text-center flex flex-col items-center md:items-center">
+              <span className="text-base font-bold bg-gray-300 h-7 w-28 md:w-24 block rounded-xl"></span>
+              <span className="text-base bg-gray-300 h-5 w-24 md:w-16 block mt-2 rounded-xl"></span>
             </div>
             <div className="md:w-1/12 text-center">
               <span className="text-lg font-bold bg-gray-300 h-7 w-20 md:w-14 block rounded-xl"></span>
             </div>
-            <div className="md:w-1/12 text-center">
-              <span className="bg-gray-300 h-12 w-32 md:w-12 lg:w-16 xl:w-24 block rounded-xl"></span>
+            <div className="md:w-2/12 text-center">
+              <span className="bg-gray-300 h-12 w-32 md:w-12 lg:w-32 xl:w-44 block rounded-xl"></span>
             </div>
           </div>
         </div>

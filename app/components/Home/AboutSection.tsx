@@ -45,7 +45,7 @@ export default function AboutSection() {
               Our goal is to offer transportation solutions.
             </h3>
           </div>
-          <div className="relative w-full md:w-1/2 lg:w-3/5 max-h-[400px] h-64 lg:h-[35vh] xl:h-[45vh] bg-no-repeat">
+          <div className="relative w-full md:w-1/2 lg:w-3/5 max-h-[400px] h-64 lg:h-[35vh] xl:h-[65vh] bg-no-repeat">
             <Image
               src="/img/aboutsection.jpg"
               className="rounded-3xl object-cover"
