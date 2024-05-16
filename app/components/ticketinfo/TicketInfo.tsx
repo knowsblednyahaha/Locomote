@@ -54,7 +54,7 @@ const TicketInfo: React.FC<Data> = ({ id }) => {
   }
 
   return (
-    <section className="max-w-[1440px] w-full m-auto ">
+    <section className="max-w-[1440px] w-full m-auto pb-10">
       <div className="max-w-[1440px] w-full flex flex-col px-5 md:px-10 lg:px-20">
         <div>
           <BackButton />
